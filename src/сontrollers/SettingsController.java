@@ -1,9 +1,10 @@
 package сontrollers;
 
-import helpers.nodes.MyStage;
-import helpers.nodes.WindowControllPanel;
 import helpers.functions.FileHelper;
 import helpers.functions.Helper;
+import helpers.nodes.MyNotification;
+import helpers.nodes.MyStage;
+import helpers.nodes.WindowControllPanel;
 import helpers.structures.Properties;
 import helpers.structures.Settings;
 import javafx.beans.value.ObservableValue;
@@ -11,7 +12,10 @@ import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.Tooltip;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
@@ -19,11 +23,9 @@ import library.AppData;
 
 public class SettingsController {
 
-	private double startX = -1, startY = -1;
-
-	Stage errLog;
-
 	private static Settings settings = new Settings("custom");
+	Stage errLog;
+	private double startX = -1, startY = -1;
 	@FXML
 	private ChoiceBox lengSelect;
 	@FXML
@@ -55,14 +57,14 @@ public class SettingsController {
 	public void initialize() {
 		btnLenToDef.setVisible(false);
 		btnTranToDef.setVisible(false);
-		btnLenToDef.setTooltip(new Tooltip(Helper.getI18nString("cancel")));
-		btnTranToDef.setTooltip(new Tooltip(Helper.getI18nString("cancel")));
-		btnAllToDef.setTooltip(new Tooltip(Helper.getI18nString("settings.resetAll")));
-		btnErr.setTooltip(new Tooltip(Helper.getI18nString("settings.btnErr")));
+		btnLenToDef.setTooltip(new Tooltip(Helper.getI18nString("cancel", Helper.LOCAL)));
+		btnTranToDef.setTooltip(new Tooltip(Helper.getI18nString("cancel", Helper.LOCAL)));
+		btnAllToDef.setTooltip(new Tooltip(Helper.getI18nString("settings.resetAll", Helper.LOCAL)));
+		btnErr.setTooltip(new Tooltip(Helper.getI18nString("settings.btnErr", Helper.LOCAL)));
 		btnSave.setDisable(true);
 		lengSelect.setItems(FXCollections.observableArrayList(Properties.getLengNames(0)));
 		lengSelect.getSelectionModel().select(Properties.getID(AppData.getSettings().getLeng()));
-		lengSelect.setTooltip(new Tooltip(Helper.getI18nString("settings.leng.tooltip")));
+		lengSelect.setTooltip(new Tooltip(Helper.getI18nString("settings.leng.tooltip", Helper.LOCAL)));
 		lengSelect.getSelectionModel().selectedIndexProperty().addListener(new javafx.beans.value.ChangeListener<Number>() {
 			@Override
 			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
@@ -82,7 +84,7 @@ public class SettingsController {
 		});
 		tranSelect.setItems(FXCollections.observableArrayList(Properties.getLengNames(1)));
 		tranSelect.getSelectionModel().select(Properties.getID(AppData.getSettings().getTran()) - 1);
-		tranSelect.setTooltip(new Tooltip(Helper.getI18nString("settings.tran.tooltip")));
+		tranSelect.setTooltip(new Tooltip(Helper.getI18nString("settings.tran.tooltip", Helper.LOCAL)));
 		tranSelect.getSelectionModel().selectedIndexProperty().addListener(new javafx.beans.value.ChangeListener<Number>() {
 			@Override
 			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
@@ -108,6 +110,7 @@ public class SettingsController {
 		btnLenToDef.setVisible(false);
 		btnTranToDef.setVisible(false);
 		FileHelper.rewrite();
+		MyNotification.showMessage(MyNotification.INFO, Helper.getI18nString("saveSettings", Helper.LOCAL));
 	}
 
 	public void showErrorLog(ActionEvent actionEvent) {

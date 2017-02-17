@@ -833,3 +833,35 @@ test exception message
 +++++ Launched on 16.02.2017 19:31 +++++
 
 +++++ Launched on 16.02.2017 22:38 +++++
+
++++++ Launched on 17.02.2017 13:36 +++++
+
+Error in MyNotification.initAnimation() existence.setOnFinished()
+ No such notification in 'windows'
+ ---------- 
+
++++++ Launched on 17.02.2017 13:38 +++++
+
++++++ Launched on 17.02.2017 13:40 +++++
+
++++++ Launched on 17.02.2017 13:51 +++++
+
++++++ Launched on 17.02.2017 13:59 +++++
+
++++++ Launched on 17.02.2017 13:59 +++++
+
++++++ Launched on 17.02.2017 14:04 +++++
+
++++++ Launched on 17.02.2017 14:04 +++++
+
++++++ Launched on 17.02.2017 14:06 +++++
+
++++++ Launched on 17.02.2017 14:15 +++++
+
++++++ Launched on 17.02.2017 16:42 +++++
+
++++++ Launched on 17.02.2017 16:44 +++++
+
++++++ Launched on 17.02.2017 17:07 +++++
+
++++++ Launched on 17.02.2017 17:11 +++++

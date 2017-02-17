@@ -1,6 +1,5 @@
 package сontrollers;
 
-import helpers.functions.FileHelper;
 import helpers.functions.Helper;
 import helpers.nodes.*;
 import helpers.structures.WList;
@@ -11,7 +10,9 @@ import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
@@ -28,13 +29,34 @@ public class ListController {
 
 	private static Word curWordAll, curWordThis;
 	private static WList list, sample;
-	public static WList getList() {
-		return list;
-	}
 	private static TextFieldWithButton searchAll = new TextFieldWithButton(45, TextFieldWithButton.DEFAULT_ADD, "Search", TextFieldWithButton.TOOLTIP_ADD_WORD), searchThis = new TextFieldWithButton(45, TextFieldWithButton.DEFAULT_ADD, "Search", TextFieldWithButton.TOOLTIP_ADD_WORD);
 	private static Table tableAll = new Table(), tableThis = new Table();
 	private static int curType = -1;
-
+	EventHandler<ActionEvent> addWord = action -> {                                                                        // add word - SearhAll
+		int key = WordController.wordStage(WordController.ADD_WORD, Helper.makePossibleWord(searchThis.getTextField().getText()));
+		refreshTables();
+	};
+	EventHandler<ActionEvent> addWordCur = action -> {                                                                    // add word - SearchThis
+		int key = WordController.wordStage(WordController.ADD_WORD, Helper.makePossibleWord(searchThis.getTextField().getText()));
+		list.add(key);
+		refreshTables();
+	};
+	EventHandler<ActionEvent> replace_This = action -> {                                                                // addToCur - SearchThis
+		list.add(AppData.getLists().get(0).getWordKey(searchThis.getTextField().getText()));
+		refreshTables();
+	};
+	EventHandler<ActionEvent> replace_All = action -> {                                                                // addToCur - SearchAll
+		list.add(AppData.getLists().get(0).getWordKey(searchAll.getTextField().getText()));
+		refreshTables();
+	};
+	EventHandler<ActionEvent> remove_This = action -> {                                                                // removeFromCur - SearchThis
+		list.remove(AppData.getLists().get(0).getWordKey(searchThis.getTextField().getText()));
+		refreshTables();
+	};
+	EventHandler<ActionEvent> remove_All = action -> {                                                                // removeFromCur - SearchAll
+		list.remove(AppData.getLists().get(0).getWordKey(searchAll.getTextField().getText()));
+		refreshTables();
+	};
 	@FXML
 	private AnchorPane root;
 	@FXML
@@ -47,6 +69,38 @@ public class ListController {
 	private Button btnRemoveAll;
 	@FXML
 	private Label lablNotFill;
+
+	public static WList getList() {
+		return list;
+	}
+
+	public static void destruct() {
+		curWordAll = null;
+		curWordThis = null;
+		list = null;
+		sample = null;
+		curType = -1;
+	}
+
+	public static WList listStage(int type, WList wlist) {
+		System.out.println("Enter in change");
+		if (type == CHANGE) {
+			if (wlist == null) return null;
+			list = wlist;
+			sample = wlist;
+		} else list = new WList();
+		System.out.println("changing...");
+		MyStage newList = new MyStage("/fxmls/list.fxml", Modality.APPLICATION_MODAL, null, null, new WindowControllPanel(30, 10, 10, false, false, false, "/resources/images/icons/used/list-2.png", "%myLists.newList"));
+		newList.getWCP().getCloseButton().setOnAction(action -> {
+			if (curType == CHANGE && !list.isEqual(sample) && !Helper.showConfirm(Helper.getI18nString("exitConfirmation", Helper.LOCAL)))
+				action.consume();
+			newList.close();
+		});
+		newList.showAndWait();
+		wlist = list;
+		destruct();
+		return wlist;
+	}
 
 	@FXML
 	public void initialize() {
@@ -112,32 +166,6 @@ public class ListController {
 		tableAll.getPopupMenu().getItem(MyContextMenu.DELETE).setOnAction(action -> {if(curWordAll != null)curWordAll.delete(); refreshTables();});
 	}
 
-	EventHandler<ActionEvent> addWord = action -> {																		// add word - SearhAll
-		int key = WordController.wordStage(WordController.ADD_WORD, Helper.makePossibleWord(searchThis.getTextField().getText()));
-		refreshTables();
-	};
-	EventHandler<ActionEvent> addWordCur = action -> {																	// add word - SearchThis
-		int key = WordController.wordStage(WordController.ADD_WORD, Helper.makePossibleWord(searchThis.getTextField().getText()));
-		list.add(key);
-		refreshTables();
-	};
-	EventHandler<ActionEvent> replace_This = action -> {																// addToCur - SearchThis
-		list.add(AppData.getLists().get(0).getWordKey(searchThis.getTextField().getText()));
-		refreshTables();
-	};
-	EventHandler<ActionEvent> replace_All = action -> {																// addToCur - SearchAll
-		list.add(AppData.getLists().get(0).getWordKey(searchAll.getTextField().getText()));
-		refreshTables();
-	};
-	EventHandler<ActionEvent> remove_This = action -> {																// removeFromCur - SearchThis
-		list.remove(AppData.getLists().get(0).getWordKey(searchThis.getTextField().getText()));
-		refreshTables();
-	};
-	EventHandler<ActionEvent> remove_All = action -> {																// removeFromCur - SearchAll
-		list.remove(AppData.getLists().get(0).getWordKey(searchAll.getTextField().getText()));
-		refreshTables();
-	};
-
 	public void initTFWBs(){
 		searchAll.setPrefWidth(350);
 		AnchorPane.setTopAnchor(searchAll, 150.0);
@@ -199,11 +227,11 @@ public class ListController {
 	public void saveList(ActionEvent actionEvent) {
 		if (list.getName().isEmpty()) {
 			fieldName.getStyleClass().add("incorrectField");
-			lablNotFill.setText(Helper.getI18nString("list.notFill"));
+			lablNotFill.setText(Helper.getI18nString("list.notFill", Helper.LOCAL));
 			return;
 		} else if(AppData.getLists().find(list.getName(), sample) != -1) {
 			fieldName.getStyleClass().add("incorrectField");
-			lablNotFill.setText(Helper.getI18nString("list.alreadyAdded"));
+			lablNotFill.setText(Helper.getI18nString("list.alreadyAdded", Helper.LOCAL));
 			return;
 		} else if(curType == CHANGE)sample.setName(fieldName.getText());
 		if (curType == NEW) {
@@ -226,32 +254,5 @@ public class ListController {
 	public void nameChanged(Event event) {
 		list.setName(fieldName.getText());
 		btnSave.setDisable(false);
-	}
-
-	public static void destruct(){
-		curWordAll = null;
-		curWordThis = null;
-		list = null;
-		sample = null;
-		curType = -1;
-	}
-
-	public static WList listStage(int type, WList wlist){
-		System.out.println("Enter in change");
-		if(type == CHANGE){
-			if(wlist == null)return null;
-			list = wlist;
-			sample = wlist;
-		} else list = new WList();
-		System.out.println("changing...");
-		MyStage newList = new MyStage("/fxmls/list.fxml", Modality.APPLICATION_MODAL, null, null, new WindowControllPanel(30, 10, 10, false, false, false, "/resources/images/icons/used/list-2.png", "%myLists.newList"));
-		newList.getWCP().getCloseButton().setOnAction(action -> {
-				if (curType == CHANGE && !list.isEqual(sample) && !Helper.showConfirm(Helper.getI18nString("exitConfirmation"))) action.consume();
-				newList.close();
-			});
-		newList.showAndWait();
-		wlist = list;
-		destruct();
-		return wlist;
 	}
 }

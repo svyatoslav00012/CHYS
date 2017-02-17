@@ -1,19 +1,15 @@
 package сontrollers;
 
-import helpers.functions.FileHelper;
-import helpers.nodes.MyContextMenu;
-import helpers.nodes.MyStage;
-import helpers.nodes.MyTitledPane;
-import helpers.nodes.WindowControllPanel;
 import helpers.functions.Helper;
+import helpers.nodes.*;
 import helpers.structures.WList;
-import helpers.structures.Word;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Accordion;
+import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TitledPane;
 import javafx.scene.effect.BlurType;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.GaussianBlur;
@@ -47,6 +43,24 @@ public class MyListsController{
 	private AnchorPane scpAnch;
 	@FXML
 	private ScrollPane scrollPane;
+
+	public static boolean accNotNull() {                                                                                //возвращает true если accordion не null
+		return accordion != null;
+	}
+
+	public static WList getCur() {
+		return cur;
+	}                                                                        //возвращает текущую выборку
+
+	public static void setGausian(boolean b) {                                                                            // !!! Не работает !!!
+		if (b) {
+			accordion.setEffect(blur);
+			accordion.getScene().getRoot().setDisable(true);
+		} else {
+			accordion.setEffect(null);
+			accordion.getScene().getRoot().setDisable(false);
+		}
+	}
 
 	@FXML
 	public void initialize() {
@@ -114,20 +128,10 @@ public class MyListsController{
 			((MyTitledPane) accordion.getPanes().get(index)).getMyContextMenu().getItem(MyContextMenu.DELETE).setOnAction(action -> delete(titledPane.getList()));                        //delete
 	}
 
-	public static boolean accNotNull() {                                                                                //возвращает true если accordion не null
-		if (accordion != null) return true;
-		return false;
-	}
-
-	public static WList getCur() {
-		return cur;
-	}                                                                        //возвращает текущую выборку
-
 	public void newList() {                                                                                                //создаёт выборку и добавляет в конец
 		WList wlist = ListController.listStage(ListController.NEW, null);
-		AppData.getLists().add(wlist);
-		add(wlist);
-		FileHelper.rewrite();
+		if (AppData.getLists().add(wlist) && add(wlist))
+			MyNotification.showMessage(MyNotification.COMPLETE, MyNotification.LIST_CREATED);
 	}
 
 	public void change(WList wList) {                                                                                    //перегруженная функция (см. ниже)
@@ -138,6 +142,7 @@ public class MyListsController{
 	public void changeList() {                                                                                            //редактирует выборку
 		WList wlist = ListController.listStage(ListController.CHANGE, cur);
 		AppData.getLists().set(wlist);
+		MyNotification.showMessage(MyNotification.COMPLETE, MyNotification.LIST_EDITED);
 	}
 
 	public void duplicate() {
@@ -149,6 +154,7 @@ public class MyListsController{
 		AppData.getLists().insert(curIndex + 1, list.makeDuplicate());
 		accordion.getPanes().add(curIndex + 1, new MyTitledPane(AppData.getLists().get(curIndex + 1)));
 		initContextMenuActions(curIndex + 1);
+		MyNotification.showMessage(MyNotification.COMPLETE, MyNotification.LIST_DUPLICATED);
 	}
 
 	public void delete(WList list) {                                                                                        //перегруженная функция (см. ниже)
@@ -159,21 +165,23 @@ public class MyListsController{
 	public void delete() {                                                                                                //удаляет выборку
 		if (cur == null) return;
 		System.out.println("delete : " + cur.getName());
-		if (Helper.showConfirm(Helper.getI18nString("delete") + " : " + cur.getName() + "?")) {
+		if (Helper.showConfirm(Helper.getI18nString("delete", Helper.LOCAL) + " : " + cur.getName() + "?")) {
 			AppData.getLists().remove(cur.getKey());
 			for (int i = 0; i < accordion.getPanes().size(); ++i)
 				if (accordion.getPanes().get(i).getText().equals(cur.getName())) {
 					accordion.getPanes().remove(i);
+					MyNotification.showMessage(MyNotification.COMPLETE, MyNotification.LIST_DELETED);
 					return;
 				}
 			Helper.showError("Error in MyListsContoller.delete()\nPane with name " + cur.getName() + " doesn't exist");
 		}
 	}
 
-	public void add(WList list) {                                                                                //добавляет MyTitledPane в конец акордиона
+	public boolean add(WList list) {                                                                                //добавляет MyTitledPane в конец акордиона
 		accordion.getPanes().add(new MyTitledPane(list));
 		initContextMenuActions(accordion.getPanes().size() - 1);
 		scrollPane.setVvalue(1);
+		return true;
 	}
 
 	public void choose(WList list) {                                                                                        //перегруженная функция (см. ниже)
@@ -191,15 +199,4 @@ public class MyListsController{
 		start.getScene().getStylesheets().add("/styles/templateStyles/choiceBoxStyle.css");
 		start.show();
 	}
-
-	public static void setGausian(boolean b) {                                                                            // !!! Не работает !!!
-		if (b) {
-			accordion.setEffect(blur);
-			accordion.getScene().getRoot().setDisable(true);
-		} else {
-			accordion.setEffect(null);
-			accordion.getScene().getRoot().setDisable(false);
-		}
-	}
-
 }

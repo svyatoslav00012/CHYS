@@ -1,28 +1,38 @@
 package helpers.functions;
 
 import helpers.nodes.MyAlert;
+import helpers.nodes.MyNotification;
 import helpers.structures.MyLog;
 import helpers.structures.Settings;
 import helpers.structures.Word;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.scene.control.*;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.Tooltip;
 import javafx.util.Duration;
 import library.AppData;
 
 import java.io.File;
 import java.lang.reflect.Field;
-import java.util.*;
+import java.util.Enumeration;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class Helper {
 
 	public static final int AVAILABLE = 1;
 	public static final int EMPTY = 0;
 	public static final int NOT_AVAILABLE = -1;
-
+	public static final String LOCAL = "Locale";                    // bundle
+	public static final String NOTIFICATIONS = "Notifications";        // bundle
 	private static MyLog log = new MyLog();
-
 	private static MyAlert alert = new MyAlert();
+
+//	public static void log(String s, Exception e) {
+//		if (log == null) log = new MyLog();
+//		log.log(s, e);
+//	}
 
 	public static void initAlert(){
 		alert = new MyAlert();
@@ -32,11 +42,6 @@ public class Helper {
 		if (log == null) log = new MyLog();
 		log.log(s);
 	}
-
-//	public static void log(String s, Exception e) {
-//		if (log == null) log = new MyLog();
-//		log.log(s, e);
-//	}
 
 	public static void showError(String er) {
 		log(er);
@@ -88,8 +93,7 @@ public class Helper {
 	}
 
 	public static boolean check(Settings s) {
-		if (s.equals(AppData.getSettings())) return true;
-		else return false;
+		return s.equals(AppData.getSettings());
 	}
 
 	public static String getCleanString(String s) {
@@ -106,15 +110,14 @@ public class Helper {
 		return sb.toString();
 	}
 
-	public static String getI18nString(String key) {
-		if(ResourceBundle.getBundle("resources.bundles.Locale", new Locale(AppData.getSettings().getLeng())).containsKey(key))
-			return ResourceBundle.getBundle("resources.bundles.Locale", new Locale(AppData.getSettings().getLeng())).getString(key);
-		return "key: %"+key+" in AppData.getLocale() Not found!";
+	public static String getI18nString(String key, String bundle) {
+		return getI18nString(key, bundle, AppData.getSettings().getLeng());
 	}
 
-	public static String getI18nString(String key, String locale){
-		if(ResourceBundle.getBundle("resources.bundles.Locale", new Locale(locale)).containsKey(key))
-		return ResourceBundle.getBundle("resources.bundles.Locale", new Locale(locale)).getString(key);
+	public static String getI18nString(String key, String bundle, String locale) {
+		if (ResourceBundle.getBundle("resources.bundles." + bundle, new Locale(locale)).containsKey(key))
+			return ResourceBundle.getBundle("resources.bundles." + bundle, new Locale(locale)).getString(key);
+		MyNotification.showMessage(MyNotification.ERROR, "Error in Helper.get18nString()\nKey '" + key + "' in bundle '" + bundle + "' not found\nlocale: " + locale);
 		return "key: %"+key+" in locale: " + locale + "Not found!";
 	}
 

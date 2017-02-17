@@ -10,11 +10,8 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.ImagePattern;
-import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
-
-import java.math.BigInteger;
 
 /**
  * Created by Svyatoslav on 01.12.2016.
@@ -43,8 +40,8 @@ public class WindowControllPanel extends AnchorPane {
 					((Stage) getScene().getWindow()).setMaximized(false);
 				else ((Stage) getScene().getWindow()).setMaximized(true);
 				((MyStage) getScene().getWindow()).getWR().setVisible(!((Stage) getScene().getWindow()).isMaximized());
-				((Rectangle) getScene().getRoot().getClip()).setWidth(((Stage) getScene().getWindow()).getWidth());
-				((Rectangle) getScene().getRoot().getClip()).setHeight(((Stage) getScene().getWindow()).getHeight());
+				((Rectangle) getScene().getRoot().getClip()).setWidth(getScene().getWindow().getWidth());
+				((Rectangle) getScene().getRoot().getClip()).setHeight(getScene().getWindow().getHeight());
 			}
 		});
 		btnIconif.setOnAction(new EventHandler<ActionEvent>() {
@@ -59,16 +56,16 @@ public class WindowControllPanel extends AnchorPane {
 				logoArea = new Rectangle(height, height, new ImagePattern(new Image(logo)));
 		}
 		if (title != null) {
-			if (title.charAt(0) == '%') title = Helper.getI18nString(title.substring(1));
+			if (title.charAt(0) == '%') title = Helper.getI18nString(title.substring(1), Helper.LOCAL);
 			this.title.setText(title);
 		}
 		getStylesheets().add("/styles/nodeStyles/windowCPStyle.css");
 		btnIconif.setFocusTraversable(false);
 		btnMxmize.setFocusTraversable(false);
 		btnClose.setFocusTraversable(false);
-		btnIconif.setTooltip(new Tooltip(Helper.getI18nString("iconified")));
-		btnMxmize.setTooltip(new Tooltip(Helper.getI18nString("mxmized")));
-		btnClose.setTooltip(new Tooltip(Helper.getI18nString("close")));
+		btnIconif.setTooltip(new Tooltip(Helper.getI18nString("iconified", Helper.LOCAL)));
+		btnMxmize.setTooltip(new Tooltip(Helper.getI18nString("mxmized", Helper.LOCAL)));
+		btnClose.setTooltip(new Tooltip(Helper.getI18nString("close", Helper.LOCAL)));
 		btnClose.setCancelButton(true);
 		setId("root");
 		btnClose.setId("btnClose");

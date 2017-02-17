@@ -29,6 +29,7 @@ import java.io.StringWriter;
  */
 public class MyAlert extends Stage {
 
+	double startX = -1, startY = -1;
 	private boolean confirm = false;
 	private AnchorPane root = new AnchorPane();
 	private Region icon = new Region();
@@ -37,7 +38,6 @@ public class MyAlert extends Stage {
 	private TextArea messageField = new TextArea(), stackTraceField = new TextArea();
 	private Button btnShowHide = new Button(), btnYes = new Button("OK"), btnNo = new Button("NO"), btnCopyToCB = new Button();
 	private HBox yesNo = new HBox(btnYes, btnNo);
-
 	private WritableValue<Double> writableHeight = new WritableValue<Double>() {
 		@Override
 		public Double getValue() {
@@ -60,6 +60,20 @@ public class MyAlert extends Stage {
 		setResizable(false);
 	}
 
+	public static void showTestAlerts() {
+		Button info = new Button("Info"), confirm = new Button("Confirm"), warning = new Button("Warning"), error = new Button("Error"), exception = new Button("Exception");
+		info.setOnAction(action -> Helper.showInfo("test info message"));
+		confirm.setOnAction(action -> Helper.showConfirm("test confirm question"));
+		warning.setOnAction(action -> Helper.showWarning("test warning message"));
+		error.setOnAction(action -> Helper.showError("test error message"));
+		exception.setOnAction(action -> Helper.showException("test exception message", new Exception("Exception stack trace")));
+		VBox root = new VBox(10, info, confirm, warning, error, exception);
+		root.setAlignment(Pos.CENTER);
+		Stage test = new Stage();
+		test.setScene(new Scene(root, 100, 200));
+		test.show();
+	}
+
 	public void initRoot() {
 		initStyles();
 		initAnchors();
@@ -74,7 +88,7 @@ public class MyAlert extends Stage {
 		stackTraceField.setEditable(false);
 		stackTraceField.setWrapText(true);
 		btnShowHide.setPrefSize(40, 40);
-		btnShowHide.setTooltip(new Tooltip(Helper.getI18nString("showDetails")));
+		btnShowHide.setTooltip(new Tooltip(Helper.getI18nString("showDetails", Helper.LOCAL)));
 		btnYes.setPrefSize(60, 60);
 		btnYes.setDefaultButton(true);
 		btnNo.setPrefSize(60, 60);
@@ -83,7 +97,7 @@ public class MyAlert extends Stage {
 		yesNo.setFillHeight(true);
 		yesNo.setPrefWidth(150);
 		btnCopyToCB.setPrefSize(40, 40);
-		btnCopyToCB.setTooltip(new Tooltip(Helper.getI18nString("copyToClipboard")));
+		btnCopyToCB.setTooltip(new Tooltip(Helper.getI18nString("copyToClipboard", Helper.LOCAL)));
 		setWidth(500);
 		setHeight(300);
 		root.getChildren().addAll(type, messageField, icon, wp, yesNo);
@@ -98,20 +112,20 @@ public class MyAlert extends Stage {
 	}
 
 	public void initAnchors() {
-		root.setTopAnchor(icon, 75.0);
-		root.setRightAnchor(icon, 10.0);
-		root.setTopAnchor(type, -5.0);
-		root.setLeftAnchor(type, 30.0);
-		root.setTopAnchor(messageField, 50.0);
-		root.setLeftAnchor(messageField, 10.0);
-		root.setTopAnchor(stackTraceField, 300.0);
-		root.setLeftAnchor(stackTraceField, 10.0);
-		root.setTopAnchor(btnShowHide, 250.0);
-		root.setLeftAnchor(btnShowHide, 10.0);
-		root.setTopAnchor(yesNo, 220.0);
-		root.setLeftAnchor(yesNo, 175.0);
-		root.setTopAnchor(btnCopyToCB, 245.0);
-		root.setRightAnchor(btnCopyToCB, 10.0);
+		AnchorPane.setTopAnchor(icon, 75.0);
+		AnchorPane.setRightAnchor(icon, 10.0);
+		AnchorPane.setTopAnchor(type, -5.0);
+		AnchorPane.setLeftAnchor(type, 30.0);
+		AnchorPane.setTopAnchor(messageField, 50.0);
+		AnchorPane.setLeftAnchor(messageField, 10.0);
+		AnchorPane.setTopAnchor(stackTraceField, 300.0);
+		AnchorPane.setLeftAnchor(stackTraceField, 10.0);
+		AnchorPane.setTopAnchor(btnShowHide, 250.0);
+		AnchorPane.setLeftAnchor(btnShowHide, 10.0);
+		AnchorPane.setTopAnchor(yesNo, 220.0);
+		AnchorPane.setLeftAnchor(yesNo, 175.0);
+		AnchorPane.setTopAnchor(btnCopyToCB, 245.0);
+		AnchorPane.setRightAnchor(btnCopyToCB, 10.0);
 	}
 
 	public void initStyles() {
@@ -147,14 +161,14 @@ public class MyAlert extends Stage {
 		icon.setId("warning-icon");
 		root.getChildren().removeAll(btnShowHide, btnCopyToCB, stackTraceField);
 		yesNo.getChildren().remove(btnNo);
-		btnShowHide.setTooltip(new Tooltip(Helper.getI18nString("showDetails")));
+		btnShowHide.setTooltip(new Tooltip(Helper.getI18nString("showDetails", Helper.LOCAL)));
 		showAndWait();
 	}
 
 	public boolean showConfirm(String message) {
 		confirm = false;
 		btnYes.setText("YES");
-		type.setText(Helper.getI18nString("sure"));
+		type.setText(Helper.getI18nString("sure", Helper.LOCAL));
 		type.setId("typeNorm");
 		messageField.setText(message);
 		icon.setId("confirm-icon");
@@ -206,20 +220,18 @@ public class MyAlert extends Stage {
 	}
 
 	public void showTrace() {
-		btnShowHide.setTooltip(new Tooltip(Helper.getI18nString("hide")));
+		btnShowHide.setTooltip(new Tooltip(Helper.getI18nString("hide", Helper.LOCAL)));
 		root.getChildren().addAll(btnCopyToCB, stackTraceField);
 		btnShowHide.setId("btnHide");
 		setHeight(700);
 	}
 
 	public void hideTrace() {
-		btnShowHide.setTooltip(new Tooltip(Helper.getI18nString("showDetails")));
+		btnShowHide.setTooltip(new Tooltip(Helper.getI18nString("showDetails", Helper.LOCAL)));
 		btnShowHide.setId("btnShow");
 		root.getChildren().removeAll(btnCopyToCB, stackTraceField);
 		setHeight(300);
 	}
-
-	double startX = -1, startY = -1;
 
 	public void initOnMouse() {
 		root.setOnMousePressed(new EventHandler<MouseEvent>() {
@@ -247,19 +259,5 @@ public class MyAlert extends Stage {
 				}
 			}
 		});
-	}
-
-	public static void showTestAlerts() {
-		Button info = new Button("Info"), confirm = new Button("Confirm"), warning = new Button("Warning"), error = new Button("Error"), exception = new Button("Exception");
-		info.setOnAction(action -> Helper.showInfo("test info message"));
-		confirm.setOnAction(action -> Helper.showConfirm("test confirm question"));
-		warning.setOnAction(action -> Helper.showWarning("test warning message"));
-		error.setOnAction(action -> Helper.showError("test error message"));
-		exception.setOnAction(action -> Helper.showException("test exception message", new Exception("Exception stack trace")));
-		VBox root = new VBox(10, info, confirm, warning, error, exception);
-		root.setAlignment(Pos.CENTER);
-		Stage test = new Stage();
-		test.setScene(new Scene(root, 100, 200));
-		test.show();
 	}
 }

@@ -13,7 +13,7 @@ import java.io.*;
 public class FileHelper {
 
 	public static void readData() {
-		AppData.getLists().add(new WList(0, Helper.getI18nString("allWords")));
+		AppData.getLists().add(new WList(0, Helper.getI18nString("allWords", Helper.LOCAL)));
 		if (!AppData.getData().exists()) {
 			try {
 				AppData.getData().createNewFile();
@@ -126,7 +126,7 @@ public class FileHelper {
 		return sb.toString();
 	}
 
-	public static void rewrite() {																														// перезаписывает файл данных
+	public static boolean rewrite() {                                                                                                                        // перезаписывает файл данных
 		try (BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(AppData.getData()), "UTF-8"))) {
 			LList lists = AppData.getLists();
 			writer.write(AppData.getSettings().getLeng() + "\r\n");
@@ -147,6 +147,7 @@ public class FileHelper {
 			}
 			writer.write("__________");
 			writer.flush();
+			return true;
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 			Helper.showException("FileNotFoundException in FileHelper.rewrite()", e);
@@ -157,6 +158,7 @@ public class FileHelper {
 			e.printStackTrace();
 			Helper.showException("IOException in FileHelper.rewrite()", e);
 		}
+		return false;
 	}
 
 	public static void prewrite() {																						// заполняет файл данных значениями по умолчанию

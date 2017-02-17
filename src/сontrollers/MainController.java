@@ -27,6 +27,23 @@ public class MainController {
 	private static GaussianBlur blur = new GaussianBlur(10.0);
 	private static Word curWord;
 	private static String curSource;
+	private static String curSearch = "";
+	private static Table table = new Table(AppData.getLists().get(0).getWords(), new MyContextMenu(MyContextMenu.CHANGE, MyContextMenu.DELETE));
+	private static TableColumn eng = new TableColumn(), tran = new TableColumn();
+	private static TextFieldWithButton textField = new TextFieldWithButton(50, TextFieldWithButton.DEFAULT_ADD, "Search", TextFieldWithButton.TOOLTIP_ADD_WORD);
+	EventHandler<ActionEvent> action = action -> {
+		WordController.wordStage(WordController.ADD_WORD, Helper.makePossibleWord(textField.getTextField().getText()));
+	};
+	@FXML
+	private Button btnChange;
+	@FXML
+	private Button btnDelete;
+	@FXML
+	private Button btnAdd;
+	@FXML
+	private Rectangle clip;
+	@FXML
+	private AnchorPane rootAnchor;
 
 	public static Word getCurWord() {
 		return curWord;
@@ -52,28 +69,46 @@ public class MainController {
 		add = b;
 	}
 
-	@FXML
-	private Button btnChange;
-	@FXML
-	private Button btnDelete;
-	@FXML
-	private Button btnAdd;
-	@FXML
-	private Rectangle clip;
-	@FXML
-	private AnchorPane rootAnchor;
-
-	private static String curSearch = "";
-	private static Table table = new Table(AppData.getLists().get(0).getWords(), new MyContextMenu(MyContextMenu.CHANGE, MyContextMenu.DELETE));
-	private static TableColumn eng = new TableColumn(), tran = new TableColumn();
-	private static TextFieldWithButton textField = new TextFieldWithButton(50, TextFieldWithButton.DEFAULT_ADD, "Search", TextFieldWithButton.TOOLTIP_ADD_WORD);
-
 	public static Table getTable() {
 		return table;
 	}
 
 	public static TextFieldWithButton getTextField() {
 		return textField;
+	}
+
+	public static void setGausian(boolean b) {
+		if (b) {
+			table.setId(null);
+			table.setEffect(blur);
+			table.getScene().getRoot().setDisable(true);
+		} else {
+			table.setId("table");
+			table.setEffect(null);
+			table.getScene().getRoot().setDisable(false);
+		}
+	}
+
+	public static void upDate() {
+		table.setItems(AppData.getLists().get(0).getSubList(curSearch));
+	}
+
+	public static Table getFullTable() {
+		Table table = new Table(AppData.getLists().get(0).getWords(), null);
+		return table;
+	}
+
+	public static void goToWord(Word w) {
+		textField.getTextField().setText(w.getEng());
+		table.setItems(AppData.getLists().get(0).getSubList(textField.getTextField().getText()));
+		for (int i = 0; i < table.getItems().size(); ++i)
+			if (((Word) table.getItems().get(i)).getKey() == w.getKey()) {
+				table.getSelectionModel().select(i);
+				table.getScene().getWindow().centerOnScreen();
+				((MyStage) table.getScene().getWindow()).toFront();
+				return;
+			}
+		Helper.showError("Error in MainController.goToWord(Word w)\nCan't find word " + w.print() + " in All words");
 	}
 
 	@FXML
@@ -146,10 +181,6 @@ public class MainController {
 		});
 	}
 
-	EventHandler<ActionEvent> action = action -> {
-		WordController.wordStage(WordController.ADD_WORD, Helper.makePossibleWord(textField.getTextField().getText()));
-	};
-
 	public void search() {
 		if (textField.getTextField().getText().equalsIgnoreCase("-=")) {
 			MyNotification.showTestNotifications();
@@ -180,10 +211,9 @@ public class MainController {
 			@Override
 			public void handle(ActionEvent event) {
 				if (!SettingsController.getSettings().compare(AppData.getSettings())) {
-					if (Helper.showConfirm(Helper.getI18nString("exitConfirmation"))) settings.close();
+					if (Helper.showConfirm(Helper.getI18nString("exitConfirmation", Helper.LOCAL))) settings.close();
 					else return;
-				} else
-					Helper.showInfo(Helper.getI18nString("saveSettings"));
+				}
 				settings.close();
 			}
 		});
@@ -213,40 +243,5 @@ public class MainController {
 		if (curWord == null) return;
 		curWord.delete();
 		table.setItems(AppData.getLists().get(0).getSubList(textField.getTextField().getText()));
-	}
-
-
-	public static void setGausian(boolean b) {
-		if (b) {
-			table.setId(null);
-			table.setEffect(blur);
-			table.getScene().getRoot().setDisable(true);
-		} else {
-			table.setId("table");
-			table.setEffect(null);
-			table.getScene().getRoot().setDisable(false);
-		}
-	}
-
-	public static void upDate() {
-		table.setItems(AppData.getLists().get(0).getSubList(curSearch));
-	}
-
-	public static Table getFullTable() {
-		Table table = new Table(AppData.getLists().get(0).getWords(), null);
-		return table;
-	}
-
-	public static void goToWord(Word w) {
-		textField.getTextField().setText(w.getEng());
-		table.setItems(AppData.getLists().get(0).getSubList(textField.getTextField().getText()));
-		for (int i = 0; i < table.getItems().size(); ++i)
-			if (((Word) table.getItems().get(i)).getKey() == w.getKey()) {
-				table.getSelectionModel().select(i);
-				table.getScene().getWindow().centerOnScreen();
-				((MyStage) table.getScene().getWindow()).toFront();
-				return;
-			}
-		Helper.showError("Error in MainController.goToWord(Word w)\nCan't find word " + w.print() + " in All words");
 	}
 }

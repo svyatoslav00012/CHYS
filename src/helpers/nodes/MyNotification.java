@@ -25,8 +25,18 @@ import java.util.*;
  * Created by Svyatoslav on 11.02.2017.
  */
 public class MyNotification extends Stage {
-
+	public static final int COMPLETE = 0;
+	public static final int INFO = 1;
+	public static final int WARNING = 2;
+	public static final int ERROR = 3;
 	private static final int LIMIT_SIZE = ((int) MyStage.SCREEN_HEIGHT - 30) / 210;
+	private static final String[] ICONS = {
+			"complete-icon",
+			"info-icon",
+			"warning-icon",
+			"error-icon"
+	};
+	public static ArrayList<MyNotification> windows = new ArrayList<>();
 	private static Timeline moveDown = new Timeline();
 	private static Comparator<MyNotification> comparator = new Comparator<MyNotification>() {
 		@Override
@@ -36,67 +46,16 @@ public class MyNotification extends Stage {
 			return 0;
 		}
 	};
-
 	private static int globalMoving = 0;                                                                                // when notification starting showing, it's increases, when finish - decreases(When all finished - it's 0)
 	private static Queue<MyNotification> next = new PriorityQueue<>(comparator);
-	public static ArrayList<MyNotification> windows = new ArrayList<>();
-
-	public static void showMessage(int type, String message) {
-		next.add(new MyNotification(type, message, 0));
-		//if (windows.size() > 0 && windows.size() >= LIMIT_SIZE && !windows.get(0).isMinimunRunning()) windows.get(0).hideNotif();
-		addFromQueue();
-	}
-
-	public static void push(int index) {
-		moveDown = new Timeline();
-		for (int i = index; i < windows.size(); ++i) {
-			KeyValue moving = new KeyValue(windows.get(i).getYProperty(), windows.get(i).getY() + 210);
-			moveDown.getKeyFrames().add(new KeyFrame(Duration.millis(500), moving));
-		}
-		moveDown.play();
-	}
-
-
-	public static void addFromQueue() {
-		try {
-			//while(windows.size() <= LIMIT_SIZE && !next.isEmpty())
-			if(globalMoving == 0 && windows.size() < LIMIT_SIZE && !next.isEmpty()) {
-				MyNotification n = next.poll();
-				n.setY(Math.max(MyStage.SCREEN_HEIGHT - (220 + windows.size() * 210), 10));
-				windows.add(n);
-				if(windows.size() > 0)n.showNotif();
-			}
-			printStatus();
-		} catch (NoSuchElementException e) {
-			Helper.showException("Exception during adding Notification from 'next'(Queue) to 'windows'\nMyNotifications.addFromQueue", e);
-		}
-	}
-
-	public static void printStatus(){
-		System.out.println("-------\nADDED!\nwindows:");
-		for (int i = 0; i < windows.size(); ++i) System.out.println(printNotif(windows.get(i)));
-		System.out.println("next:");
-		for (MyNotification n : next) System.out.println(printNotif(n));
-		System.out.println("-------");
-	}
-
-	public static String printNotif(MyNotification notifocation){
-		return ICONS[notifocation.getType()].substring(0, ICONS[notifocation.getType()].indexOf('-')) + " " +notifocation.getTime();
-	}
-
-	public static final int COMPLETE = 0;
-	public static final int INFO = 1;
-	public static final int WARNING = 2;
-	public static final int ERROR = 3;
-
-	private static final String[] ICONS = {
-			"complete-icon",
-			"info-icon",
-			"warning-icon",
-			"error-icon"
-	};
-
-
+	public static final String WORD_ADDED = Helper.getI18nString("wordSuccAdded", Helper.NOTIFICATIONS);
+	public static final String WORD_EDITED = Helper.getI18nString("wordSuccEdited", Helper.NOTIFICATIONS);
+	public static final String WORD_DELETED = Helper.getI18nString("wordSuccDeleted", Helper.NOTIFICATIONS);
+	public static final String LIST_CREATED = Helper.getI18nString("listSuccCreated", Helper.NOTIFICATIONS);
+	public static final String LIST_EDITED = Helper.getI18nString("listSuccEdited", Helper.NOTIFICATIONS);
+	public static final String LIST_DUPLICATED = Helper.getI18nString("listSuccDuplicated", Helper.NOTIFICATIONS);
+	public static final String LIST_DELETED = Helper.getI18nString("listSuccDeleted", Helper.NOTIFICATIONS);
+	Thread notifThread = new Thread();
 	private WritableValue<Double> writableX = new WritableValue<Double>() {
 		@Override
 		public Double getValue() {
@@ -108,7 +67,6 @@ public class MyNotification extends Stage {
 			setX(value);
 		}
 	};
-
 	private WritableValue<Double> writableY = new WritableValue<Double>() {
 		@Override
 		public Double getValue() {
@@ -120,7 +78,6 @@ public class MyNotification extends Stage {
 			setY(value);
 		}
 	};
-
 	private WritableValue<Double> writableOpacity = new WritableValue<Double>() {
 		@Override
 		public Double getValue() {
@@ -132,19 +89,6 @@ public class MyNotification extends Stage {
 			setOpacity(value);
 		}
 	};
-
-	public WritableValue<Double> getXProperty() {
-		return writableX;
-	}
-
-	private WritableValue<Double> getYProperty() {
-		return writableY;
-	}
-
-	public WritableValue<Double> getOpacityProperty() {
-		return writableOpacity;
-	}
-
 	//nodes
 	private Label title = new Label(), message = new Label();
 	private Region icon = new Region();
@@ -158,22 +102,6 @@ public class MyNotification extends Stage {
 	private PauseTransition minimum, visiblePeriod;
 	private Timeline hiding = new Timeline(new KeyFrame(Duration.millis(500), action -> close(), makeUnvisible));
 	private SequentialTransition existence;
-
-	public boolean isMinimunRunning() {
-		if (minimum.getStatus() == Animation.Status.RUNNING) return true;
-		else return false;
-	}
-
-	public int getType() {
-		return type;
-	}
-
-	public String getTime(){return title.getText();}
-
-	public Animation getExistense(){
-		return existence;
-	}
-
 	public MyNotification(int type, String message, double y) {
 		this.type = type;
 		this.message.setText(message);
@@ -189,6 +117,91 @@ public class MyNotification extends Stage {
 		getScene().setFill(Color.TRANSPARENT);
 	}
 
+	public static void showMessage(int type, String message) {
+		next.add(new MyNotification(type, message, 0));
+		//if (windows.size() > 0 && windows.size() >= LIMIT_SIZE && !windows.get(0).isMinimunRunning()) windows.get(0).hideNotif();
+		addFromQueue();
+	}
+
+	public static void push(int index) {
+		moveDown = new Timeline();
+		for (int i = index; i < windows.size(); ++i) {
+			KeyValue moving = new KeyValue(windows.get(i).getYProperty(), MyStage.SCREEN_HEIGHT - (220 + i * 210));
+			moveDown.getKeyFrames().add(new KeyFrame(Duration.millis(500), moving));
+		}
+		moveDown.setOnFinished(action -> globalMoving--);
+		globalMoving++;
+		moveDown.play();
+	}
+
+	public static void addFromQueue() {
+		try {
+			while (windows.size() < LIMIT_SIZE && !next.isEmpty()) {
+				//if(globalMoving != 0)
+				MyNotification n = next.poll();
+				n.setY(Math.max(MyStage.SCREEN_HEIGHT - (220 + windows.size() * 210), 10));
+				windows.add(n);
+				if (windows.size() > 0) n.showNotif();
+			}
+			printStatus();
+		} catch (NoSuchElementException e) {
+			Helper.showException("Exception during adding Notification from 'next'(Queue) to 'windows'\nMyNotifications.addFromQueue", e);
+		}
+	}
+
+	public static void printStatus() {
+		System.out.println("-------\nADDED!\nwindows:");
+		for (int i = 0; i < windows.size(); ++i) System.out.println(printNotif(windows.get(i)));
+		System.out.println("next:");
+		for (MyNotification n : next) System.out.println(printNotif(n));
+		System.out.println("-------");
+	}
+
+	public static String printNotif(MyNotification notifocation) {
+		return ICONS[notifocation.getType()].substring(0, ICONS[notifocation.getType()].indexOf('-')) + " " + notifocation.getTime();
+	}
+
+	public static void showTestNotifications() {
+		Button showComplete = new Button("Complete"), showInfo = new Button("Info"), showWarning = new Button("Warning"), showError = new Button("Error");
+		showComplete.setOnAction(action -> showMessage(COMPLETE, "complete test message"));
+		showInfo.setOnAction(action -> showMessage(INFO, "info test message"));
+		showWarning.setOnAction(action -> showMessage(WARNING, "warning test message"));
+		showError.setOnAction(action -> showMessage(ERROR, "error test message"));
+		VBox buttons = new VBox(showComplete, showInfo, showWarning, showError);
+		buttons.setSpacing(20);
+		buttons.setAlignment(Pos.CENTER);
+		Stage test = new Stage();
+		test.setScene(new Scene(buttons, 200, 200));
+		test.show();
+	}
+
+	public WritableValue<Double> getXProperty() {
+		return writableX;
+	}
+
+	private WritableValue<Double> getYProperty() {
+		return writableY;
+	}
+
+	public WritableValue<Double> getOpacityProperty() {
+		return writableOpacity;
+	}
+
+	public boolean isMinimunRunning() {
+		return minimum.getStatus() == Animation.Status.RUNNING;
+	}
+
+	public int getType() {
+		return type;
+	}
+
+	public String getTime() {
+		return title.getText();
+	}
+
+	public Animation getExistense() {
+		return existence;
+	}
 
 	public void initAnchors() {
 		AnchorPane.setLeftAnchor(icon, 0.0);
@@ -210,7 +223,7 @@ public class MyNotification extends Stage {
 		icon.setId(ICONS[type]);
 		System.out.println(icon.getId());
 		icon.getStyleClass().add("notif-icon");
-		Tooltip.install(root, new Tooltip(Helper.getI18nString("press2xToClose")));
+		Tooltip.install(root, new Tooltip(Helper.getI18nString("press2xToClose", Helper.LOCAL)));
 		root.getStylesheets().addAll("/styles/templateStyles/windowStyle.css", "/styles/templateStyles/myNotifications.css");
 		root.setOnMouseClicked(action -> {
 			if(action.getClickCount() >= 2){
@@ -230,7 +243,8 @@ public class MyNotification extends Stage {
 		});
 		minimum = new PauseTransition(Duration.seconds(2));
 		minimum.setOnFinished(action -> {
-			if (!next.isEmpty()) existence.playFrom("end");
+			if (!next.isEmpty() && windows.size() == LIMIT_SIZE && windows.indexOf(this) == 0)
+				existence.playFrom("end");
 		});
 		visiblePeriod = new PauseTransition(Duration.seconds(3 + countWordsInMessage()));
 		existence = new SequentialTransition(emission, minimum, visiblePeriod);
@@ -267,20 +281,6 @@ public class MyNotification extends Stage {
 			s.delete(0, s.indexOf(" "));
 		}
 		return wordCount;
-	}
-
-	public static void showTestNotifications() {
-		Button showComplete = new Button("Complete"), showInfo = new Button("Info"), showWarning = new Button("Warning"), showError = new Button("Error");
-		showComplete.setOnAction(action -> showMessage(COMPLETE, "complete test message"));
-		showInfo.setOnAction(action -> showMessage(INFO, "info test message"));
-		showWarning.setOnAction(action -> showMessage(WARNING, "warning test message"));
-		showError.setOnAction(action -> showMessage(ERROR, "error test message"));
-		VBox buttons = new VBox(showComplete, showInfo, showWarning, showError);
-		buttons.setSpacing(20);
-		buttons.setAlignment(Pos.CENTER);
-		Stage test = new Stage();
-		test.setScene(new Scene(buttons, 200, 200));
-		test.show();
 	}
 
 }

@@ -2,14 +2,12 @@ package helpers.structures;
 
 import helpers.functions.FileHelper;
 import helpers.functions.Helper;
+import helpers.nodes.MyNotification;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
-import javafx.fxml.FXMLLoader;
 import library.AppData;
 import сontrollers.DictationOptionsController;
-import сontrollers.MainController;
-import сontrollers.MyListsController;
 
 public class Word {
 	private int key;
@@ -53,36 +51,36 @@ public class Word {
 		return eng.get();
 	}
 
-	public StringProperty getEngProp() {
-		return eng;
-	}
-
 	public void setEng(String s) {
 		eng.set(s);
+	}
+
+	public StringProperty getEngProp() {
+		return eng;
 	}
 
 	public String getRus() {
 		return rus.get();
 	}
 
-	public StringProperty getRusProp() {
-		return rus;
-	}
-
 	public void setRus(String s) {
 		rus.set(s);
+	}
+
+	public StringProperty getRusProp() {
+		return rus;
 	}
 
 	public String getUkr() {
 		return ukr.get();
 	}
 
-	public StringProperty getUkrProp() {
-		return ukr;
-	}
-
 	public void setUkr(String s) {
 		ukr.set(s);
+	}
+
+	public StringProperty getUkrProp() {
+		return ukr;
 	}
 
 	public String get(String key) {
@@ -116,7 +114,7 @@ public class Word {
 	}
 
 	public void delete(){
-		if (Helper.showConfirm(Helper.getI18nString("delete") + ":  " + print() + " ?")) {
+		if (Helper.showConfirm(Helper.getI18nString("delete", Helper.LOCAL) + ":  " + print() + " ?")) {
 			for (int i = 1; i < AppData.getLists().getLists().size(); ++i)
 				if (inside(AppData.getLists().get(i).getWords())) {
 					AppData.getLists().get(i).remove(getKey());
@@ -124,6 +122,7 @@ public class Word {
 			AppData.getLists().get(0).remove(this);
 			AppData.getWordkeys()[key] = false;
 			FileHelper.rewrite();
+			MyNotification.showMessage(MyNotification.COMPLETE, MyNotification.WORD_DELETED);
 		}
 	}
 

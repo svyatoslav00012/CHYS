@@ -23,8 +23,8 @@ public class ResultsController {
     @FXML
     public void initialize() {
         r = 0;
-        lblAns.setText(Helper.getI18nString("results") + ":");
-        for (int i = 0; i < DictationController.getCurList().getWords().size(); i++) {
+		lblAns.setText(Helper.getI18nString("results", Helper.LOCAL) + ":");
+		for (int i = 0; i < DictationController.getCurList().getWords().size(); i++) {
             if (DictationOptionsController.getTyp() == 0) {
                 word = DictationController.getCurList().get(i).get(DictationOptionsController.getTranLeng());
                 correct = DictationController.getCurList().get(i).getEng();

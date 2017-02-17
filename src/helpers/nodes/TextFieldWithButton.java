@@ -19,16 +19,13 @@ import javafx.util.Duration;
  */
 public class TextFieldWithButton extends AnchorPane {
 
-	private static String hotkeys = "\nCtrl + ENTER\nCtrl + SPACE\nCtrl + 'A'";
-
-	public static final Tooltip TOOLTIP_ADD_WORD = new Tooltip(Helper.getI18nString("addWord") + hotkeys);
-	public static final Tooltip TOOLTIP_BACK_WORD = new Tooltip(Helper.getI18nString("removeWordFromCur") + hotkeys);
-	public static final Tooltip TOOLTIP_REPLACE = new Tooltip(Helper.getI18nString("addWordToCur") + hotkeys);
-
 	public static final String DEFAULT_ADD = "/resources/images/icons/used/add.png";
 	public static final String RIGHT_ARROW = "/resources/images/icons/used/arrow-right-2.png";
 	public static final String LEFT_ARROW = "/resources/images/icons/used/arrow-left-2.png";
-
+	private static String hotkeys = "\nCtrl + ENTER\nCtrl + SPACE\nCtrl + 'A'";
+	public static final Tooltip TOOLTIP_ADD_WORD = new Tooltip(Helper.getI18nString("addWord", Helper.LOCAL) + hotkeys);
+	public static final Tooltip TOOLTIP_BACK_WORD = new Tooltip(Helper.getI18nString("removeWordFromCur", Helper.LOCAL) + hotkeys);
+	public static final Tooltip TOOLTIP_REPLACE = new Tooltip(Helper.getI18nString("addWordToCur", Helper.LOCAL) + hotkeys);
 	private Button button = new Button();
 	private TextField textField = new TextField();
 

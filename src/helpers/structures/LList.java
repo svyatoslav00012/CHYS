@@ -19,7 +19,7 @@ public class LList {
 				return false;
 			}
 		lists.add(l);
-		return true;
+		return FileHelper.rewrite();
 	}
 
 	public void insert(int index, WList list) {

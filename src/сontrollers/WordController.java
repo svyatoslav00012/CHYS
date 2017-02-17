@@ -2,6 +2,7 @@ package сontrollers;
 
 import helpers.functions.FileHelper;
 import helpers.functions.Helper;
+import helpers.nodes.MyNotification;
 import helpers.nodes.MyStage;
 import helpers.nodes.WindowControllPanel;
 import helpers.structures.Word;
@@ -26,15 +27,6 @@ public class WordController {
 	private static Word curWord;
 
 	private static boolean justSaved = false;
-
-	public static boolean getJustSaved() {
-		return justSaved;
-	}
-
-	public static void setJustSaved(boolean b) {
-		justSaved = b;
-	}
-
 	@FXML
 	private TextField eng;
 	@FXML
@@ -45,6 +37,34 @@ public class WordController {
 	private Label lablNotFill;
 	@FXML
 	private Button save;
+
+	public static boolean getJustSaved() {
+		return justSaved;
+	}
+
+	public static void setJustSaved(boolean b) {
+		justSaved = b;
+	}
+
+	public static int wordStage(int type, Word w) {            // returns word index
+		if (type == CHANGE_WORD && w == null || type != ADD_WORD && type != CHANGE_WORD) return -1;
+		WordController.type = type;
+		WordController.curWord = w;
+		String tit = "%addWord";
+		if (type == CHANGE_WORD)
+			tit = Helper.getI18nString("change", Helper.LOCAL) + " " + Helper.getI18nString("word", Helper.LOCAL);
+		new MyStage("/fxmls/word.fxml", Modality.APPLICATION_MODAL, null, null, new WindowControllPanel(30, 15, 0, false, false, false, "/resources/images/icons/used/checkmark-1.png", tit)).showAndWait();
+		int c = -1;
+		if (curWord != null) c = curWord.getKey();
+		destruct();
+		System.out.println(c);
+		return c;
+	}
+
+	public static void destruct() {
+		curWord = null;
+		type = -1;
+	}
 
 	@FXML
 	public void initialize() {
@@ -62,17 +82,17 @@ public class WordController {
 					if (eng.getText().isEmpty()) eng.getStyleClass().add("incorrectField");
 					if (rus.getText().isEmpty()) rus.getStyleClass().add("incorrectField");
 					if (ukr.getText().isEmpty()) ukr.getStyleClass().add("incorrectField");
-					lablNotFill.setText(Helper.getI18nString("addWord.notfill"));
+					lablNotFill.setText(Helper.getI18nString("addWord.notfill", Helper.LOCAL));
 				} else if (!Helper.isEnglish(eng.getText().toLowerCase()) || !Helper.isRussian(rus.getText().toLowerCase()) || !Helper.isUkrainian(ukr.getText().toLowerCase())) {	// check if incorrect language
 					if (!Helper.isEnglish(eng.getText().toLowerCase())) eng.getStyleClass().add("incorrectField");
 					if (!Helper.isRussian(rus.getText().toLowerCase())) rus.getStyleClass().add("incorrectField");
 					if (!Helper.isUkrainian(ukr.getText().toLowerCase())) ukr.getStyleClass().add("incorrectField");
-					lablNotFill.setText(Helper.getI18nString("addWord.invalid"));
+					lablNotFill.setText(Helper.getI18nString("addWord.invalid", Helper.LOCAL));
 				} else if (type == ADD_WORD && AppData.getLists().get(0).find(eng.getText(), rus.getText(), ukr.getText()) != -1) {			// check if already added
 					eng.getStyleClass().add("incorrectField");
 					rus.getStyleClass().add("incorrectField");
 					ukr.getStyleClass().add("incorrectField");
-					lablNotFill.setText(Helper.getI18nString("addWord.alreadyAdded"));
+					lablNotFill.setText(Helper.getI18nString("addWord.alreadyAdded", Helper.LOCAL));
 				} else {																								// ADDING
 					if (type == ADD_WORD) {																				// if add Word
 						curWord = new Word(AppData.getFreeWordKey(), eng.getText(), rus.getText(), ukr.getText());
@@ -89,6 +109,9 @@ public class WordController {
 					}
 					FileHelper.rewrite();
 					MainController.upDate();
+					if (type == ADD_WORD)
+						MyNotification.showMessage(MyNotification.COMPLETE, MyNotification.WORD_ADDED);
+					else MyNotification.showMessage(MyNotification.COMPLETE, MyNotification.WORD_EDITED);
 					((Stage) (lablNotFill.getScene().getWindow())).close();
 				}
 			});
@@ -96,24 +119,5 @@ public class WordController {
 
 	public void close(ActionEvent actionEvent) {
 		((Stage) (lablNotFill.getScene().getWindow())).close();
-	}
-
-	public static int wordStage(int type, Word w) {			// returns word index
-		if (type == CHANGE_WORD && w == null || type != ADD_WORD && type != CHANGE_WORD) return -1;
-		WordController.type = type;
-		WordController.curWord = w;
-		String tit = "%addWord";
-		if(type == CHANGE_WORD) tit = Helper.getI18nString("change") + " " + Helper.getI18nString("word");
-		new MyStage("/fxmls/word.fxml", Modality.APPLICATION_MODAL, null, null, new WindowControllPanel(30, 15, 0, false, false, false, "/resources/images/icons/used/checkmark-1.png", tit)).showAndWait();
-		int c = -1;
-		if(curWord != null)c = curWord.getKey();
-		destruct();
-		System.out.println(c);
-		return c;
-	}
-
-	public static void destruct(){
-		curWord = null;
-		type = -1;
 	}
 }

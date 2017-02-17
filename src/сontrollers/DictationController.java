@@ -36,21 +36,12 @@ import javafx.util.Duration;
  */
 public class DictationController {
 
-	FadeTransition ftLblHide, ftLblShow, ftField;
 	private static int curIndex = 0;
 	private static String[] answers;
 	private static WList curList;
 	private static ProgressPanel pp;
+	FadeTransition ftLblHide, ftLblShow, ftField;
 	private boolean justStarted = true;
-
-	public static String[] getAnswers() {
-		return answers;
-	}
-
-	public static WList getCurList() {
-		return curList;
-	}
-
 	@FXML
 	private AnchorPane root;
 	@FXML
@@ -66,6 +57,28 @@ public class DictationController {
 	@FXML
 	private Button btnNext;
 
+	public static String[] getAnswers() {
+		return answers;
+	}
+
+	public static WList getCurList() {
+		return curList;
+	}
+
+	public static boolean equalTitle(String title) {
+		return !(pp == null || pp.getParent() == null || pp.getScene().getWindow() == null || !((MyStage) pp.getScene().getWindow()).getWCP().getTitle().equals(title));
+	}
+
+	public static void finish() {
+		if (curList == null || answers == null) return;
+		if (!Helper.showConfirm(Helper.getI18nString("finish", Helper.LOCAL) + " " + Helper.getI18nString("dictation", Helper.LOCAL) + "?"))
+			return;
+		((Stage) pp.getScene().getWindow()).close();
+		MyListsController.setGausian(false);
+		MainController.setGausian(false);
+		new Result().showResults();
+	}
+
 	@FXML
 	public void initialize() {
 		skipAll();
@@ -78,17 +91,17 @@ public class DictationController {
 		MainController.setGausian(true);
 		MyListsController.setGausian(true);
 		if (DictationOptionsController.getTyp() == 0) {
-			lenFrom.setText(Helper.getI18nString(DictationOptionsController.getTranLeng()));
+			lenFrom.setText(Helper.getI18nString(DictationOptionsController.getTranLeng(), Helper.LOCAL));
 			lblWord.setText(curList.get(curIndex).get(DictationOptionsController.getTranLeng()));
-			lenTo.setText(Helper.getI18nString("en"));
+			lenTo.setText(Helper.getI18nString("en", Helper.LOCAL));
 		} else {
-			lenFrom.setText(Helper.getI18nString("en"));
+			lenFrom.setText(Helper.getI18nString("en", Helper.LOCAL));
 			lblWord.setText(curList.get(curIndex).getEng());
-			lenTo.setText(Helper.getI18nString(DictationOptionsController.getTranLeng()));
+			lenTo.setText(Helper.getI18nString(DictationOptionsController.getTranLeng(), Helper.LOCAL));
 		}
 		btnPrev.setVisible(false);
-		btnPrev.setTooltip(new Tooltip(Helper.getI18nString("prevWord")));
-		btnNext.setTooltip(new Tooltip(Helper.getI18nString("nextWord")));
+		btnPrev.setTooltip(new Tooltip(Helper.getI18nString("prevWord", Helper.LOCAL)));
+		btnNext.setTooltip(new Tooltip(Helper.getI18nString("nextWord", Helper.LOCAL)));
 		if (curList.getWords().size() < 2) btnNext.setVisible(false);
 		initFieldTran();
 		initFades();
@@ -168,21 +181,6 @@ public class DictationController {
 		fieldTran.setText(answers[curIndex]);
 	}
 
-	public static boolean equalTitle(String title) {
-		if (pp == null || pp.getParent() == null || pp.getScene().getWindow() == null || !((MyStage) pp.getScene().getWindow()).getWCP().getTitle().equals(title))
-			return false;
-		return true;
-	}
-
-	public static void finish(){
-		if(curList == null || answers == null)return;
-		if (!Helper.showConfirm(Helper.getI18nString("finish") + " " + Helper.getI18nString("dictation") + "?")) return;
-		((Stage) pp.getScene().getWindow()).close();
-		MyListsController.setGausian(false);
-		MainController.setGausian(false);
-		new Result().showResults();
-	}
-
 	public class ProgressPanel extends VBox {
 		private HBox cur = new HBox(), notAns = new HBox(), rects = new HBox(), scoreHBox = new HBox(), rectsHBox = new HBox(), bottomPanel = new HBox();
 		private ScrollPane rectsScroll = new ScrollPane(rects);
@@ -193,10 +191,6 @@ public class DictationController {
 		private VBox score = new VBox(), left = new VBox(), right = new VBox();
 		private int height;
 
-		public ObservableList<Item> getPrRects() {
-			return progressRectangles;
-		}
-
 		public ProgressPanel(int height) {
 			this.height = height;
 			initElems();
@@ -204,6 +198,10 @@ public class DictationController {
 			initProgRects();
 			progressRectangles.get(0).chooseThis();
 			initBeginEnd();
+		}
+
+		public ObservableList<Item> getPrRects() {
+			return progressRectangles;
 		}
 
 		public void initBeginEnd(){
@@ -259,10 +257,10 @@ public class DictationController {
 			lblEnd = new Label("10");
 			btnBackToCurr.setMinSize(50, 50);
 			btnBackToCurr.setVisible(false);
-			btnBackToCurr.setTooltip(new Tooltip(Helper.getI18nString("dictation.backToCur")));
+			btnBackToCurr.setTooltip(new Tooltip(Helper.getI18nString("dictation.backToCur", Helper.LOCAL)));
 			btnForwardToCurr.setMinSize(50, 50);
 			btnForwardToCurr.setVisible(false);
-			btnForwardToCurr.setTooltip(new Tooltip(Helper.getI18nString("dictation.backToCur")));
+			btnForwardToCurr.setTooltip(new Tooltip(Helper.getI18nString("dictation.backToCur", Helper.LOCAL)));
 			right.setFillWidth(true);
 			right.setAlignment(Pos.CENTER_LEFT);
 			right.setSpacing(0);
@@ -308,7 +306,7 @@ public class DictationController {
 			initScoreHBox();
 			btnFinish.setMinSize(110,110);
 			btnFinish.setFocusTraversable(false);
-			btnFinish.setTooltip(new Tooltip(Helper.getI18nString("finish") + " " + Helper.getI18nString("dictation")));
+			btnFinish.setTooltip(new Tooltip(Helper.getI18nString("finish", Helper.LOCAL) + " " + Helper.getI18nString("dictation", Helper.LOCAL)));
 			bottomPanel.setAlignment(Pos.CENTER);
 			bottomPanel.setSpacing(100);
 			bottomPanel.getChildren().addAll(score, btnFinish);
@@ -317,12 +315,12 @@ public class DictationController {
 		public void initScoreHBox() {
 			fieldCurrent = new DigitField(1, curList.getWords().size());
 			lblSize = new Label("/ " + curList.getWords().size());
-			cur.getChildren().addAll(new Label(Helper.getI18nString("dictation.current")), fieldCurrent, lblSize);
+			cur.getChildren().addAll(new Label(Helper.getI18nString("dictation.current", Helper.LOCAL)), fieldCurrent, lblSize);
 			lblNotAnswerCount = new Label(curList.getWords().size() + "");
 			btnBack.setPrefSize(40, 40);
 			btnBack.setFocusTraversable(false);
-			btnBack.setTooltip(new Tooltip(Helper.getI18nString("dictation.backToNotAns")));
-			notAns.getChildren().addAll(new Label(Helper.getI18nString("dictation.lblNotAns")), lblNotAnswerCount, btnBack);
+			btnBack.setTooltip(new Tooltip(Helper.getI18nString("dictation.backToNotAns", Helper.LOCAL)));
+			notAns.getChildren().addAll(new Label(Helper.getI18nString("dictation.lblNotAns", Helper.LOCAL)), lblNotAnswerCount, btnBack);
 			notAns.setSpacing(10.0);
 			score.setSpacing(10.0);
 			score.getChildren().addAll(cur, notAns);
@@ -444,6 +442,10 @@ public class DictationController {
 			return rectsScroll.localToScene(rectsScroll.getBoundsInLocal());
 		}
 
+		public void chooseThis(int index) {
+			progressRectangles.get(index - 1).chooseThis();
+		}
+
 		class Item extends Region {
 			private int num;
 			private boolean isFilled = false, isCurr = false;
@@ -506,10 +508,6 @@ public class DictationController {
 			public boolean isCurrent() {
 				return isCurr;
 			}
-		}
-
-		public void chooseThis(int index) {
-			progressRectangles.get(index - 1).chooseThis();
 		}
 	}
 }
