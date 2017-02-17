@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="rootAnchor" prefHeight="200.0" prefWidth="200.0" stylesheets="/styles/stageStyles/helpStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="сontrollers.HelpController">
+    <children>
+        <ScrollPane fitToHeight="true" fitToWidth="true" maxHeight="-Infinity" maxWidth="-Infinity"
+                    minHeight="-Infinity" minWidth="-Infinity" AnchorPane.bottomAnchor="20.0"
+                    AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+            <content>
+                <AnchorPane fx:id="anch" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="200.0">
+                    <children>
+                        <Label id="ch" layoutX="62.0" layoutY="34.0" text="CHYS" AnchorPane.leftAnchor="60.0"
+                               AnchorPane.topAnchor="50.0">
+                            <font>
+                                <Font size="24.0"/>
+                            </font>
+                        </Label>
+                        <Label fx:id="ys" layoutX="62.0" layoutY="123.0" text="check yourself"
+                               AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0"/>
+                    </children>
+                </AnchorPane>
+            </content>
+        </ScrollPane>
+    </children>
+    <clip>
+        <Rectangle fx:id="clip" arcHeight="50" arcWidth="50" height="200" width="200"/>
+    </clip>
+</AnchorPane>
+
+

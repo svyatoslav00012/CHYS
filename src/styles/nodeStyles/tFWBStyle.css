@@ -1,0 +1,52 @@
+.t-f-w-b{
+    -fx-background-color: white;
+    -fx-background-radius: 50px;
+    -fx-border-radius: 50px;
+}
+
+.text-field{
+    -fx-background-color: white;
+    -fx-border-width: 0px;
+    -fx-border-color: transparent;
+    -fx-effect: none;
+}
+
+.text-field:focused{
+    -fx-border-width: 0px;
+    -fx-border-color: transparent;
+}
+
+.button{
+    -fx-border-width: 0px;
+    -fx-background-size: 100%;
+    -fx-background-position: center;
+    -fx-effect: dropshadow(one-pass-box, black, 8, 0, 0, 2);
+}
+
+.button:hover{
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(one-pass-box, black, 12, 0, 0, 3);
+    -fx-translate-y: -1px;
+}
+
+.button:pressed{
+    -fx-effect: dropshadow(one-pass-box, black, 5, 0, 0, 1);
+    -fx-translate-y: 1px;
+}
+
+.hovered{
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(one-pass-box, black, 12, 0, 0, 3);
+    -fx-translate-y: -1px;
+}
+
+.pressed{
+    -fx-effect: dropshadow(one-pass-box, black, 5, 0, 0, 1);
+    -fx-translate-y: 1px;
+}
+
+#focus{
+   -fx-translate-y: -2px;
+   -fx-border-width: 2;
+   -fx-border-color: #00FFFF;
+}

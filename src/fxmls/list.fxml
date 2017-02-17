@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.Rectangle?>
+
+<AnchorPane fx:id="root" prefHeight="800.0" prefWidth="800.0" stylesheets="/styles/stageStyles/listStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="сontrollers.ListController">
+   <children>
+      <Label layoutX="10.0" layoutY="10.0" prefHeight="30.0" prefWidth="100.0" text="%name" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="50.0" />
+      <TextField fx:id="fieldName" layoutX="114.0" layoutY="19.0" onKeyReleased="#nameChanged" prefHeight="40.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="50.0" />
+      <Separator layoutX="14.0" layoutY="55.0" prefWidth="200.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="100.0" />
+      <Label layoutX="20.0" layoutY="67.0" prefHeight="30.0" prefWidth="250.0" text="%allWords" AnchorPane.bottomAnchor="650.0" AnchorPane.leftAnchor="20.0" />
+      <Label layoutX="30.0" layoutY="70.0" prefHeight="30.0" prefWidth="350.0" text="%currentList" AnchorPane.bottomAnchor="650.0" AnchorPane.rightAnchor="20.0" />
+      <Button fx:id="btnAddAll" layoutX="20.0" layoutY="461.0" mnemonicParsing="false" onAction="#addAllToList" prefHeight="40.0" prefWidth="350.0" text="%list.addAllWords" AnchorPane.bottomAnchor="90.0" AnchorPane.leftAnchor="20.0" />
+      <Button fx:id="btnRemoveAll" layoutX="30.0" layoutY="465.0" mnemonicParsing="false" onAction="#removeAllFromList" prefHeight="40.0" prefWidth="350.0" text="%list.removeAllWords" AnchorPane.bottomAnchor="90.0" AnchorPane.rightAnchor="20.0" />
+      <Button fx:id="btnSave" defaultButton="true" layoutX="20.0" layoutY="547.0" mnemonicParsing="false" onAction="#saveList" prefHeight="50.0" styleClass="button-default" text="%save" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" />
+      <Label fx:id="lablNotFill" layoutX="120.0" layoutY="6.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="95.0" />
+   </children>
+   <clip>
+      <Rectangle fx:id="clip" arcHeight="100" arcWidth="100" height="800" width="800" />
+   </clip>
+</AnchorPane>

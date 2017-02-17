@@ -1,0 +1,20 @@
+#correct{
+    -fx-text-fill: green;
+}
+
+#incorrect{
+    -fx-text-fill: red;
+}
+
+#incorrectPane{
+    -fx-border-color: red;
+    -fx-border: 15px;
+}
+
+.label{
+    -fx-font-size: 24px;
+}
+
+#correctPane{
+    -fx-border: 1px;
+}

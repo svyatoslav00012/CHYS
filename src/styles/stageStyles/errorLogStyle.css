@@ -1,0 +1,9 @@
+.root{
+    -fx-background-image: url("/resources/icons/backgrounds/used/background-4.png");
+}
+
+.text-area{
+    -fx-font-family: "Comic Sans MS", cursive;
+    -fx-text-fill: red;
+    -fx-font-weight: bold;
+}

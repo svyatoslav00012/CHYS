@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.Rectangle?>
+
+<AnchorPane fx:id="root" prefHeight="500.0" prefWidth="500.0" stylesheets="/styles/stageStyles/settingsStyle.css" VBox.vgrow="ALWAYS" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="сontrollers.SettingsController">
+    <children>
+        <ScrollPane fx:id="scroll" fitToHeight="true" fitToWidth="true" layoutX="20.0" layoutY="50.0" prefHeight="305.0" prefViewportHeight="66.0" prefViewportWidth="280.0" prefWidth="480.0" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="45.0">
+            <content>
+                <AnchorPane fx:id="scrollAnchor" prefHeight="305.0" prefWidth="480.0" VBox.vgrow="ALWAYS">
+                    <children>
+                        <VBox fillWidth="false" layoutX="20.0" layoutY="50.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="50.0">
+                            <children>
+                                <AnchorPane layoutX="20.0" layoutY="50.0" prefHeight="50.0" styleClass="module" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="50.0">
+                                    <children>
+                                        <Button fx:id="btnLenToDef" layoutX="305.0" layoutY="5.0" mnemonicParsing="false" onAction="#lenToDef" prefHeight="30.0" prefWidth="30.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="315.0" AnchorPane.topAnchor="10.0">
+                                 <styleClass>
+                                    <String fx:value="toDef" />
+                                    <String fx:value="button-icon" />
+                                 </styleClass></Button>
+                                        <ChoiceBox fx:id="lengSelect" layoutX="160.0" prefWidth="140.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="170.0" AnchorPane.topAnchor="10.0" />
+                                        <Label layoutY="5.0" styleClass="lab" text="%settings.leng" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="20.0" />
+                                    </children>
+                                </AnchorPane>
+                                <AnchorPane layoutX="20.0" layoutY="90.0" prefHeight="50.0" styleClass="module" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="90.0">
+                                    <children>
+                                        <Button fx:id="btnTranToDef" layoutX="305.0" layoutY="5.0" mnemonicParsing="false" onAction="#tranToDef" prefHeight="30.0" prefWidth="30.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="315.0" AnchorPane.topAnchor="10.0">
+                                 <styleClass>
+                                    <String fx:value="toDef" />
+                                    <String fx:value="button-icon" />
+                                 </styleClass></Button>
+                                        <ChoiceBox fx:id="tranSelect" layoutX="160.0" prefWidth="140.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="170.0" AnchorPane.topAnchor="10.0" />
+                                        <Label layoutY="5.0" styleClass="lab" text="%tran" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="20.0" />
+                                    </children>
+                                </AnchorPane>
+                            </children>
+                        </VBox>
+                        <Button fx:id="btnErr" mnemonicParsing="false" onAction="#showErrorLog" prefHeight="50.0" prefWidth="50.0" styleClass="button-icon" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" />
+                    </children>
+                </AnchorPane>
+            </content>
+        </ScrollPane>
+        <Button fx:id="btnSave" defaultButton="true" mnemonicParsing="false" onAction="#apply" prefHeight="50.0" styleClass="button-default" text="%save" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="70.0">
+        </Button>
+        <Button fx:id="btnAllToDef" layoutX="27.0" layoutY="262.0" mnemonicParsing="false" onAction="#allToCustom" prefHeight="70.0" prefWidth="70.0" styleClass="button-icon" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="10.0" />
+    </children>
+    <clip>
+        <Rectangle fx:id="clip" arcHeight="50" arcWidth="50" height="500" width="500" />
+    </clip>
+</AnchorPane>

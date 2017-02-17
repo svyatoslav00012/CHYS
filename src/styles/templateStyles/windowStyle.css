@@ -1,0 +1,129 @@
+.root{
+    -fx-font-family: "Drina";
+    -fx-background-radius: 25px;
+    -fx-border-radius: 25px;
+    -fx-border-width: 3px;
+}
+
+.text-field{
+    -fx-font-family: "StudioScriptCTT";
+    -fx-border-radius: 50px;
+    -fx-background-radius: 50px;
+}
+
+#lablNotFill{
+    -fx-font-family: "Comic Sans MS";
+    -fx-font-size: 15px;
+    -fx-text-fill: red;
+}
+
+.label{
+    -fx-text-fill: white;
+}
+
+.button{
+    -fx-font-size: 25px;
+    -fx-background-radius:50px;
+    -fx-background-color: transparent;
+    -fx-font-weight: bold;
+    -fx-border-radius: 50px;
+    -fx-border-color: black;
+    -fx-font-style: italic;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-effect: dropshadow( one-pass-box , black , 8 , 0.0 , 0 , 3 );
+    -fx-text-fill: red;
+}
+
+.text-field:focused, .menu-button:focused, .table-view:focused{
+    -fx-border-width: 2;
+    -fx-border-color: #00FFFF;
+}
+
+.button:focused{
+    -fx-border-width: 1;
+    -fx-border-color: #00FFFF;
+}
+
+#btnNew:hover .text, #btnChange:hover .text, #btnChoose:hover .text{
+    -fx-stroke: black;
+    -fx-stroke-width: 0.5;
+}
+
+.button:hover .text{
+    -fx-effect: dropshadow( one-pass-box , white, 8 , 3.0 , 0 , 0 );
+    -fx-effect: dropshadow( gaussian , white, 3 , 1.0 , 0 , 0 );
+}
+
+.button:pressed{
+    -fx-effect: dropshadow( one-pass-box , black , 5 , 0.0 , 0 , 1 );
+    -fx-translate-y: 2px;
+}
+
+.button-default{
+    -fx-cursor: hand;
+    -fx-border-width: 0px;
+    -fx-text-fill: 	white;
+    -fx-background-color: linear-gradient(#61a2b1, #2A5058);
+}
+
+.button-default:hover{
+    -fx-effect: dropshadow( one-pass-box , black , 12 , 0.0 , 0 , 5);
+    -fx-translate-y: -2px;
+}
+
+.button-default:hover .text{
+    -fx-effect:none;
+}
+
+.button-default:pressed{
+    -fx-cursor: closed-hand;
+    -fx-effect: dropshadow( one-pass-box , black , 5 , 0.0 , 0 , 1 );
+    -fx-translate-y: 3px;
+}
+
+.button-icon{
+    -fx-border-width: 0px;
+}
+
+.button-icon:hover{
+    -fx-effect: dropshadow( one-pass-box , white , 7 , 1.0 , 0 , 0 );
+}
+
+.button-icon:pressed{
+    -fx-effect: dropshadow( one-pass-box , white , 10 , 3.0 , 0 , 0 );
+}
+
+.tooltip .label, .tooltip .text, .button:hover .tooltip .text, .button:focused .tooltip .text{
+    -fx-effect: none;
+}
+
+.tooltip{
+    -fx-effect: none;
+    -fx-font-family: "Old Comedy";
+    -fx-font-size: 25px;
+}
+
+.contextMenu{
+    -fx-font-family: "Cansellarist";
+    -fx-background-color: #48D1CC;
+    -fx-background-radius: 20px;
+    -fx-border-width: 0;
+    -fx-background-color: #D3D3D3;
+}
+
+.contextMenu .menu-item{
+    -fx-background-radius: 20px;
+}
+
+.contextMenu .menu-item:focused {
+    -fx-background-color: yellow;
+}
+
+.contextMenu .menu-item .label{
+    -fx-font-size: 35px;
+    -fx-text-fill: blue;
+    -fx-stroke-width: 1px;
+    -fx-stroke-color: black;
+}
+

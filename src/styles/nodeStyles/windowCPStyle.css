@@ -1,0 +1,52 @@
+.button{
+    -fx-font-size: 0px;
+    -fx-background-color: transparent;
+    -fx-effect: dropshadow( one-pass-box , black , 8 , 0.0 , 0 , 3 );
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-border-width: 0;
+}
+
+.button:hover{
+    -fx-effect: dropshadow(one-pass-box, white, 3, 3.0, 0, 0);
+}
+
+.button:hover .text{
+    -fx-effect: none;
+}
+
+.button:pressed{
+    -fx-effect: dropshadow(one-pass-box, white, 5, 3.0, 0, 0);
+    -fx-translate-y: 1px;
+}
+
+#btnIconif{
+    -fx-background-image: url("/resources/images/icons/used/mnmize.png");
+    -fx-background-size: 120%;
+}
+
+#btnMxmize{
+    -fx-background-image: url("/resources/images/icons/used/mxmize.png");
+    -fx-background-size: 70%;
+}
+
+#btnClose{
+    -fx-background-image: url("/resources/images/icons/used/close.png");
+    -fx-background-size: 70%;
+}
+
+#logoArea{
+    -fx-effect: dropshadow( one-pass-box , black , 8 , 0.0 , 2 , 0 );
+}
+
+.tooltip{
+    -fx-effect: none;
+    -fx-font-family: "Old Comedy";
+    -fx-font-size: 25px;
+}
+
+.label{
+    -fx-text-fill: black;
+    -fx-font-family: "Favorit Grotesk";
+    -fx-effect: dropshadow( one-pass-box , black , 8 , 0.0 , 0 , 3 );
+}

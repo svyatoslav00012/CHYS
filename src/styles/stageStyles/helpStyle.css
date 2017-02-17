@@ -1,0 +1,18 @@
+.root{
+   -fx-background-image: url("/resources/images/backgrounds/used/fabric-grey-2.png");
+}
+
+.label{
+   -fx-font-family: "Arial Black";
+   -fx-text-fill: #818181;
+   -fx-position: left-top;
+   -fx-effect: innershadow( three-pass-box , rgba(0,0,0,0.7) , 6, 0.0 , 0 , 2 );
+}
+
+#ch{
+   -fx-font-size: 32px;
+}
+
+#anch{
+    -fx-background-image: url("/resources/images/backgrounds/used/fabric-light-1.png");
+}

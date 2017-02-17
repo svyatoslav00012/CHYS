@@ -1,0 +1,835 @@
+$-$-$-$-$ Created on 17.01.2017 23:43 $-$-$-$-$
+
++++++ Launched on 17.01.2017 23:43 +++++
+
++++++ Launched on 17.01.2017 23:54 +++++
+
++++++ Launched on 17.01.2017 23:56 +++++
+
++++++ Launched on 18.01.2017 00:00 +++++
+
++++++ Launched on 18.01.2017 00:05 +++++
+
++++++ Launched on 18.01.2017 00:06 +++++
+
++++++ Launched on 18.01.2017 00:18 +++++
+
++++++ Launched on 18.01.2017 00:19 +++++
+
++++++ Launched on 18.01.2017 00:21 +++++
+
++++++ Launched on 18.01.2017 00:21 +++++
+
++++++ Launched on 18.01.2017 00:22 +++++
+
++++++ Launched on 18.01.2017 00:24 +++++
+
++++++ Launched on 18.01.2017 00:25 +++++
+
++++++ Launched on 18.01.2017 00:26 +++++
+
++++++ Launched on 18.01.2017 00:32 +++++
+
++++++ Launched on 18.01.2017 00:53 +++++
+
++++++ Launched on 18.01.2017 00:54 +++++
+
++++++ Launched on 18.01.2017 01:06 +++++
+
++++++ Launched on 18.01.2017 12:43 +++++
+
++++++ Launched on 18.01.2017 13:18 +++++
+
++++++ Launched on 18.01.2017 13:26 +++++
+
++++++ Launched on 18.01.2017 13:29 +++++
+
++++++ Launched on 18.01.2017 13:31 +++++
+
++++++ Launched on 18.01.2017 13:32 +++++
+
++++++ Launched on 18.01.2017 13:35 +++++
+
++++++ Launched on 18.01.2017 13:37 +++++
+
++++++ Launched on 18.01.2017 13:37 +++++
+
++++++ Launched on 18.01.2017 13:40 +++++
+
++++++ Launched on 18.01.2017 13:40 +++++
+
++++++ Launched on 18.01.2017 14:03 +++++
+
++++++ Launched on 18.01.2017 14:04 +++++
+
++++++ Launched on 18.01.2017 14:07 +++++
+
++++++ Launched on 18.01.2017 14:09 +++++
+
++++++ Launched on 18.01.2017 14:09 +++++
+
++++++ Launched on 18.01.2017 14:10 +++++
+
++++++ Launched on 18.01.2017 14:29 +++++
+
++++++ Launched on 18.01.2017 14:31 +++++
+
++++++ Launched on 18.01.2017 14:32 +++++
+
++++++ Launched on 18.01.2017 14:38 +++++
+
++++++ Launched on 18.01.2017 14:38 +++++
+
++++++ Launched on 18.01.2017 14:39 +++++
+
++++++ Launched on 18.01.2017 14:42 +++++
+
++++++ Launched on 18.01.2017 14:46 +++++
+
++++++ Launched on 18.01.2017 14:47 +++++
+
++++++ Launched on 18.01.2017 14:50 +++++
+
++++++ Launched on 18.01.2017 14:54 +++++
+
++++++ Launched on 18.01.2017 14:55 +++++
+
++++++ Launched on 18.01.2017 14:56 +++++
+
++++++ Launched on 18.01.2017 14:57 +++++
+
++++++ Launched on 18.01.2017 14:57 +++++
+
++++++ Launched on 18.01.2017 14:59 +++++
+
++++++ Launched on 18.01.2017 15:00 +++++
+
++++++ Launched on 18.01.2017 15:02 +++++
+
++++++ Launched on 18.01.2017 15:03 +++++
+
++++++ Launched on 18.01.2017 15:09 +++++
+
++++++ Launched on 20.01.2017 00:55 +++++
+
++++++ Launched on 20.01.2017 00:55 +++++
+
++++++ Launched on 20.01.2017 00:58 +++++
+
++++++ Launched on 20.01.2017 00:59 +++++
+
++++++ Launched on 20.01.2017 00:59 +++++
+
++++++ Launched on 20.01.2017 01:00 +++++
+
++++++ Launched on 20.01.2017 01:00 +++++
+
++++++ Launched on 20.01.2017 01:01 +++++
+
++++++ Launched on 20.01.2017 01:02 +++++
+
++++++ Launched on 20.01.2017 01:03 +++++
+
++++++ Launched on 20.01.2017 01:05 +++++
+
++++++ Launched on 20.01.2017 01:07 +++++
+
++++++ Launched on 20.01.2017 01:08 +++++
+
++++++ Launched on 20.01.2017 01:08 +++++
+
++++++ Launched on 20.01.2017 01:09 +++++
+
++++++ Launched on 20.01.2017 01:09 +++++
+
++++++ Launched on 20.01.2017 01:11 +++++
+
++++++ Launched on 20.01.2017 01:12 +++++
+
++++++ Launched on 20.01.2017 01:12 +++++
+
++++++ Launched on 20.01.2017 01:12 +++++
+
++++++ Launched on 20.01.2017 01:13 +++++
+
++++++ Launched on 20.01.2017 01:13 +++++
+
++++++ Launched on 21.01.2017 22:24 +++++
+
++++++ Launched on 21.01.2017 23:16 +++++
+
++++++ Launched on 21.01.2017 23:17 +++++
+
++++++ Launched on 21.01.2017 23:19 +++++
+
++++++ Launched on 21.01.2017 23:20 +++++
+
++++++ Launched on 21.01.2017 23:21 +++++
+
++++++ Launched on 21.01.2017 23:23 +++++
+
++++++ Launched on 21.01.2017 23:24 +++++
+
++++++ Launched on 21.01.2017 23:25 +++++
+
++++++ Launched on 21.01.2017 23:58 +++++
+
++++++ Launched on 22.01.2017 22:51 +++++
+
++++++ Launched on 22.01.2017 22:53 +++++
+
++++++ Launched on 22.01.2017 22:55 +++++
+
++++++ Launched on 22.01.2017 22:56 +++++
+
++++++ Launched on 22.01.2017 23:12 +++++
+
++++++ Launched on 28.01.2017 20:42 +++++
+
++++++ Launched on 29.01.2017 23:04 +++++
+
++++++ Launched on 29.01.2017 23:04 +++++
+
++++++ Launched on 29.01.2017 23:04 +++++
+
++++++ Launched on 29.01.2017 23:51 +++++
+
++++++ Launched on 30.01.2017 00:00 +++++
+
++++++ Launched on 31.01.2017 20:47 +++++
+
++++++ Launched on 31.01.2017 20:51 +++++
+
++++++ Launched on 31.01.2017 20:52 +++++
+
++++++ Launched on 31.01.2017 20:57 +++++
+
++++++ Launched on 31.01.2017 20:59 +++++
+
++++++ Launched on 31.01.2017 21:02 +++++
+
++++++ Launched on 01.02.2017 00:15 +++++
+
++++++ Launched on 01.02.2017 00:16 +++++
+
++++++ Launched on 01.02.2017 00:23 +++++
+
++++++ Launched on 01.02.2017 00:24 +++++
+
++++++ Launched on 01.02.2017 00:25 +++++
+
++++++ Launched on 01.02.2017 00:26 +++++
+
++++++ Launched on 01.02.2017 00:26 +++++
+
++++++ Launched on 01.02.2017 00:27 +++++
+
++++++ Launched on 01.02.2017 00:28 +++++
+
++++++ Launched on 01.02.2017 00:34 +++++
+
++++++ Launched on 01.02.2017 00:34 +++++
+
++++++ Launched on 01.02.2017 00:38 +++++
+
++++++ Launched on 01.02.2017 00:39 +++++
+
++++++ Launched on 01.02.2017 00:40 +++++
+
++++++ Launched on 01.02.2017 00:41 +++++
+
++++++ Launched on 01.02.2017 00:41 +++++
+
++++++ Launched on 01.02.2017 00:41 +++++
+
++++++ Launched on 01.02.2017 00:46 +++++
+
++++++ Launched on 01.02.2017 00:49 +++++
+
++++++ Launched on 01.02.2017 00:50 +++++
+
++++++ Launched on 01.02.2017 22:32 +++++
+
++++++ Launched on 01.02.2017 22:40 +++++
+
++++++ Launched on 01.02.2017 22:42 +++++
+
++++++ Launched on 01.02.2017 22:46 +++++
+
++++++ Launched on 01.02.2017 22:47 +++++
+
++++++ Launched on 01.02.2017 22:47 +++++
+
++++++ Launched on 01.02.2017 22:48 +++++
+
++++++ Launched on 01.02.2017 22:50 +++++
+
++++++ Launched on 01.02.2017 22:51 +++++
+
++++++ Launched on 01.02.2017 22:51 +++++
+
++++++ Launched on 01.02.2017 22:53 +++++
+
++++++ Launched on 01.02.2017 22:54 +++++
+
++++++ Launched on 01.02.2017 22:56 +++++
+
++++++ Launched on 01.02.2017 22:57 +++++
+
++++++ Launched on 01.02.2017 22:57 +++++
+
++++++ Launched on 01.02.2017 22:58 +++++
+
++++++ Launched on 01.02.2017 23:01 +++++
+
++++++ Launched on 01.02.2017 23:01 +++++
+
++++++ Launched on 01.02.2017 23:01 +++++
+
++++++ Launched on 01.02.2017 23:04 +++++
+
++++++ Launched on 01.02.2017 23:05 +++++
+
++++++ Launched on 01.02.2017 23:10 +++++
+
++++++ Launched on 01.02.2017 23:10 +++++
+
++++++ Launched on 01.02.2017 23:11 +++++
+
++++++ Launched on 01.02.2017 23:12 +++++
+
++++++ Launched on 01.02.2017 23:33 +++++
+
++++++ Launched on 01.02.2017 23:36 +++++
+
++++++ Launched on 01.02.2017 23:36 +++++
+
++++++ Launched on 01.02.2017 23:37 +++++
+
++++++ Launched on 01.02.2017 23:37 +++++
+
++++++ Launched on 01.02.2017 23:38 +++++
+
++++++ Launched on 01.02.2017 23:39 +++++
+
++++++ Launched on 01.02.2017 23:39 +++++
+
++++++ Launched on 01.02.2017 23:42 +++++
+
++++++ Launched on 01.02.2017 23:42 +++++
+
++++++ Launched on 01.02.2017 23:43 +++++
+
++++++ Launched on 01.02.2017 23:44 +++++
+
++++++ Launched on 01.02.2017 23:44 +++++
+
++++++ Launched on 01.02.2017 23:45 +++++
+
++++++ Launched on 02.02.2017 22:31 +++++
+
++++++ Launched on 02.02.2017 22:42 +++++
+
++++++ Launched on 02.02.2017 22:43 +++++
+
++++++ Launched on 02.02.2017 22:43 +++++
+
++++++ Launched on 07.02.2017 15:25 +++++
+
++++++ Launched on 07.02.2017 15:26 +++++
+
++++++ Launched on 07.02.2017 15:30 +++++
+
++++++ Launched on 07.02.2017 15:30 +++++
+
++++++ Launched on 07.02.2017 15:33 +++++
+
++++++ Launched on 07.02.2017 15:34 +++++
+
+javafx.fxml.LoadException: 
+/D:/Google%20Drive/Svyatoslav/Coding/Java/MyProjects/JavaFX/CHYS%201.0/out/production/CHYS%201.0/fxmls/list.fxml
+
+ ---------- 
+
++++++ Launched on 07.02.2017 15:39 +++++
+
++++++ Launched on 07.02.2017 15:47 +++++
+
++++++ Launched on 07.02.2017 15:49 +++++
+
++++++ Launched on 07.02.2017 15:55 +++++
+
++++++ Launched on 07.02.2017 15:55 +++++
+
++++++ Launched on 07.02.2017 16:04 +++++
+
++++++ Launched on 07.02.2017 16:07 +++++
+
++++++ Launched on 07.02.2017 16:37 +++++
+
++++++ Launched on 07.02.2017 16:47 +++++
+
++++++ Launched on 07.02.2017 16:50 +++++
+
++++++ Launched on 07.02.2017 16:51 +++++
+
++++++ Launched on 07.02.2017 16:53 +++++
+
++++++ Launched on 07.02.2017 16:54 +++++
+
++++++ Launched on 07.02.2017 16:58 +++++
+
++++++ Launched on 07.02.2017 17:27 +++++
+
++++++ Launched on 07.02.2017 17:30 +++++
+
++++++ Launched on 07.02.2017 17:55 +++++
+
++++++ Launched on 07.02.2017 17:58 +++++
+
++++++ Launched on 07.02.2017 17:59 +++++
+
++++++ Launched on 07.02.2017 18:00 +++++
+
++++++ Launched on 07.02.2017 18:01 +++++
+
++++++ Launched on 07.02.2017 18:03 +++++
+
++++++ Launched on 07.02.2017 18:04 +++++
+
++++++ Launched on 07.02.2017 18:04 +++++
+
++++++ Launched on 07.02.2017 18:06 +++++
+
++++++ Launched on 07.02.2017 18:06 +++++
+
++++++ Launched on 07.02.2017 18:17 +++++
+
++++++ Launched on 07.02.2017 19:35 +++++
+
++++++ Launched on 07.02.2017 19:36 +++++
+
+Error in LList.getList(String name)
+Can't find list with name Выборка2
+ ---------- 
+
+Error in LList.getList(String name)
+Can't find list with name Выборка2
+ ---------- 
+
+Error in LList.getList(String name)
+Can't find list with name Выборка2
+ ---------- 
+
++++++ Launched on 07.02.2017 19:43 +++++
+
+Error in LList.add(WList l)
+WList whith nameВсе слова(1) was already added
+ ---------- 
+
++++++ Launched on 07.02.2017 19:44 +++++
+
++++++ Launched on 07.02.2017 19:48 +++++
+
++++++ Launched on 07.02.2017 19:49 +++++
+
++++++ Launched on 07.02.2017 19:50 +++++
+
++++++ Launched on 07.02.2017 19:52 +++++
+
++++++ Launched on 07.02.2017 19:53 +++++
+
++++++ Launched on 07.02.2017 19:54 +++++
+
++++++ Launched on 07.02.2017 20:02 +++++
+
++++++ Launched on 07.02.2017 20:04 +++++
+
++++++ Launched on 07.02.2017 20:05 +++++
+
+Error in LList.getList(String name)
+Can't find list with name Выборка(1)
+ ---------- 
+
++++++ Launched on 07.02.2017 20:06 +++++
+
++++++ Launched on 07.02.2017 20:07 +++++
+
++++++ Launched on 07.02.2017 20:16 +++++
+
++++++ Launched on 07.02.2017 20:28 +++++
+
++++++ Launched on 07.02.2017 20:31 +++++
+
++++++ Launched on 07.02.2017 20:33 +++++
+
++++++ Launched on 07.02.2017 20:38 +++++
+
++++++ Launched on 07.02.2017 20:46 +++++
+
++++++ Launched on 07.02.2017 20:55 +++++
+
++++++ Launched on 07.02.2017 21:03 +++++
+
++++++ Launched on 07.02.2017 21:31 +++++
+
++++++ Launched on 07.02.2017 21:35 +++++
+
++++++ Launched on 07.02.2017 21:35 +++++
+
++++++ Launched on 07.02.2017 21:41 +++++
+
++++++ Launched on 07.02.2017 21:45 +++++
+
++++++ Launched on 07.02.2017 21:50 +++++
+
++++++ Launched on 07.02.2017 21:51 +++++
+
++++++ Launched on 07.02.2017 22:32 +++++
+
++++++ Launched on 07.02.2017 22:47 +++++
+
++++++ Launched on 07.02.2017 22:47 +++++
+
++++++ Launched on 07.02.2017 22:52 +++++
+
++++++ Launched on 07.02.2017 22:53 +++++
+
++++++ Launched on 07.02.2017 22:54 +++++
+
++++++ Launched on 07.02.2017 22:55 +++++
+
++++++ Launched on 07.02.2017 22:57 +++++
+
++++++ Launched on 07.02.2017 22:58 +++++
+
++++++ Launched on 07.02.2017 22:59 +++++
+
++++++ Launched on 07.02.2017 23:00 +++++
+
++++++ Launched on 07.02.2017 23:01 +++++
+
++++++ Launched on 07.02.2017 23:03 +++++
+
++++++ Launched on 07.02.2017 23:04 +++++
+
++++++ Launched on 07.02.2017 23:17 +++++
+
++++++ Launched on 08.02.2017 15:43 +++++
+
+Error in LList.getList(String name)
+Can't find list with name Все слова
+ ---------- 
+
+Error in LList.getList(String name)
+Can't find list with name Все слова
+ ---------- 
+
++++++ Launched on 08.02.2017 16:01 +++++
+
++++++ Launched on 08.02.2017 16:06 +++++
+
++++++ Launched on 08.02.2017 16:08 +++++
+
++++++ Launched on 08.02.2017 16:10 +++++
+
++++++ Launched on 08.02.2017 16:11 +++++
+
++++++ Launched on 08.02.2017 16:11 +++++
+
++++++ Launched on 08.02.2017 16:12 +++++
+
++++++ Launched on 08.02.2017 16:16 +++++
+
+Error in LList.getList(String name)
+Can't find list with name Все слова
+ ---------- 
+
++++++ Launched on 08.02.2017 16:23 +++++
+
+Error in MyContextMenu.getItem(String label)
+MenuItem with label Редактировать not found in current ContextMenu
+ ---------- 
+
+javafx.fxml.LoadException: 
+/D:/Google%20Drive/Svyatoslav/Coding/Java/MyProjects/JavaFX/CHYS%201.0/out/production/CHYS%201.0/fxmls/myLists.fxml
+
+ ---------- 
+
++++++ Launched on 08.02.2017 16:35 +++++
+
+Error in LList.getList(String name)
+Can't find list with name Все слова
+ ---------- 
+
++++++ Launched on 08.02.2017 16:41 +++++
+
++++++ Launched on 08.02.2017 16:50 +++++
+
++++++ Launched on 08.02.2017 17:12 +++++
+
++++++ Launched on 08.02.2017 17:15 +++++
+
++++++ Launched on 08.02.2017 17:27 +++++
+
++++++ Launched on 08.02.2017 17:29 +++++
+
++++++ Launched on 08.02.2017 17:29 +++++
+
++++++ Launched on 09.02.2017 23:51 +++++
+
+javafx.fxml.LoadException: Error resolving onAction='#list', either the event handler is not in the Namespace or there is an error in the script.
+/D:/Google%20Drive/Svyatoslav/Coding/Java/MyProjects/JavaFX/CHYS%201.0/out/production/CHYS%201.0/fxmls/myLists.fxml:16
+
+ ---------- 
+
++++++ Launched on 09.02.2017 23:53 +++++
+
++++++ Launched on 09.02.2017 23:54 +++++
+
++++++ Launched on 09.02.2017 23:56 +++++
+
++++++ Launched on 09.02.2017 23:58 +++++
+
++++++ Launched on 10.02.2017 22:38 +++++
+
++++++ Launched on 10.02.2017 22:40 +++++
+
++++++ Launched on 10.02.2017 22:42 +++++
+
++++++ Launched on 11.02.2017 20:34 +++++
+
++++++ Launched on 11.02.2017 21:30 +++++
+
++++++ Launched on 11.02.2017 21:59 +++++
+
++++++ Launched on 13.02.2017 23:42 +++++
+
++++++ Launched on 13.02.2017 23:45 +++++
+
++++++ Launched on 13.02.2017 23:49 +++++
+
++++++ Launched on 13.02.2017 23:55 +++++
+
++++++ Launched on 14.02.2017 00:00 +++++
+
++++++ Launched on 14.02.2017 00:01 +++++
+
++++++ Launched on 14.02.2017 00:20 +++++
+
++++++ Launched on 14.02.2017 21:22 +++++
+
++++++ Launched on 14.02.2017 21:32 +++++
+
++++++ Launched on 14.02.2017 21:33 +++++
+
++++++ Launched on 15.02.2017 17:46 +++++
+
++++++ Launched on 15.02.2017 18:01 +++++
+
++++++ Launched on 15.02.2017 18:02 +++++
+
++++++ Launched on 15.02.2017 18:08 +++++
+
++++++ Launched on 15.02.2017 18:12 +++++
+
++++++ Launched on 15.02.2017 18:14 +++++
+
++++++ Launched on 15.02.2017 18:16 +++++
+
++++++ Launched on 15.02.2017 18:18 +++++
+
++++++ Launched on 15.02.2017 18:20 +++++
+
++++++ Launched on 15.02.2017 18:37 +++++
+
++++++ Launched on 15.02.2017 18:43 +++++
+
++++++ Launched on 15.02.2017 18:44 +++++
+
++++++ Launched on 15.02.2017 18:45 +++++
+
++++++ Launched on 15.02.2017 18:46 +++++
+
++++++ Launched on 15.02.2017 18:47 +++++
+
++++++ Launched on 15.02.2017 18:51 +++++
+
++++++ Launched on 15.02.2017 18:52 +++++
+
++++++ Launched on 15.02.2017 18:54 +++++
+
++++++ Launched on 15.02.2017 18:55 +++++
+
++++++ Launched on 15.02.2017 19:36 +++++
+
++++++ Launched on 15.02.2017 19:49 +++++
+
++++++ Launched on 15.02.2017 19:52 +++++
+
++++++ Launched on 15.02.2017 19:52 +++++
+
++++++ Launched on 15.02.2017 19:54 +++++
+
++++++ Launched on 15.02.2017 19:56 +++++
+
++++++ Launched on 15.02.2017 19:57 +++++
+
++++++ Launched on 15.02.2017 19:58 +++++
+
++++++ Launched on 15.02.2017 19:58 +++++
+
++++++ Launched on 15.02.2017 20:03 +++++
+
++++++ Launched on 15.02.2017 20:04 +++++
+
++++++ Launched on 15.02.2017 20:06 +++++
+
++++++ Launched on 15.02.2017 20:13 +++++
+
++++++ Launched on 15.02.2017 20:15 +++++
+
++++++ Launched on 15.02.2017 20:16 +++++
+
++++++ Launched on 15.02.2017 20:16 +++++
+
++++++ Launched on 15.02.2017 20:17 +++++
+
++++++ Launched on 15.02.2017 20:18 +++++
+
++++++ Launched on 15.02.2017 20:19 +++++
+
++++++ Launched on 15.02.2017 20:20 +++++
+
++++++ Launched on 15.02.2017 20:23 +++++
+
++++++ Launched on 15.02.2017 20:25 +++++
+
++++++ Launched on 15.02.2017 20:27 +++++
+
++++++ Launched on 15.02.2017 20:28 +++++
+
++++++ Launched on 15.02.2017 20:28 +++++
+
++++++ Launched on 15.02.2017 20:31 +++++
+
++++++ Launched on 15.02.2017 20:33 +++++
+
++++++ Launched on 15.02.2017 20:39 +++++
+
++++++ Launched on 15.02.2017 20:46 +++++
+
++++++ Launched on 15.02.2017 20:51 +++++
+
++++++ Launched on 15.02.2017 20:54 +++++
+
++++++ Launched on 15.02.2017 21:00 +++++
+
++++++ Launched on 15.02.2017 21:01 +++++
+
++++++ Launched on 15.02.2017 21:02 +++++
+
++++++ Launched on 15.02.2017 21:02 +++++
+
++++++ Launched on 15.02.2017 21:03 +++++
+
++++++ Launched on 15.02.2017 21:03 +++++
+
++++++ Launched on 15.02.2017 21:12 +++++
+
++++++ Launched on 15.02.2017 21:14 +++++
+
++++++ Launched on 15.02.2017 21:14 +++++
+
++++++ Launched on 15.02.2017 21:15 +++++
+
++++++ Launched on 15.02.2017 21:17 +++++
+
++++++ Launched on 15.02.2017 21:18 +++++
+
++++++ Launched on 15.02.2017 21:18 +++++
+
++++++ Launched on 15.02.2017 21:19 +++++
+
++++++ Launched on 15.02.2017 21:20 +++++
+
++++++ Launched on 15.02.2017 21:21 +++++
+
++++++ Launched on 15.02.2017 21:51 +++++
+
++++++ Launched on 15.02.2017 21:52 +++++
+
++++++ Launched on 15.02.2017 21:55 +++++
+
++++++ Launched on 15.02.2017 21:56 +++++
+
++++++ Launched on 15.02.2017 21:58 +++++
+
++++++ Launched on 15.02.2017 22:03 +++++
+
++++++ Launched on 15.02.2017 22:05 +++++
+
++++++ Launched on 15.02.2017 22:07 +++++
+
++++++ Launched on 15.02.2017 22:15 +++++
+
++++++ Launched on 15.02.2017 22:30 +++++
+
++++++ Launched on 15.02.2017 22:32 +++++
+
++++++ Launched on 15.02.2017 22:33 +++++
+
++++++ Launched on 15.02.2017 22:36 +++++
+
++++++ Launched on 15.02.2017 22:37 +++++
+
++++++ Launched on 15.02.2017 22:38 +++++
+
++++++ Launched on 16.02.2017 16:50 +++++
+
++++++ Launched on 16.02.2017 18:52 +++++
+
++++++ Launched on 16.02.2017 19:11 +++++
+
++++++ Launched on 16.02.2017 19:12 +++++
+
+test error message
+ ---------- 
+
+test exception message
+ ---------- 
+
+test exception message
+ ---------- 
+
+test error message
+ ---------- 
+
+test exception message
+ ---------- 
+
+test exception message
+ ---------- 
+
+test exception message
+ ---------- 
+
++++++ Launched on 16.02.2017 19:18 +++++
+
+test exception message
+ ---------- 
+
++++++ Launched on 16.02.2017 19:23 +++++
+
+test exception message
+ ---------- 
+
++++++ Launched on 16.02.2017 19:29 +++++
+
++++++ Launched on 16.02.2017 19:30 +++++
+
++++++ Launched on 16.02.2017 19:31 +++++
+
++++++ Launched on 16.02.2017 19:31 +++++
+
++++++ Launched on 16.02.2017 22:38 +++++

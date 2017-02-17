@@ -1,0 +1,41 @@
+.root{
+    -fx-font-family: "Old Comedy";
+    -fx-background-color: linear-gradient(blue 0%, black 60%);
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+    -fx-opacity: 0.9;
+}
+
+.root:hover{
+    -fx-opacity: 1;
+}
+
+.notif-title{
+    -fx-font-family: "LC Chalk";
+    -fx-text-fill: yellow;
+    -fx-font-size: 20px;
+}
+
+.notif-icon{
+    -fx-background-size: 100%;
+}
+
+.notif-message{
+    -fx-font-size: 25px;
+}
+
+#complete-icon{
+    -fx-background-image: url("/resources/images/icons/used/complete-notif.png");
+}
+
+#info-icon{
+    -fx-background-image: url("/resources/images/icons/used/info-notif.png");
+}
+
+#warning-icon{
+    -fx-background-image: url("/resources/images/icons/used/warning-notif.png");
+}
+
+#error-icon{
+    -fx-background-image: url("/resources/images/icons/used/error-notif.png");
+}

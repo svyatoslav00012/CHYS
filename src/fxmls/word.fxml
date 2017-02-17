@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.Rectangle?>
+
+<AnchorPane prefHeight="300.0" prefWidth="500.0" stylesheets="/styles/stageStyles/wordStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="сontrollers.WordController">
+    <children>
+        <Button fx:id="save" defaultButton="true" focusTraversable="false" layoutX="100.0" layoutY="150.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" styleClass="button-default" text="%save" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" />
+        <TextField fx:id="eng" layoutX="150.0" layoutY="20.0" prefHeight="30.0" prefWidth="200.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="30.0" />
+        <TextField fx:id="rus" layoutX="150.0" layoutY="60.0" prefHeight="30.0" prefWidth="200.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="100.0" />
+        <TextField fx:id="ukr" layoutX="150.0" layoutY="100.0" prefHeight="30.0" prefWidth="200.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="170.0" />
+        <Label layoutX="20.0" layoutY="60.0" prefHeight="30.0" prefWidth="120.0" text="%ru" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="110.0" />
+        <Label layoutX="20.0" layoutY="20.0" prefHeight="30.0" prefWidth="120.0" text="%en" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="40.0" />
+        <Label layoutX="20.0" layoutY="100.0" prefHeight="30.0" prefWidth="120.0" text="%ukr" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="180.0" />
+        <Label fx:id="lablNotFill" layoutX="20.0" layoutY="130.0" AnchorPane.topAnchor="220.0" />
+    </children>
+    <clip>
+        <Rectangle fx:id="clip" arcHeight="100" arcWidth="100" height="300" width="500" />
+    </clip>
+</AnchorPane>

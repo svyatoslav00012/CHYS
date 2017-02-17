@@ -1,0 +1,53 @@
+.root{
+    -fx-background-image: url("/resources/images/backgrounds/used/background-3.png");
+}
+
+#scrollAnchor{
+    -fx-font-family: "Old Comedy";
+    -fx-background-image: url("/resources/images/backgrounds/used/fabric-grey-2.png");
+    -fx-effect: innershadow( three-pass-box , rgba(0,0,0,10.7) , 16, 0.0 , 0.0 , 3 );
+}
+
+#scrollAnchor .lab, .choice-box{
+     -fx-effect: dropshadow( one-pass-box , black , 16 , 0.0 , 3 , 1.0 );
+}
+
+.label{
+    -fx-font-size: 20px;
+    -fx-text-fill: green;
+    -fx-font-weight: 600;
+}
+
+.module:hover .lab .text{
+    -fx-effect: dropshadow(one-pass-box , yellow, 10, 3.0, 0, 0);
+}
+
+.module:hover .tooltip .text{
+    -fx-effect: none;
+}
+
+
+/*
+.win:hover, #btnErr:hover, #btnAllToDef:hover, .toDef:hover{
+    -fx-effect: dropshadow(one-pass-box, white , 7, 3.0, 0, 0);
+}
+
+.win:pressed, #btnErr:pressed, #btnAllToDef:pressed, .toDef:pressed{
+    -fx-effect: dropshadow(one-pass-box, white, 10, 5.0, 0, 0);
+}
+*/
+
+#btnAllToDef{
+    -fx-background-image: url("/resources/images/icons/used/resetAll.png");
+    -fx-background-size: 90%;
+}
+
+.toDef{
+    -fx-background-image: url("/resources/images/icons/used/cross.png");
+    -fx-background-size:90%;
+}
+
+#btnErr{
+    -fx-background-image: url("/resources/images/icons/used/log.png");
+    -fx-background-size: 100%;
+}

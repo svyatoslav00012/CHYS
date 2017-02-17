@@ -1,0 +1,113 @@
+.panel{
+    -fx-background-color: transparent;
+}
+
+.label{
+    -fx-text-fill: black;
+}
+
+.text-field{
+    -fx-font-size: 20px;
+}
+
+.scroll-pane .viewport, scroll-pane > .viewport, .region, .anchor-pane, .anchor, .scrollAnchor, .rectsScroll, .scroll-pane .track, .scroll-pane, .scroll-bar{
+    -fx-background-color: transparent;
+}
+
+.rectsScroll{
+    -fx-effect: innershadow( gaussian , transparent , 6, 6.0 , 0 , 0 );
+}
+
+#lblNotAnswerCount{
+    -fx-text-fill: red;
+}
+
+#complete{
+    -fx-text-fill: #32CD32;
+}
+
+#btnForwardToCurr:focused, #btnBackToCurr:focused{
+    -fx-border-width: 0;
+    -fx-border-color: transparent;
+}
+
+#btnBack{
+    -fx-background-image: url("/resources/images/icons/used/warning.png");
+    -fx-background-size: 100%;
+    -fx-background-position: top;
+}
+
+#btnForwardToCurr, #btnBackToCurr{
+    -fx-background-size: 100%;
+    -fx-effect: none;
+    -fx-background-position: top;
+    -fx-opacity: 0.3;
+}
+
+#btnBackToCurr{
+    -fx-background-image: url("/resources/images/icons/used/arrow-left-1.png");
+}
+
+#btnForwardToCurr{
+    -fx-background-image: url("/resources/images/icons/used/arrow-right-1.png");
+}
+
+#btnBackToCurr:hover, #btnForwardToCurr:hover{
+    -fx-opacity: 0.5;
+    -fx-effect: dropshadow(one-pass-box, black, 8, 0, 0, 1);
+    -fx-translate-y: -1;
+}
+
+#btnFinish{
+    -fx-opacity: 0.5;
+    -fx-effect: dropshadow(one-pass-box, black, 8, 0, 0, 1);
+    -fx-background-image: url("/resources/images/icons/used/stop.png");
+    -fx-background-size: 100%;
+}
+
+#btnFinish:hover{
+    -fx-opacity: 0.7;
+    -fx-effect: dropshadow(one-pass-box, black, 10, 0, 0, 2);
+    -fx-translate-y: -1;
+}
+
+.increment-button, .decrement-button{
+    -fx-background-radius: 50px;
+    -fx-border-radius: 50px;
+    -fx-background-color: transparent;
+}
+
+.increment-arrow:hover, .decrement-arrow:hover{
+    -fx-background-color: blue;
+}
+
+.scroll-bar{
+    -fx-font-size: 15pt;
+}
+
+.thumb{
+    -fx-color: blue;
+    -fx-border-radius: 50px;
+    -fx-background-radius: 50px;
+}
+
+.region{
+    -fx-effect: dropshadow( one-pass-box , black , 8 , 0.0 , 0.0 , 3.0 );
+    -fx-background-color: red;
+    -fx-border-radius: 50px;
+    -fx-background-radius: 50px;
+}
+
+.region:hover{
+    -fx-effect: dropshadow( one-pass-box , black , 12 , 0.0 , 0.0 , 7.0 );
+    -fx-translate-y: -4px;
+}
+
+.current{
+    -fx-border-width: 3px;
+    -fx-border-color: blue;
+}
+
+.filled{
+    -fx-background-color: #32CD32;
+}

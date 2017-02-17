@@ -1,0 +1,27 @@
+.root{
+    -fx-background-image: url("/resources/images/backgrounds/used/background-2.png");
+}
+
+.label{
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow( one-pass-box , black , 8 , 0.0 , 0 , 3 );
+}
+
+.text-field{
+    -fx-font-size: 25px;
+    -fx-background-color: #FFF8DC;
+    -fx-effect: innershadow( three-pass-box , rgba(0,0,0,10.7) , 16, 0.0 , 0.0 , 3 );
+}
+
+.text-field:focused {
+   -fx-background-color: white;
+}
+
+.incorrectField{
+    -fx-effect: innershadow( gaussian , red , 4, 1 , 0.0 , 0 );
+}
+
+.incorrectField:focused{
+    -fx-effect: innershadow( gaussian , red , 7, 1.5 , 0.0 , 0 );
+}

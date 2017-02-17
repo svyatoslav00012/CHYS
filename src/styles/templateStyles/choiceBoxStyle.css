@@ -1,0 +1,50 @@
+.choice-box {
+    -fx-background-color: transparent;
+    -fx-border-radius: 50px;
+    -fx-background-radius: 50px;
+}
+
+.choice-box .text{
+    -fx-fill: yellow;
+}
+
+.choice-box .tooltip .text{
+    -fx-fill: white;
+}
+
+.choice-box:hover .text{
+    -fx-effect: dropshadow(one-pass-box , white , 5,2.0,0,0);
+}
+
+.choice-box:hover .tooltip .text{
+    -fx-effect: none;
+}
+
+.menu-item{
+    -fx-border-radius:20px;
+    -fx-background-radius:20px;
+}
+
+.choice-box .context-menu{
+    -fx-background-color: transparent;
+    -fx-border-radius:20px;
+    -fx-background-radius:20px;
+}
+
+.choice-box .context-menu .text{
+    -fx-fill: blue;
+    -fx-effect: dropshadow(one-pass-box , yellow , 10,3.0,0,0);
+}
+
+/*settings*/
+
+.changed .choice-box .text{
+    -fx-font-size: 25px;
+    -fx-font-weight: bold;
+    -fx-fill: red;
+}
+
+.changed .choice-box {
+    -fx-border-color: red;
+    -fx-border-width: 2px;
+}

@@ -1,0 +1,115 @@
+#alert{
+    -fx-background-color: #FFFFE0;
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+    -fx-border-width: 2px;
+    -fx-border-color: #FFDEAD;
+}
+
+.button-icon{
+    -fx-background-size: 100%;
+}
+
+.icon{
+    -fx-effect: dropshadow( one-pass-box , black , 8 , 0.0 , 0.0 , 3.0 );
+    -fx-background-color: transparent;
+    -fx-background-size: 100%;
+}
+
+#error-icon{
+    -fx-background-image: url("/resources/images/icons/used/error.png");
+}
+
+#confirm-icon{
+    -fx-background-image: url("/resources/images/icons/used/confirm.png");
+}
+
+#warning-icon{
+    -fx-background-image: url("/resources/images/icons/used/warning-1.png");
+}
+
+#info-icon{
+    -fx-background-image: url("/resources/images/icons/used/info.png");
+}
+
+#btnCopyToCB{
+    -fx-background-image: url("/resources/images/icons/used/copy-1.png");
+}
+
+#btnYes, #btnNo{
+    -fx-font-size: 20px;
+    -fx-background-radius: 50px;
+    -fx-border-radius: 50px;
+    -fx-text-fill: #FFDAB9;
+    -fx-opacity: 0.85;
+}
+
+#btnNo{
+    -fx-background-color: red;
+}
+
+#btnYes{
+    -fx-background-color: green;
+}
+
+#btnYes:hover, #btnNo:hover, #btnShow:hover, #btnHide:hover{
+    -fx-effect: dropshadow( one-pass-box , black , 10 , 0.0 , 0 , 5 );
+    -fx-translate-y: -3px;
+    -fx-cursor: hand;
+    -fx-opacity: 1;
+}
+
+#btnYes:hover .text, #btnNo:hover .text, #btnShow:hover .text,#btnHide:hover .text {
+    -fx-effect: none;
+}
+
+#btnYes:pressed, #btnNo:pressed, #btnShow:pressed, #btnHide: pressed{
+    -fx-effect: dropshadow( one-pass-box , black , 5 , 0.0 , 0 , 1 );
+    -fx-translate-y: 2px;
+}
+
+#btnShow{
+    -fx-background-image: url("/resources/images/icons/used/arrow-down.png");
+}
+
+#btnHide{
+    -fx-background-image: url("/resources/images/icons/used/arrow-up.png");
+}
+
+#stackTraceField{
+    -fx-font-family: "Comic Sans MS";
+    -fx-font-size: 12px;
+    -fx-text-fill: red;
+}
+
+#messageField, #messageField .scroll-pane, #messageField .viewport, #messageField .content{
+    -fx-background-color: transparent;
+    -fx-effect: none;
+}
+
+.scroll-bar .thumb{
+    -fx-font-size: 15px;
+    -fx-color: blue;
+    -fx-border-radius: 50px;
+    -fx-background-radius: 50px;
+}
+
+#messageField{
+    -fx-border-width: 0px;
+    -fx-font-family: "OlgaCTT";
+    -fx-font-size: 30px;
+    -fx-text-fill: green;
+}
+
+#typeNorm{
+    -fx-font-family: "KapelkaNew";
+    -fx-font-size: 50px;
+    -fx-text-fill: blue;
+}
+
+#typeWarning{
+    -fx-font-family: "KapelkaNew";
+    -fx-font-size: 50px;
+    -fx-text-fill: red;
+}
+

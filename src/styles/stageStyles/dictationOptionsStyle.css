@@ -1,0 +1,12 @@
+.root{
+    -fx-background-image: url("/resources/images/backgrounds/used/background-2.png");
+}
+
+.label{
+    -fx-font-size: 25px;
+}
+
+.check-box{
+    -fx-font-size: 25px;
+    -fx-text-fill: #00BFFF;
+}

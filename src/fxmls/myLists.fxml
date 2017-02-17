@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.Rectangle?>
+
+<AnchorPane fx:id="root" prefHeight="600" prefWidth="700" stylesheets="/styles/stageStyles/myListsStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="сontrollers.MyListsController">
+    <children>
+          <Button fx:id="btnChoose" disable="true" mnemonicParsing="false" onAction="#choose" prefHeight="200.0" prefWidth="200.0" styleClass="button-icon" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0" />
+        <VBox layoutX="375.0" layoutY="20.0" prefHeight="300.0" prefWidth="200.0" spacing="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="50.0">
+            <children>
+                <Button fx:id="btnNew" mnemonicParsing="false" onAction="#newList" prefHeight="60.0" prefWidth="200.0" text="%myLists.newList" />
+                <Button fx:id="btnChange" disable="true" mnemonicParsing="false" onAction="#changeList" prefHeight="60.0" prefWidth="200.0" text="%change" />
+            <Button fx:id="btnDuplicate" disable="true" mnemonicParsing="false" onAction="#duplicate" prefHeight="60.0" prefWidth="200.0" text="%duplicate" />
+                <Button fx:id="btnDelete" disable="true" mnemonicParsing="false" onAction="#delete" prefHeight="60.0" prefWidth="200.0" text="%delete">
+                    <VBox.margin>
+                        <Insets />
+                    </VBox.margin>
+                </Button>
+            </children>
+        </VBox>
+      <AnchorPane fx:id="notebook" layoutX="10.0" layoutY="50.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="240.0" AnchorPane.topAnchor="50.0">
+         <children>
+            <ScrollPane fx:id="scrollPane" fitToWidth="true" hbarPolicy="NEVER" layoutX="40.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <content>
+                <AnchorPane fx:id="scpAnch" />
+              </content>
+            </ScrollPane>
+            <Pane fx:id="back" prefWidth="40.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+         </children>
+      </AnchorPane>
+    </children>
+    <clip>
+        <Rectangle fx:id="clip" arcHeight="50" arcWidth="50" height="600" width="700" />
+    </clip>
+</AnchorPane>

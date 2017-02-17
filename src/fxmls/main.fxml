@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.Rectangle?>
+
+<AnchorPane fx:id="rootAnchor" prefHeight="600.0" prefWidth="700.0" stylesheets="/styles/stageStyles/mainStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="сontrollers.MainController">
+    <children>
+        <MenuButton layoutX="313.0" layoutY="3.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" text="%menu" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="60.0">
+            <items>
+                <MenuItem mnemonicParsing="false" onAction="#settings" text="%settings" />
+                <MenuItem mnemonicParsing="false" onAction="#myLists" text="%myLists" />
+                <MenuItem mnemonicParsing="false" onAction="#help" text="%help" />
+            </items>
+        </MenuButton>
+        <VBox layoutX="400.0" layoutY="150.0" prefWidth="150.0" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="20.0">
+            <children>
+                <Button fx:id="btnAdd" defaultButton="true" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" styleClass="button-default" text="%addWord">
+                    <VBox.margin>
+                        <Insets bottom="30.0" />
+                    </VBox.margin>
+                </Button>
+                <Button fx:id="btnChange" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" text="%change">
+                    <VBox.margin>
+                        <Insets bottom="10.0" />
+                    </VBox.margin>
+                </Button>
+                <Button fx:id="btnDelete" mnemonicParsing="false" onAction="#delete" prefHeight="30.0" prefWidth="150.0" text="%delete">
+                    <VBox.margin>
+                        <Insets />
+                    </VBox.margin>
+                </Button>
+            </children>
+        </VBox>
+    </children>
+    <clip>
+        <Rectangle fx:id="clip" arcHeight="50" arcWidth="50" height="600" width="700" />
+    </clip>
+</AnchorPane>

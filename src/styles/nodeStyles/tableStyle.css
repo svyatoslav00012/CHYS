@@ -1,0 +1,79 @@
+.table-view{
+    -fx-font-family: "HansHand"; /* Amphi CYR Drina Eskal Font4You LirussTYGRA Old Comedy PFDaVinciScriptPro-Inked Prospect */
+    -fx-background-image: url("/resources/images/backgrounds/used/fabric-light-1.png");
+    -fx-effect: dropshadow( one-pass-box , black , 8 , 0.0 , 0 , 3 );
+}
+
+#place-holder{
+    -fx-font-family: "Chance";
+    -fx-font-size: 40px;
+    -fx-font-weight: bold;
+    -fx-text-fill: yellow;
+}
+
+#place-holder .text{
+    -fx-effect: dropshadow( one-pass-box , red , 8 , 0.0 , 0 , 3 );
+}
+
+.table-view .column-header-background .label{
+    -fx-font-size: 25px;
+    -fx-font-weight: bolder;
+}
+
+.table-view .cell{
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+}
+
+.table-view .cell:pressed{
+    -fx-cursor: closed-hand;
+}
+
+.table-row-cell:filled:hover{
+    -fx-background-color: #FFD700;
+    -fx-effect: innershadow( three-pass-box , rgba(0,0,0,0.7) , 6, 0.0 , 0 , 2 );
+}
+
+.table-row-cell:filled:selected{
+    -fx-effect: innershadow( three-pass-box , rgba(0,0,0,0.7) , 6, 0.0 , 0 , 2 );
+}
+
+.table-row-cell:selected:filled .text{
+    -fx-font-size: 30px;
+    -fx-font-weight: bolder;
+    -fx-effect: dropshadow( one-pass-box , black , 8 , 0.0 , 0 , 3 );
+    -fx-fill: red;
+}
+
+.table-view .label{
+    -fx-text-fill: #800000;
+}
+
+.table-view .increment-button, .table-view .decrement-button{
+    -fx-background-color: transparent;
+}
+
+.table-view .increment-arrow:hover, .table-view .decrement-arrow:hover{
+    -fx-background-color: blue;
+}
+
+.table-view .scroll-bar{
+    -fx-font-size: 20pt;
+    -fx-border-radius: 50px;
+    -fx-background-radius: 50px;
+    -fx-background-color: white;
+}
+
+.table-view .scroll-bar .thumb{
+    -fx-color: blue;
+    -fx-border-radius: 50px;
+    -fx-background-radius: 50px;
+}
+
+.table-view .scroll-bar:horizontal .increment-arrow,
+.table-view .scroll-bar:horizontal .decrement-arrow,
+.table-view .scroll-bar:horizontal .increment-button,
+.table-view .scroll-bar:horizontal .decrement-button {
+    -fx-padding:0;
+}

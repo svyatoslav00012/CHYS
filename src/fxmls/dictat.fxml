@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.Rectangle?>
+
+<AnchorPane fx:id="root" prefHeight="700.0" prefWidth="800.0" stylesheets="/styles/stageStyles/dictationStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="сontrollers.DictationController">
+    <clip>
+        <Rectangle fx:id="clip" arcHeight="200" arcWidth="100" height="700" width="800" />
+    </clip>
+   <children>
+      <HBox alignment="CENTER" layoutX="98.0" layoutY="52.0" AnchorPane.bottomAnchor="250.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+         <children>
+            <VBox alignment="CENTER" spacing="20.0">
+               <children>
+                  <HBox alignment="CENTER">
+                     <children>
+                        <Label fx:id="lenFrom" text="Label" />
+                        <Label text=" :" />
+                     </children>
+                  </HBox>
+                  <Label fx:id="lblWord" text="Label" />
+                  <HBox alignment="CENTER">
+                     <children>
+                        <Label text="%yourTranslate" />
+                        <Label text="(" />
+                        <Label fx:id="lenTo" text="Label">
+                           <VBox.margin>
+                              <Insets top="50.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Label text=") :" />
+                     </children>
+                     <VBox.margin>
+                        <Insets top="50.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <TextField fx:id="fieldTran" alignment="CENTER" prefWidth="700.0" promptText="%yourTranslate" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <VBox alignment="CENTER" layoutX="20.0" layoutY="188.0" AnchorPane.bottomAnchor="220.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="50.0">
+         <children>
+            <Button fx:id="btnPrev" focusTraversable="false" layoutX="20.0" layoutY="188.0" mnemonicParsing="false" onAction="#prevW" prefHeight="100.0" prefWidth="100.0" />
+         </children>
+      </VBox>
+      <VBox alignment="CENTER" layoutX="628.0" layoutY="176.0" AnchorPane.bottomAnchor="220.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="50.0">
+         <children>
+            <Button fx:id="btnNext" focusTraversable="false" layoutX="628.0" layoutY="176.0" mnemonicParsing="false" onAction="#nextW" prefHeight="100.0" prefWidth="100.0" AnchorPane.rightAnchor="20.0" />
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

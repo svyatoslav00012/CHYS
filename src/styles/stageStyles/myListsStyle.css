@@ -1,0 +1,97 @@
+.root{
+    -fx-background-image: url("/resources/images/backgrounds/used/fabric-light-2.png");
+}
+
+#allWords{
+    -fx-text-fill: red;
+}
+
+#allWords:focus .text{
+    -fx-stroke-width: 1px;
+    -fx-stroke-color: blue;
+}
+
+.accordion .titled-pane .title{
+    -fx-background-color: transparent;
+    -fx-font-size: 35px;
+}
+
+.accordion .titled-pane:focused{
+    -fx-text-fill: blue;
+}
+
+.scroll-pane .increment-button, .scroll-bar .decrement-button{
+    -fx-background-radius: 50px;
+    -fx-border-radius: 50px;
+    -fx-background-color: yellow;
+}
+
+.scroll-pane .increment-button:hover, .scroll-bar .decrement-button:hover{
+    -fx-effect: dropshadow( one-pass-box , white , 8 , 3.0 , 0 , 0);
+}
+
+.scroll-pane .increment-button:pressed,.scroll-bar .decrement-button:pressed{
+    -fx-effect: none;
+}
+
+.scroll-pane .scroll-bar{
+    -fx-font-size: 15pt;
+    -fx-border-radius: 25px;
+    -fx-background-radius: 25px;
+    -fx-background-color: transparent;
+}
+
+.scroll-pane .scroll-bar .thumb{
+    -fx-color: green;
+    -fx-border-radius: 50px;
+    -fx-background-radius: 50px;
+}
+
+.accordion{
+    -fx-effect: none;
+}
+
+#notebook{
+    -fx-effect: dropshadow( one-pass-box , black , 8 , 0.0 , 0 , 3 );
+}
+
+#back{
+    -fx-background-image: url("/resources/images/backgrounds/used/notebook-left.png");
+    -fx-background-size: 100%;
+    -fx-background-color: transparent;
+}
+
+.scroll-pane{
+    -fx-font-family: "OlgaCTT";
+    -fx-background-image: url("/resources/images/backgrounds/used/notebook-sheet-1.png");
+}
+
+#scpAnch, .scroll-pane > .viewport{
+    -fx-background-color: transparent;
+}
+
+#btnChange{
+    -fx-text-fill: yellow;
+}
+
+#btnDuplicate{
+    -fx-text-fill: blue;
+}
+
+#btnDelete{
+    -fx-text-fill: red;
+}
+
+#btnNew{
+    -fx-text-fill: #32CD32;
+}
+
+#btnChoose{
+    -fx-border-radius: 100px;
+    -fx-background-size: 100%;
+    -fx-background-image: url("/resources/images/icons/used/play.png");
+}
+
+.button-icon:hover{
+    -fx-effect: dropshadow( one-pass-box , white, 10 , 5.0 , 0 , 0);
+}

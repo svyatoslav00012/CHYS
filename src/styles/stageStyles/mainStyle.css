@@ -1,0 +1,51 @@
+.root{
+    -fx-background-image: url("/resources/images/backgrounds/used/background-1.png");
+}
+
+.t-f-w-b{
+    -fx-effect: dropshadow( one-pass-box , black , 8 , 0.0 , 0 , 3 );
+    -fx-font-size: 24px;
+}
+
+#focus{
+    -fx-effect: dropshadow( one-pass-box , black , 10 , 0.0 , 0 , 4 );
+}
+
+.label{
+    -fx-text-fill: green;
+}
+
+.menu-button{
+    -fx-effect: dropshadow( one-pass-box , black , 8 , 0.0 , 0 , 3 );
+    -fx-border-radius:50px;
+    -fx-border-width: 0px;
+    -fx-background-radius:50px;
+    -fx-font-size: 22px;
+}
+
+.menu-button:hover{
+    -fx-background-color: #FFDAB9;
+}
+
+.menu-item{
+    -fx-font-size: 30px;
+    -fx-border-radius:20px;
+    -fx-background-radius:20px;
+}
+
+.menu-item .label{
+    -fx-text-fill: green;
+}
+
+.menu-button .context-menu{
+    -fx-border-radius:20px;
+    -fx-background-radius:20px;
+}
+
+#btnChange{
+    -fx-text-fill: yellow;
+}
+
+#btnDelete{
+    -fx-text-fill: red;
+}
