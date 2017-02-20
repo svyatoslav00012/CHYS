@@ -64,13 +64,12 @@ public class AppData {
 		return -1;
 	}
 
-	public static void addToLists(StringBuffer s, int key) {
-		while (s.length() > 0)
-			if (s.charAt(0) != ' ') {
-				if (s.charAt(0) == '0') return;
-				lists.get(Integer.parseInt(s.substring(0, s.indexOf(" ")))).add(key);
-				s.delete(0, s.indexOf(" ") + 1);
-			} else s.delete(0, 1);
+	public static void addToLists(String string, int key) {
+	    String[] parts = string.split(" ");
+	    for (String part : parts) {
+	        if (part.equals("0")) break;
+            lists.get(Integer.parseInt(part)).add(key);
+        }
 	}
 
 	public static void revalidKeys() {
