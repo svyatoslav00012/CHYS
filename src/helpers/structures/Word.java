@@ -30,14 +30,12 @@ public class Word {
 		//registerClass(((FXMLLoader)MainController.getListsStage().getScene().getUserData()).getController());
 	}
 
-	public Word(StringBuffer sb){
-		setKey(Integer.parseInt(sb.substring(0, sb.indexOf("/"))));
-		sb.delete(0, sb.indexOf("/") + 1);
-		eng = new SimpleStringProperty(sb.substring(0, sb.indexOf("/")));
-		sb.delete(0, sb.indexOf("/") + 1);
-		rus = new SimpleStringProperty(sb.substring(0, sb.indexOf("/")));
-		sb.delete(0, sb.indexOf("/") + 1);
-		ukr = new SimpleStringProperty(sb.substring(0, sb.indexOf("/")));
+	public Word(String string){
+	    String[] parts = string.split("/");
+		setKey(Integer.parseInt(parts[0]));
+		eng = new SimpleStringProperty(parts[1]);
+		rus = new SimpleStringProperty(parts[2]);
+		ukr = new SimpleStringProperty(parts[3]);
 		//registerClass(((FXMLLoader)MainController.getListsStage().getScene().getUserData()).getController());
 	}
 
@@ -129,5 +127,10 @@ public class Word {
 
 	public void record(){							// getFreeWordKey for this word
 		key = AppData.getFreeWordKey();
+	}
+
+	@Override
+	public String toString() {
+		return key + "/" + eng.getValue() + "/" + rus.getValue() + "/" + ukr.getValue() + "/";
 	}
 }

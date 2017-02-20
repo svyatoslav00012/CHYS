@@ -6,9 +6,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import library.AppData;
 
-/**
- * Created by Святослав on 09.10.2016.
- */
+
 public class LList {
 	private ObservableList<WList> lists = FXCollections.observableArrayList();
 
