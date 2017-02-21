@@ -841,3 +841,47 @@ test exception message
 +++++ Launched on 21.02.2017 00:38 +++++
 
 +++++ Launched on 21.02.2017 01:11 +++++
+
++++++ Launched on 21.02.2017 09:48 +++++
+
++++++ Launched on 21.02.2017 09:49 +++++
+
++++++ Launched on 21.02.2017 09:56 +++++
+
++++++ Launched on 21.02.2017 09:59 +++++
+
++++++ Launched on 21.02.2017 10:28 +++++
+
++++++ Launched on 21.02.2017 10:53 +++++
+
++++++ Launched on 21.02.2017 10:57 +++++
+
++++++ Launched on 21.02.2017 10:59 +++++
+
++++++ Launched on 21.02.2017 11:05 +++++
+
++++++ Launched on 21.02.2017 11:10 +++++
+
++++++ Launched on 21.02.2017 11:11 +++++
+
++++++ Launched on 21.02.2017 11:12 +++++
+
++++++ Launched on 21.02.2017 11:25 +++++
+
+javafx.fxml.LoadException: String is not a valid type.
+/home/neutrino/Java/CHYS/out/production/CHYS%201.0/fxmls/settings.fxml:22
+
+ ---------- 
+
++++++ Launched on 21.02.2017 11:27 +++++
+
++++++ Launched on 21.02.2017 11:31 +++++
+
+javafx.fxml.LoadException: String is not a valid type.
+/home/neutrino/Java/CHYS/out/production/CHYS%201.0/fxmls/settings.fxml:22
+
+ ---------- 
+
++++++ Launched on 21.02.2017 11:31 +++++
+
++++++ Launched on 21.02.2017 11:39 +++++

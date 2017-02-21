@@ -107,8 +107,8 @@ public class Helper {
 	}
 
 	public static String getI18nString(String key) {
-		if(ResourceBundle.getBundle("resources.bundles.Locale", new Locale(AppData.getSettings().getLeng())).containsKey(key))
-			return ResourceBundle.getBundle("resources.bundles.Locale", new Locale(AppData.getSettings().getLeng())).getString(key);
+		if(ResourceBundle.getBundle("resources.bundles.Locale", new Locale(AppData.getSettings().getLang())).containsKey(key))
+			return ResourceBundle.getBundle("resources.bundles.Locale", new Locale(AppData.getSettings().getLang())).getString(key);
 		return "key: %"+key+" in AppData.getLocale() Not found!";
 	}
 

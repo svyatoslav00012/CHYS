@@ -102,7 +102,7 @@ public class WList {
 	public void remove(Word w) {
 		for (int i = 0; i < words.size(); i++)
 			if (words.get(i).equals(w)) {
-				AppData.getWordkeys()[w.getKey()] = false;
+				AppData.getWordKeys()[w.getKey()] = false;
 				words.remove(i);
 				return;
 			}

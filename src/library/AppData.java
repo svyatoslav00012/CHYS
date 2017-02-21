@@ -8,17 +8,12 @@ import helpers.structures.Settings;
 import java.io.File;
 
 public class AppData {
-	private static File data;
-	private static File log;
+	private static File data = new File("data.txt");
+	private static File log = new File("log.txt");
 	private static Settings settings = new Settings("default");
 	private static LList lists = new LList();
-	private static boolean[] wordkeys = new boolean[1000000];
-	private static boolean[] listkeys = new boolean[100000];
-
-	public static void initFiles(String data, String log) {
-		AppData.data = new File(data);
-		AppData.log = new File(log);
-	}
+	private static boolean[] wordKeys = new boolean[1000000];
+	private static boolean[] listKeys = new boolean[100000];
 
 	public static File getData() {
 		return data;
@@ -28,12 +23,12 @@ public class AppData {
 		return log;
 	}
 
-	public static boolean[] getWordkeys() {
-		return wordkeys;
+	public static boolean[] getWordKeys() {
+		return wordKeys;
 	}
 
-	public static boolean[] getListkeys() {
-		return listkeys;
+	public static boolean[] getListKeys() {
+		return listKeys;
 	}
 
 	public static Settings getSettings() {
@@ -45,9 +40,9 @@ public class AppData {
 	}
 
 	public static int getFreeWordKey() {
-		for (int i = 0; i < wordkeys.length; i++)
-			if (!wordkeys[i]) {
-				wordkeys[i] = true;
+		for (int i = 0; i < wordKeys.length; i++)
+			if (!wordKeys[i]) {
+				wordKeys[i] = true;
 				return i;
 			}
 		Helper.showError("Error in AppData.getFreeWordKey()\r\nCan't find free key!");
@@ -55,9 +50,9 @@ public class AppData {
 	}
 
 	public static int getFreeListKey() {
-		for (int i = 1; i < listkeys.length; i++)
-			if (!listkeys[i]) {
-				listkeys[i] = true;
+		for (int i = 1; i < listKeys.length; i++)
+			if (!listKeys[i]) {
+				listKeys[i] = true;
 				return i;
 			}
 		Helper.showError("Error in AppData.getFreeWordKey()\r\nCan't find free key!");

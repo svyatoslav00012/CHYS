@@ -23,7 +23,7 @@
                                     <String fx:value="button-icon" />
                                  </styleClass></Button>
                                         <ChoiceBox fx:id="lengSelect" layoutX="160.0" prefWidth="140.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="170.0" AnchorPane.topAnchor="10.0" />
-                                        <Label layoutY="5.0" styleClass="lab" text="%settings.leng" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="20.0" />
+                                        <Label layoutY="5.0" styleClass="lab" text="%settings.lang" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="20.0" />
                                     </children>
                                 </AnchorPane>
                                 <AnchorPane layoutX="20.0" layoutY="90.0" prefHeight="50.0" styleClass="module" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="90.0">

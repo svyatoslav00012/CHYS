@@ -4,22 +4,17 @@ import helpers.nodes.MyStage;
 import helpers.nodes.WindowControllPanel;
 import helpers.nodes.WindowResizer;
 import helpers.functions.Helper;
-import helpers.structures.Properties;
+import helpers.structures.MyProperties;
 import helpers.structures.Result;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
-
-import java.lang.reflect.Field;
-import java.util.Optional;
 
 /**
  * Created by Святослав on 13.10.2016.
@@ -57,13 +52,13 @@ public class DictationOptionsController {
 		typ = 0;
 		tranLeng = "ru";
 		random = false;
-		tran.setItems(FXCollections.observableArrayList(Properties.getLengNames(1)));
+		tran.setItems(FXCollections.observableArrayList(MyProperties.getLangNames(1)));
 		tran.getSelectionModel().select(0);
 		tran.setTooltip(new Tooltip(Helper.getI18nString("settings.tran.tooltip")));
 		tran.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
 			@Override
 			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-				tranLeng = Properties.get(newValue.intValue() + 1).getKey();
+				tranLeng = MyProperties.getKeyById(newValue.intValue() + 1);
 			}
 		});
 		type.setItems(FXCollections.observableArrayList(typs));

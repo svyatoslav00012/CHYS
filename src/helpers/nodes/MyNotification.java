@@ -43,7 +43,7 @@ public class MyNotification extends Stage {
 
 	public static void showMessage(int type, String message) {
 		next.add(new MyNotification(type, message, 0));
-		//if (windows.size() > 0 && windows.size() >= LIMIT_SIZE && !windows.get(0).isMinimunRunning()) windows.get(0).hideNotif();
+		//if (windows.size() > 0 && windows.size() >= LIMIT_SIZE && !windows.getKeyById(0).isMinimunRunning()) windows.getKeyById(0).hideNotif();
 		addFromQueue();
 	}
 

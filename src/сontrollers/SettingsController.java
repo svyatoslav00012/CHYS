@@ -4,9 +4,8 @@ import helpers.nodes.MyStage;
 import helpers.nodes.WindowControllPanel;
 import helpers.functions.FileHelper;
 import helpers.functions.Helper;
-import helpers.structures.Properties;
+import helpers.structures.MyProperties;
 import helpers.structures.Settings;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -60,44 +59,38 @@ public class SettingsController {
 		btnAllToDef.setTooltip(new Tooltip(Helper.getI18nString("settings.resetAll")));
 		btnErr.setTooltip(new Tooltip(Helper.getI18nString("settings.btnErr")));
 		btnSave.setDisable(true);
-		lengSelect.setItems(FXCollections.observableArrayList(Properties.getLengNames(0)));
-		lengSelect.getSelectionModel().select(Properties.getID(AppData.getSettings().getLeng()));
+		lengSelect.setItems(FXCollections.observableArrayList(MyProperties.getLangNames(0)));
+		lengSelect.getSelectionModel().select(MyProperties.getIdByKey(AppData.getSettings().getLang()));
 		lengSelect.setTooltip(new Tooltip(Helper.getI18nString("settings.leng.tooltip")));
-		lengSelect.getSelectionModel().selectedIndexProperty().addListener(new javafx.beans.value.ChangeListener<Number>() {
-			@Override
-			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-				settings.setLeng(Properties.get(newValue.intValue()).getKey());
-				if (settings.getLeng().equals(AppData.getSettings().getLeng())) {
-					btnSave.setDisable(true);
-					lengSelect.getParent().getStyleClass().remove("changed");
-					btnLenToDef.setVisible(false);
-				} else {
-					btnSave.setDisable(false);
-					lengSelect.getParent().getStyleClass().add("changed");
-					btnLenToDef.setVisible(true);
-				}
-				if (settings.compare(AppData.getSettings())) btnSave.setDisable(true);
-				else btnSave.setDisable(false);
-			}
-		});
-		tranSelect.setItems(FXCollections.observableArrayList(Properties.getLengNames(1)));
-		tranSelect.getSelectionModel().select(Properties.getID(AppData.getSettings().getTran()) - 1);
+		lengSelect.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
+            settings.setLang(MyProperties.getKeyById(newValue.intValue()));
+            if (settings.getLang().equals(AppData.getSettings().getLang())) {
+                btnSave.setDisable(true);
+                lengSelect.getParent().getStyleClass().remove("changed");
+                btnLenToDef.setVisible(false);
+            } else {
+                btnSave.setDisable(false);
+                lengSelect.getParent().getStyleClass().add("changed");
+                btnLenToDef.setVisible(true);
+            }
+            if (settings.compare(AppData.getSettings())) btnSave.setDisable(true);
+            else btnSave.setDisable(false);
+        });
+		tranSelect.setItems(FXCollections.observableArrayList(MyProperties.getLangNames(1)));
+		tranSelect.getSelectionModel().select(MyProperties.getIdByKey(AppData.getSettings().getTran()) - 1);
 		tranSelect.setTooltip(new Tooltip(Helper.getI18nString("settings.tran.tooltip")));
-		tranSelect.getSelectionModel().selectedIndexProperty().addListener(new javafx.beans.value.ChangeListener<Number>() {
-			@Override
-			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-				settings.setTran(Properties.get(newValue.intValue() + 1).getKey());
-				if (settings.getTran().equals(AppData.getSettings().getTran())) {
-					tranSelect.getParent().getStyleClass().remove("changed");
-					btnTranToDef.setVisible(false);
-				} else {
-					tranSelect.getParent().getStyleClass().add("changed");
-					btnTranToDef.setVisible(true);
-				}
-				if (settings.compare(AppData.getSettings())) btnSave.setDisable(true);
-				else btnSave.setDisable(false);
-			}
-		});
+		tranSelect.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
+            settings.setTran(MyProperties.getKeyById(newValue.intValue() + 1));
+            if (settings.getTran().equals(AppData.getSettings().getTran())) {
+                tranSelect.getParent().getStyleClass().remove("changed");
+                btnTranToDef.setVisible(false);
+            } else {
+                tranSelect.getParent().getStyleClass().add("changed");
+                btnTranToDef.setVisible(true);
+            }
+            if (settings.compare(AppData.getSettings())) btnSave.setDisable(true);
+            else btnSave.setDisable(false);
+        });
 	}
 
 	public void apply(ActionEvent actionEvent) {
@@ -122,18 +115,18 @@ public class SettingsController {
 	}
 
 	public void refreshScreen(Parent p) {
-		lengSelect.getSelectionModel().select(Properties.getID(AppData.getSettings().getLeng()));
-		tranSelect.getSelectionModel().select(Properties.getID(AppData.getSettings().getTran()) - 1);
+		lengSelect.getSelectionModel().select(MyProperties.getIdByKey(AppData.getSettings().getLang()));
+		tranSelect.getSelectionModel().select(MyProperties.getIdByKey(AppData.getSettings().getTran()) - 1);
 		btnSave.setDisable(true);
 	}
 
 	public void lenToDef(ActionEvent actionEvent) {
-		lengSelect.getSelectionModel().select(Properties.getID(AppData.getSettings().getLeng()));
+		lengSelect.getSelectionModel().select(MyProperties.getIdByKey(AppData.getSettings().getLang()));
 		if (settings.compare(AppData.getSettings())) btnSave.setDisable(true);
 	}
 
 	public void tranToDef(ActionEvent actionEvent) {
-		tranSelect.getSelectionModel().select(Properties.getID(AppData.getSettings().getTran()) - 1);
+		tranSelect.getSelectionModel().select(MyProperties.getIdByKey(AppData.getSettings().getTran()) - 1);
 		if (settings.compare(AppData.getSettings())) btnSave.setDisable(true);
 	}
 }

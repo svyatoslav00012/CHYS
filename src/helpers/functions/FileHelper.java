@@ -22,7 +22,7 @@ public class FileHelper {
                 Helper.showError("Read Error, can't find 'leng'\nreadData() was stoped");
                 return;
             }
-            AppData.getSettings().setLeng(string);
+            AppData.getSettings().setLang(string);
             //Читаем 2й язык
             string = reader.readLine();
             if (!string.equals("ukr") && !string.equals("ru")) {
@@ -45,18 +45,18 @@ public class FileHelper {
                     return;
                 }
                 int id = Integer.parseInt(string.substring(0, string.indexOf("/")));
-                if (AppData.getListkeys()[id]) Helper.showError("ListKey" + id + "was already used!");
+                if (AppData.getListKeys()[id]) Helper.showError("ListKey" + id + "was already used!");
                 AppData.getLists().add(new WList(id, string.substring(string.indexOf("/") + 1)));
-                AppData.getListkeys()[id] = true;
+                AppData.getListKeys()[id] = true;
             }
             //Читаем слова
             while (true) {
                 string = reader.readLine();
                 if (string.equals("__________")) break;
                 Word w = new Word(string);
-                if (AppData.getWordkeys()[w.getKey()])
+                if (AppData.getWordKeys()[w.getKey()])
                     Helper.showError("WordKey " + w.getKey() + "was already used!");
-                AppData.getWordkeys()[w.getKey()] = true;
+                AppData.getWordKeys()[w.getKey()] = true;
                 AppData.getLists().get(0).add(w);
                 AppData.addToLists(string.substring(string.lastIndexOf("/") + 1), w.getKey());
             }
@@ -84,7 +84,7 @@ public class FileHelper {
     public static void rewrite() {// перезаписывает файл данных
         try (FileWriter writer = new FileWriter(AppData.getData())) {
             LList lists = AppData.getLists();
-            writer.write(AppData.getSettings().getLeng() + "\n");
+            writer.write(AppData.getSettings().getLang() + "\n");
             writer.write(AppData.getSettings().getTran() + "\n");
             writer.write("__________\n");
             for (int i = 1; i < lists.getLists().size(); i++) {

@@ -5,11 +5,8 @@ import helpers.functions.Helper;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
-import javafx.fxml.FXMLLoader;
 import library.AppData;
 import сontrollers.DictationOptionsController;
-import сontrollers.MainController;
-import сontrollers.MyListsController;
 
 public class Word {
 	private int key;
@@ -87,7 +84,7 @@ public class Word {
 		if (key.equals(Settings.ENGLISH)) return eng.get();
 		if (key.equals(Settings.RUSSIAN)) return rus.get();
 		if (key.equals(Settings.UKRAINIAN)) return ukr.get();
-		Helper.showError("Error in Word.get(String key)\r\nCan't find key " + key);
+		Helper.showError("Error in Word.getKeyById(String key)\r\nCan't find key " + key);
 		return null;
 	}
 
@@ -120,7 +117,7 @@ public class Word {
 					AppData.getLists().get(i).remove(getKey());
 				}
 			AppData.getLists().get(0).remove(this);
-			AppData.getWordkeys()[key] = false;
+			AppData.getWordKeys()[key] = false;
 			FileHelper.rewrite();
 		}
 	}

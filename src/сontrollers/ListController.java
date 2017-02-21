@@ -174,7 +174,7 @@ public class ListController {
 		if (curType == CHANGE) check();
 	}
 
-	public void addAllToList(){																							// add all words to list (From AppData.getLists.get(0) - All Words)
+	public void addAllToList(){																							// add all words to list (From AppData.getLists.getKeyById(0) - All Words)
 		list.getWords().setAll(AppData.getLists().get(0).getWords());
 		refreshTables();
 	}
