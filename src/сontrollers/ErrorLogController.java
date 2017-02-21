@@ -1,9 +1,8 @@
 package сontrollers;
 
-import helpers.functions.FileHelper;
+import helpers.structures.MyLog;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
-import library.AppData;
 
 public class ErrorLogController {
 
@@ -12,8 +11,8 @@ public class ErrorLogController {
 
 	@FXML
 	public void initialize() {
-		errorArea.setText(FileHelper.readFile(AppData.getLog().getPath()));
-		errorArea.requestFocus();
+        errorArea.setText(MyLog.getlogs());
+        errorArea.requestFocus();
 		errorArea.end();
 	}
 }

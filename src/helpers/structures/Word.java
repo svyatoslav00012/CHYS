@@ -2,39 +2,35 @@ package helpers.structures;
 
 import helpers.functions.FileHelper;
 import helpers.functions.Helper;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
-import javafx.collections.ObservableList;
 import library.AppData;
 import сontrollers.DictationOptionsController;
 
 public class Word {
 	private int key;
-	private SimpleStringProperty eng, rus, ukr;
+    private String eng;
+    private String rus;
+    private String ukr;
 
 	public Word(int key, String eng, String rus, String ukr) {
 		this.key = key;
-		this.eng = new SimpleStringProperty(eng);
-		this.rus = new SimpleStringProperty(rus);
-		this.ukr = new SimpleStringProperty(ukr);
-		//registerClass(((FXMLLoader)MainController.getListsStage().getScene().getUserData()).getController());
-	}
+        this.eng = eng;
+        this.rus = rus;
+        this.ukr = ukr;
+    }
 
 	public Word() {
-		this.eng = new SimpleStringProperty("");
-		this.rus = new SimpleStringProperty("");
-		this.ukr = new SimpleStringProperty("");
-		//registerClass(((FXMLLoader)MainController.getListsStage().getScene().getUserData()).getController());
-	}
+        this.eng = "";
+        this.rus = "";
+        this.ukr = "";
+    }
 
 	public Word(String string){
 	    String[] parts = string.split("/");
 		setKey(Integer.parseInt(parts[0]));
-		eng = new SimpleStringProperty(parts[1]);
-		rus = new SimpleStringProperty(parts[2]);
-		ukr = new SimpleStringProperty(parts[3]);
-		//registerClass(((FXMLLoader)MainController.getListsStage().getScene().getUserData()).getController());
-	}
+        eng = parts[1];
+        rus = parts[2];
+        ukr = parts[3];
+    }
 
 	public int getKey() {
 		return key;
@@ -45,89 +41,89 @@ public class Word {
 	}
 
 	public String getEng() {
-		return eng.get();
-	}
-
-	public StringProperty getEngProp() {
-		return eng;
-	}
+        return eng;
+    }
 
 	public void setEng(String s) {
-		eng.set(s);
-	}
+        eng = s;
+    }
 
 	public String getRus() {
-		return rus.get();
-	}
-
-	public StringProperty getRusProp() {
-		return rus;
-	}
+        return rus;
+    }
 
 	public void setRus(String s) {
-		rus.set(s);
-	}
+        rus = s;
+    }
 
 	public String getUkr() {
-		return ukr.get();
-	}
-
-	public StringProperty getUkrProp() {
-		return ukr;
-	}
+        return ukr;
+    }
 
 	public void setUkr(String s) {
-		ukr.set(s);
-	}
+        ukr = s;
+    }
 
 	public String get(String key) {
-		if (key.equals(Settings.ENGLISH)) return eng.get();
-		if (key.equals(Settings.RUSSIAN)) return rus.get();
-		if (key.equals(Settings.UKRAINIAN)) return ukr.get();
-		Helper.showError("Error in Word.getKeyById(String key)\r\nCan't find key " + key);
-		return null;
-	}
+        switch (key) {
+            case Settings.ENGLISH:
+                return eng;
+            case Settings.RUSSIAN:
+                return rus;
+            case Settings.UKRAINIAN:
+                return ukr;
+            default:
+                Helper.showError("Error in Word.getKeyById(String key)\r\nCan't find key " + key);
+                return null;
+        }
+    }
 
 	public String getTask() {
-		if (DictationOptionsController.getTyp() == 0) return get(DictationOptionsController.getTranLeng());
-		else return getEng();
+        if (DictationOptionsController.getTyp() == 0)
+            return get(DictationOptionsController.getTranLeng());
+        else return getEng();
 	}
 
 	public void set(String key, String val) {
-		if (key.equals(Settings.ENGLISH)) eng.set(val);
-		else if (key.equals(Settings.RUSSIAN)) rus.set(val);
-		else if (key.equals(Settings.UKRAINIAN)) ukr.set(val);
-		else Helper.showError("Error in Word.setTitledPane(String key)\r\nCan't find key " + key);
-	}
-
-	public String print() {
-		return this.key + " / " + this.eng.get() + " / " + this.rus.get() + " / " + this.ukr.get();
-	}
-
-	public boolean inside(ObservableList<Word> words) {
-		for (int i = 0; i < words.size(); i++)
-			if (words.get(i).getKey() == key) return true;
-		return false;
-	}
+        switch (key) {
+            case Settings.ENGLISH:
+                eng = val;
+                break;
+            case Settings.RUSSIAN:
+                rus = val;
+                break;
+            case Settings.UKRAINIAN:
+                ukr = val;
+                break;
+            default:
+                Helper.showError("Error in Word.setTitledPane(String key)\r\nCan't find key " + key);
+                break;
+        }
+    }
 
 	public void delete(){
 		if (Helper.showConfirm(Helper.getI18nString("delete") + ":  " + print() + " ?")) {
-			for (int i = 1; i < AppData.getLists().getLists().size(); ++i)
-				if (inside(AppData.getLists().get(i).getWords())) {
-					AppData.getLists().get(i).remove(getKey());
-				}
-			AppData.getLists().get(0).remove(this);
+            for (int i = 1; i < AppData.getLists().getLists().size(); ++i) {
+                if (AppData.getLists().get(i).getWords().contains(this))
+                    AppData.getLists().get(i).remove(getKey());
+            }
+            AppData.getLists().get(0).remove(this);
 			AppData.getWordKeys()[key] = false;
-			FileHelper.rewrite();
-		}
+            FileHelper.storeData();
+        }
 	}
 
-	public void record(){							// getFreeWordKey for this word
-		key = AppData.getFreeWordKey();
+    // getFreeWordKey for this word
+    public void record() {
+        key = AppData.getFreeWordKey();
 	}
+
+    public String print() {
+        return key + " / " + eng + " / " + rus + " / " + ukr;
+    }
 
 	@Override
 	public String toString() {
-		return key + "/" + eng.getValue() + "/" + rus.getValue() + "/" + ukr.getValue() + "/";
-	}
+        return key + "/" + eng + "/" + rus + "/" + ukr + "/";
+    }
 }

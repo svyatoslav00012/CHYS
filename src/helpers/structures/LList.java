@@ -22,7 +22,7 @@ public class LList {
 
 	public void insert(int index, WList list) {
 		lists.add(index, list);
-		FileHelper.rewrite();
+		FileHelper.storeData();
 	}
 
 	public ObservableList<WList> getLists() {

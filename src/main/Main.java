@@ -1,10 +1,10 @@
 package main;
 
 import helpers.functions.FileHelper;
-import helpers.functions.Helper;
 import helpers.nodes.MyStage;
 import helpers.nodes.WindowControllPanel;
 import helpers.nodes.WindowResizer;
+import helpers.structures.MyLog;
 import javafx.application.Application;
 import javafx.fxml.Initializable;
 import javafx.scene.image.Image;
@@ -22,8 +22,8 @@ public class Main extends Application implements Initializable {
 	public void start(Stage primaryStage) throws Exception {
 		//MyFonts.loadFonts();
         FileHelper.loadConfig();
+        MyLog.log("Launched");
         FileHelper.readData();
-        Helper.initAlert();
         primaryStage = new MyStage(
                 "/fxmls/main.fxml",
                 null,

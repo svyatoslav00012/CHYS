@@ -5,23 +5,11 @@ import helpers.functions.Helper;
 import helpers.structures.LList;
 import helpers.structures.Settings;
 
-import java.io.File;
-
 public class AppData {
-	private static File data = new File("data.txt");
-	private static File log = new File("log.txt");
 	private static Settings settings = new Settings("default");
 	private static LList lists = new LList();
 	private static boolean[] wordKeys = new boolean[1000000];
 	private static boolean[] listKeys = new boolean[100000];
-
-	public static File getData() {
-		return data;
-	}
-
-	public static File getLog() {
-		return log;
-	}
 
 	public static boolean[] getWordKeys() {
 		return wordKeys;
@@ -72,6 +60,6 @@ public class AppData {
 			lists.get(0).get(i).setKey(i);
 		for (int i = 1; i < lists.getLists().size(); i++)
 			lists.get(i).setKey(i);
-		FileHelper.rewrite();
+		FileHelper.storeData();
 	}
 }

@@ -14,25 +14,22 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import library.AppData;
 
-/**
- * Created by Святослав on 05.10.2016.
- */
 public class WordController {
 
-	public static final int CHANGE_WORD = 1;
-	public static final int ADD_WORD = 2;
+    static final int CHANGE_WORD = 1;
+    static final int ADD_WORD = 2;
 
 	private static int type = -1;
 	private static Word curWord;
 
 	private static boolean justSaved = false;
 
-	public static boolean getJustSaved() {
-		return justSaved;
+    static boolean getJustSaved() {
+        return justSaved;
 	}
 
-	public static void setJustSaved(boolean b) {
-		justSaved = b;
+    static void setJustSaved(boolean b) {
+        justSaved = b;
 	}
 
 	@FXML
@@ -81,14 +78,14 @@ public class WordController {
 					else {																					//if change word
 						curWord = new Word(curWord.getKey(), eng.getText(), rus.getText(), ukr.getText());
 						for (int i = 0; i < AppData.getLists().getLists().size(); ++i)
-							if (curWord.inside(AppData.getLists().get(i).getWords())) {
-								AppData.getLists().get(i).set(curWord);
+                            if (AppData.getLists().get(i).getWords().contains(curWord)) {
+                                AppData.getLists().get(i).set(curWord);
 								//if (MyListsController.accNotNull()) MyListsController.setTitledPane(i);
 							}
 						AppData.getLists().get(0).set(curWord);
 					}
-					FileHelper.rewrite();
-					MainController.upDate();
+                    FileHelper.storeData();
+                    MainController.upDate();
 					((Stage) (lablNotFill.getScene().getWindow())).close();
 				}
 			});
@@ -98,22 +95,31 @@ public class WordController {
 		((Stage) (lablNotFill.getScene().getWindow())).close();
 	}
 
-	public static int wordStage(int type, Word w) {			// returns word index
-		if (type == CHANGE_WORD && w == null || type != ADD_WORD && type != CHANGE_WORD) return -1;
+    static int wordStage(int type, Word w) {
+        if (type == CHANGE_WORD && w == null || type != ADD_WORD && type != CHANGE_WORD) return -1;
 		WordController.type = type;
 		WordController.curWord = w;
 		String tit = "%addWord";
 		if(type == CHANGE_WORD) tit = Helper.getI18nString("change") + " " + Helper.getI18nString("word");
-		new MyStage("/fxmls/word.fxml", Modality.APPLICATION_MODAL, null, null, new WindowControllPanel(30, 15, 0, false, false, false, "/resources/images/icons/used/checkmark-1.png", tit)).showAndWait();
-		int c = -1;
+        new MyStage(
+                "/fxmls/word.fxml",
+                Modality.APPLICATION_MODAL,
+                null,
+                null,
+                new WindowControllPanel(
+                        30,
+                        15,
+                        0,
+                        false,
+                        false,
+                        false,
+                        "/resources/images/icons/used/checkmark-1.png",
+                        tit)).showAndWait();
+        int c = -1;
 		if(curWord != null)c = curWord.getKey();
-		destruct();
-		System.out.println(c);
+        curWord = null;
+        WordController.type = -1;
+        System.out.println(c);
 		return c;
-	}
-
-	public static void destruct(){
-		curWord = null;
-		type = -1;
 	}
 }

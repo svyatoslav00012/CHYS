@@ -10,10 +10,12 @@ import java.util.Properties;
 
 public class FileHelper {
 
+    private static final File data = new File("data.txt");
+
     public static void readData() {
         AppData.getLists().add(new WList(0, Helper.getI18nString("allWords")));
 
-        try (BufferedReader reader = new BufferedReader(new FileReader(AppData.getData()))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(data))) {
             String string;
             //Читаем выборки
             while (true) {
@@ -65,22 +67,8 @@ public class FileHelper {
         }
     }
 
-    public static String readFile(String path) {
-        StringBuilder sb = new StringBuilder();
-        try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
-            while (reader.ready()) {
-                sb.append(reader.readLine());
-                sb.append("\n");
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-            Helper.showException("IOException in FileHelper.readFile(" + path + ")", e);
-        }
-        return sb.toString();
-    }
-
-    public static void rewrite() {// перезаписывает файл данных
-        try (FileWriter writer = new FileWriter(AppData.getData())) {
+    public static void storeData() {// перезаписывает файл данных
+        try (FileWriter writer = new FileWriter(data)) {
             LList lists = AppData.getLists();
             for (int i = 1; i < lists.getLists().size(); i++) {
                 writer.write(lists.get(i).getKey() + "/" + lists.get(i).getName() + "\n");
@@ -100,7 +88,7 @@ public class FileHelper {
             writer.write("__________\n");
         } catch (IOException e) {
             e.printStackTrace();
-            Helper.showException("IOException in FileHelper.rewrite()", e);
+            Helper.showException("IOException in FileHelper.storeData()", e);
         }
     }
 
