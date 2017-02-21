@@ -1,16 +1,19 @@
 package сontrollers;
 
-import helpers.nodes.MyStage;
-import helpers.nodes.WindowControllPanel;
 import helpers.functions.FileHelper;
 import helpers.functions.Helper;
+import helpers.nodes.MyStage;
+import helpers.nodes.WindowControllPanel;
 import helpers.structures.MyProperties;
 import helpers.structures.Settings;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.Tooltip;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
@@ -100,7 +103,7 @@ public class SettingsController {
 		tranSelect.getParent().getStyleClass().remove("changed");
 		btnLenToDef.setVisible(false);
 		btnTranToDef.setVisible(false);
-		FileHelper.rewrite();
+		FileHelper.storeConfig();
 	}
 
 	public void showErrorLog(ActionEvent actionEvent) {

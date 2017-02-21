@@ -1,11 +1,10 @@
 package main;
 
+import helpers.functions.FileHelper;
 import helpers.functions.Helper;
-import resources.fonts.MyFonts;
 import helpers.nodes.MyStage;
 import helpers.nodes.WindowControllPanel;
 import helpers.nodes.WindowResizer;
-import helpers.functions.FileHelper;
 import javafx.application.Application;
 import javafx.fxml.Initializable;
 import javafx.scene.image.Image;
@@ -22,10 +21,11 @@ public class Main extends Application implements Initializable {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		//MyFonts.loadFonts();
-		FileHelper.readData();
-		Helper.initAlert();
-		primaryStage = new MyStage(
-		        "/fxmls/main.fxml",
+        FileHelper.loadConfig();
+        FileHelper.readData();
+        Helper.initAlert();
+        primaryStage = new MyStage(
+                "/fxmls/main.fxml",
                 null,
                 null,
                 new WindowResizer(600, 600),

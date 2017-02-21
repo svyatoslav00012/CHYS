@@ -20,8 +20,8 @@ public class MyLog {
                 newF = true;
             }
             writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(AppData.getLog(), true), "UTF-8"));
-            if (newF) writer.write("$-$-$-$-$ Created on " + format.format(d) + " $-$-$-$-$\r\n");
-            writer.write("\r\n+++++ Launched on " + format.format(d) + " +++++\r\n");
+            if (newF) writer.write("$-$-$-$-$ Created on " + format.format(d) + " $-$-$-$-$\n");
+            writer.write("\n+++++ Launched on " + format.format(d) + " +++++\n");
             newF = false;
             writer.flush();
         } catch (UnsupportedEncodingException e) {
@@ -38,7 +38,7 @@ public class MyLog {
 
     public void log(String s) {
         try (BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(AppData.getLog(), true), "UTF-8"))) {
-            writer.write("\r\n" + s + "\r\n ---------- \r\n");
+            writer.write("\n" + s + "\n ---------- \n");
             writer.flush();
         } catch (IOException e) {
             e.printStackTrace();

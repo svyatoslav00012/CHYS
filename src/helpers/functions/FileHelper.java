@@ -6,36 +6,15 @@ import helpers.structures.Word;
 import library.AppData;
 
 import java.io.*;
+import java.util.Properties;
 
 public class FileHelper {
 
     public static void readData() {
         AppData.getLists().add(new WList(0, Helper.getI18nString("allWords")));
 
-        if (!AppData.getData().exists()) prewrite();
-
         try (BufferedReader reader = new BufferedReader(new FileReader(AppData.getData()))) {
             String string;
-            //Читаем 1й язык
-            string = reader.readLine();
-            if (!string.equals("ru") && !string.equals("en") && !string.equals("ukr")) {
-                Helper.showError("Read Error, can't find 'leng'\nreadData() was stoped");
-                return;
-            }
-            AppData.getSettings().setLang(string);
-            //Читаем 2й язык
-            string = reader.readLine();
-            if (!string.equals("ukr") && !string.equals("ru")) {
-                Helper.showError("Read Error\nCan't find tran\nreadData() was stoped");
-                return;
-            }
-            AppData.getSettings().setTran(string);
-
-            string = reader.readLine();
-            if (!string.equals("__________")) {
-                Helper.showError("Read Error, can't find '__________' after tran\nCurrent line isn't equals to '__________'\nreadData() was stoped");
-                return;
-            }
             //Читаем выборки
             while (true) {
                 string = reader.readLine();
@@ -67,6 +46,25 @@ public class FileHelper {
         }
     }
 
+    public static void loadConfig() {
+        Properties prop = new Properties();
+        try (FileReader reader = new FileReader("config.properties")) {
+            prop.load(reader);
+        } catch (IOException ignored) {
+            System.out.println("Couldn't load config.properties");
+            prop.setProperty("interfaceLanguage", "ru");
+            prop.setProperty("translateLanguage", "ru");
+        }
+        AppData.getSettings().setProperties(prop);
+    }
+
+    public static void storeConfig() {
+        try (FileWriter writer = new FileWriter("config.properties")) {
+            AppData.getSettings().getProperties().store(writer, "");
+        } catch (IOException ignored) {
+        }
+    }
+
     public static String readFile(String path) {
         StringBuilder sb = new StringBuilder();
         try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
@@ -84,9 +82,6 @@ public class FileHelper {
     public static void rewrite() {// перезаписывает файл данных
         try (FileWriter writer = new FileWriter(AppData.getData())) {
             LList lists = AppData.getLists();
-            writer.write(AppData.getSettings().getLang() + "\n");
-            writer.write(AppData.getSettings().getTran() + "\n");
-            writer.write("__________\n");
             for (int i = 1; i < lists.getLists().size(); i++) {
                 writer.write(lists.get(i).getKey() + "/" + lists.get(i).getName() + "\n");
             }
@@ -109,20 +104,9 @@ public class FileHelper {
         }
     }
 
-    public static void prewrite() {//заполняет файл данных значениями по умолчанию
-        try (FileWriter writer = new FileWriter(AppData.getData())) {
-            writer.write("ru\n");
-            writer.write("ru\n");
-            writer.write("__________\n");
-            writer.write("__________\n");
-            writer.write("__________\n");
-        } catch (IOException e) {
-            e.printStackTrace();
-            Helper.showException("IOException e in FileHelper.prewrite()", e);
-        }
-    }
-
-    public static void writeStringToFile(String s, File f) {//вызывается из Helper.combineTranslates() используется для записи ключ-значение в файл
+    //вызывается из Helper.combineTranslates() используется для записи ключ-значение в файл
+    //Не используется
+    static void writeStringToFile(String s, File f) {
         try (FileWriter writer = new FileWriter(f)) {
             writer.write(s);
         } catch (IOException e) {

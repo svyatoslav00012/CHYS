@@ -885,3 +885,23 @@ javafx.fxml.LoadException: String is not a valid type.
 +++++ Launched on 21.02.2017 11:31 +++++
 
 +++++ Launched on 21.02.2017 11:39 +++++
+
++++++ Launched on 21.02.2017 11:45 +++++
+
++++++ Launched on 21.02.2017 11:46 +++++
+
++++++ Launched on 21.02.2017 11:59 +++++
+
++++++ Launched on 21.02.2017 11:59 +++++
+
++++++ Launched on 21.02.2017 12:15 +++++
+
++++++ Launched on 21.02.2017 12:16 +++++
+
++++++ Launched on 21.02.2017 12:17 +++++
+
++++++ Launched on 21.02.2017 12:17 +++++
+
++++++ Launched on 21.02.2017 12:18 +++++
+
++++++ Launched on 21.02.2017 12:21 +++++
