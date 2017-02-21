@@ -66,8 +66,8 @@ public class WList {
 
 	public void clone(WList w) {
 		key = w.getKey();
-		name = w.getName().toString();
-		words = copy(w.getWords());
+        name = w.getName();
+        words = copy(w.getWords());
 	}
 
 	public WList makeDuplicate(){																						// make a dublicate of list:
@@ -102,7 +102,7 @@ public class WList {
 	public void remove(Word w) {
 		for (int i = 0; i < words.size(); i++)
 			if (words.get(i).equals(w)) {
-				AppData.getWordkeys()[w.getKey()] = false;
+				AppData.getWordKeys()[w.getKey()] = false;
 				words.remove(i);
 				return;
 			}
@@ -114,8 +114,8 @@ public class WList {
 				words.remove(i);
 				return;
 			}
-		Helper.log("Error in WList.remove(int key)\r\nCan't find word with key " + key);
-	}
+        MyLog.log("Error in WList.remove(int key)\r\nCan't find word with key " + key);
+    }
 
 	public ObservableList<Word> getSubList(String s) {
 		s = Helper.getCleanString(s.toLowerCase());
@@ -123,8 +123,8 @@ public class WList {
 		for (int i = 0; i < words.size(); i++) {
 			String w1 = Helper.getCleanString(words.get(i).getEng().toLowerCase());
 			String w2 = Helper.getCleanString(words.get(i).get(AppData.getSettings().getTran()).toLowerCase());
-			if (w1.indexOf(s) != -1 || w2.indexOf(s) != -1) ans.add(words.get(i));
-		}
+            if (w1.contains(s) || w2.contains(s)) ans.add(words.get(i));
+        }
 		return ans;
 	}
 
@@ -134,18 +134,18 @@ public class WList {
 		for (int i = 0; i < words.size(); i++) {
 			String w1 = Helper.getCleanString(words.get(i).getEng().toLowerCase());
 			String w2 = Helper.getCleanString(words.get(i).get(AppData.getSettings().getTran()).toLowerCase());
-			if ((w1.indexOf(s) != -1 || w2.indexOf(s) != -1) && !words.get(i).inside(anotherWords))
-				ans.add(words.get(i));
+
+            if ((w1.contains(s) || w2.contains(s)) && !anotherWords.contains(words.get(i)))
+                ans.add(words.get(i));
 		}
 		return ans;
 	}
 
 	public ObservableList<Word> copy(ObservableList<Word> list) {
 		ObservableList<Word> words = FXCollections.observableArrayList();
-		for (int i = 0; i < list.size(); i++) {
-			words.add(new Word(list.get(i).getKey(), list.get(i).getEng().toString(), list.get(i).getRus().toString(), list.get(i).getUkr().toString()));
-		}
-		return words;
+        for (Word word : list)
+            words.add(new Word(word.getKey(), word.getEng(), word.getRus(), word.getUkr()));
+        return words;
 	}
 
 	public boolean isEqual(WList another) {

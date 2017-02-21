@@ -1,15 +1,12 @@
 package helpers.nodes;
 
 import helpers.functions.Helper;
-import javafx.beans.value.WritableValue;
-import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.Tooltip;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -24,13 +21,12 @@ import java.awt.datatransfer.StringSelection;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 
-/**
- * Created by Svyatoslav on 14.01.2017.
- */
 public class MyAlert extends Stage {
 
-	private boolean confirm = false;
-	private AnchorPane root = new AnchorPane();
+    private static volatile MyAlert instance;
+
+    private boolean confirm;
+    private AnchorPane root = new AnchorPane();
 	private Region icon = new Region();
 	private WindowControllPanel wp = new WindowControllPanel(30, 10, 0, false, false, false, null, null);
 	private Label type = new Label();
@@ -38,20 +34,21 @@ public class MyAlert extends Stage {
 	private Button btnShowHide = new Button(), btnYes = new Button("OK"), btnNo = new Button("NO"), btnCopyToCB = new Button();
 	private HBox yesNo = new HBox(btnYes, btnNo);
 
-	private WritableValue<Double> writableHeight = new WritableValue<Double>() {
-		@Override
-		public Double getValue() {
-			return getHeight();
-		}
+    public static MyAlert getInstance() {
+        MyAlert localInstance = instance;
+        if (localInstance == null) {
+            synchronized (MyAlert.class) {
+                localInstance = instance;
+                if (localInstance == null) {
+                    instance = localInstance = new MyAlert();
+                }
+            }
+        }
+        return localInstance;
+    }
 
-		@Override
-		public void setValue(Double value) {
-			setHeight(value);
-		}
-	};
-
-	public MyAlert() {
-		setScene(new Scene(root));
+    private MyAlert() {
+        setScene(new Scene(root));
 		getScene().setFill(Color.TRANSPARENT);
 		initAnchors();
 		initRoot();
@@ -60,8 +57,8 @@ public class MyAlert extends Stage {
 		setResizable(false);
 	}
 
-	public void initRoot() {
-		initStyles();
+    private void initRoot() {
+        initStyles();
 		initAnchors();
 		initOnMouse();
 		initOnButtonsPressed();
@@ -89,33 +86,33 @@ public class MyAlert extends Stage {
 		root.getChildren().addAll(type, messageField, icon, wp, yesNo);
 	}
 
-	void initFocusTraversable() {
-		messageField.setFocusTraversable(false);
+    private void initFocusTraversable() {
+        messageField.setFocusTraversable(false);
 		btnShowHide.setFocusTraversable(false);
 		btnYes.setFocusTraversable(false);
 		btnNo.setFocusTraversable(false);
 		btnCopyToCB.setFocusTraversable(false);
 	}
 
-	public void initAnchors() {
-		root.setTopAnchor(icon, 75.0);
-		root.setRightAnchor(icon, 10.0);
-		root.setTopAnchor(type, -5.0);
-		root.setLeftAnchor(type, 30.0);
-		root.setTopAnchor(messageField, 50.0);
-		root.setLeftAnchor(messageField, 10.0);
-		root.setTopAnchor(stackTraceField, 300.0);
-		root.setLeftAnchor(stackTraceField, 10.0);
-		root.setTopAnchor(btnShowHide, 250.0);
-		root.setLeftAnchor(btnShowHide, 10.0);
-		root.setTopAnchor(yesNo, 220.0);
-		root.setLeftAnchor(yesNo, 175.0);
-		root.setTopAnchor(btnCopyToCB, 245.0);
-		root.setRightAnchor(btnCopyToCB, 10.0);
-	}
+    private void initAnchors() {
+        AnchorPane.setTopAnchor(icon, 75.0);
+        AnchorPane.setRightAnchor(icon, 10.0);
+        AnchorPane.setTopAnchor(type, -5.0);
+        AnchorPane.setLeftAnchor(type, 30.0);
+        AnchorPane.setTopAnchor(messageField, 50.0);
+        AnchorPane.setLeftAnchor(messageField, 10.0);
+        AnchorPane.setTopAnchor(stackTraceField, 300.0);
+        AnchorPane.setLeftAnchor(stackTraceField, 10.0);
+        AnchorPane.setTopAnchor(btnShowHide, 250.0);
+        AnchorPane.setLeftAnchor(btnShowHide, 10.0);
+        AnchorPane.setTopAnchor(yesNo, 220.0);
+        AnchorPane.setLeftAnchor(yesNo, 175.0);
+        AnchorPane.setTopAnchor(btnCopyToCB, 245.0);
+        AnchorPane.setRightAnchor(btnCopyToCB, 10.0);
+    }
 
-	public void initStyles() {
-		getScene().getStylesheets().addAll("/styles/templateStyles/windowStyle.css", "/styles/templateStyles/alertStyle.css");
+    private void initStyles() {
+        getScene().getStylesheets().addAll("/styles/templateStyles/windowStyle.css", "/styles/templateStyles/alertStyle.css");
 		root.setId("alert");
 		btnShowHide.getStyleClass().add("button-icon");
 		btnYes.getStyleClass().add("button-icon");
@@ -187,67 +184,57 @@ public class MyAlert extends Stage {
 		messageField.setStyle("-fx-text-fill: green;");
 	}
 
-	public void initOnButtonsPressed() {
-		btnShowHide.setOnAction(action -> {
+    private void initOnButtonsPressed() {
+        btnShowHide.setOnAction(action -> {
 			if (root.getChildren().indexOf(stackTraceField) > -1) hideTrace();
 			else showTrace();
 		});
 		btnYes.setOnAction(action -> {
 			confirm = true;
-			close();
-		});
-		btnNo.setOnAction(action -> {
-			close();
-		});
-		btnCopyToCB.setOnAction(action -> {
+            hide();
+        });
+        btnNo.setOnAction(action -> hide());
+        btnCopyToCB.setOnAction(action -> {
 			StringSelection ss = new StringSelection(stackTraceField.getText());
 			Toolkit.getDefaultToolkit().getSystemClipboard().setContents(ss, null);
 		});
 	}
 
-	public void showTrace() {
-		btnShowHide.setTooltip(new Tooltip(Helper.getI18nString("hide")));
+    private void showTrace() {
+        btnShowHide.setTooltip(new Tooltip(Helper.getI18nString("hide")));
 		root.getChildren().addAll(btnCopyToCB, stackTraceField);
 		btnShowHide.setId("btnHide");
 		setHeight(700);
 	}
 
-	public void hideTrace() {
-		btnShowHide.setTooltip(new Tooltip(Helper.getI18nString("showDetails")));
+    private void hideTrace() {
+        btnShowHide.setTooltip(new Tooltip(Helper.getI18nString("showDetails")));
 		btnShowHide.setId("btnShow");
 		root.getChildren().removeAll(btnCopyToCB, stackTraceField);
 		setHeight(300);
 	}
 
-	double startX = -1, startY = -1;
+    private double startX = -1;
+    private double startY = -1;
 
-	public void initOnMouse() {
-		root.setOnMousePressed(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent event) {
-				startX = event.getScreenX();
-				startY = event.getScreenY();
-			}
-		});
-		root.setOnMouseReleased(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent event) {
-				startX = -1;
-				startY = -1;
-			}
-		});
-		root.setOnMouseDragged(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent event) {
-				if (startX > -1 && startY > -1) {
-					setX(getX() + event.getScreenX() - startX);
-					setY(getY() + event.getScreenY() - startY);
-					startX = event.getScreenX();
-					startY = event.getScreenY();
-				}
-			}
-		});
-	}
+    private void initOnMouse() {
+        root.setOnMousePressed(event -> {
+            startX = event.getScreenX();
+            startY = event.getScreenY();
+        });
+        root.setOnMouseReleased(event -> {
+            startX = -1;
+            startY = -1;
+        });
+        root.setOnMouseDragged(event -> {
+            if (startX > -1 && startY > -1) {
+                setX(getX() + event.getScreenX() - startX);
+                setY(getY() + event.getScreenY() - startY);
+                startX = event.getScreenX();
+                startY = event.getScreenY();
+            }
+        });
+    }
 
 	public static void showTestAlerts() {
 		Button info = new Button("Info"), confirm = new Button("Confirm"), warning = new Button("Warning"), error = new Button("Error"), exception = new Button("Exception");

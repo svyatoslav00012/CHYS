@@ -1,9 +1,6 @@
 package helpers.nodes;
 
-import helpers.functions.Helper;
-import javafx.event.EventHandler;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyEvent;
 import сontrollers.DictationController;
 
 /**
@@ -18,7 +15,7 @@ public class DigitField extends TextField {
 		setText(text);
 		prevText = text;
 		init();
-		value = Integer.parseInt(Helper.getOnlyDigits(text));
+		value = Integer.parseInt(text.replaceAll("\\D", ""));
 		this.maxValue = maxValue;
 	}
 
@@ -35,17 +32,14 @@ public class DigitField extends TextField {
 		setMinWidth(50);
 		setPrefWidth(getText().length() * getFont().getSize() * 0.7 + 30);
 		positionCaret(getText().length());
-		setOnKeyReleased(new EventHandler<KeyEvent>() {
-			@Override
-			public void handle(KeyEvent event) {
-				//setMaxWidth(DictationController.getPp().prefWidth(0)-100);
-				setText(setToNormInt(Helper.getOnlyDigits(getText())));
-				value = Integer.parseInt(getText());
-				setPrefWidth(getText().length() * getFont().getSize() * 0.7 + 30);
-				positionCaret(getText().length());
-				prevText = getText();
-				((DictationController.ProgressPanel) getParent().getParent().getParent().getParent()).chooseThis(value);
-			}
+		setOnKeyReleased(event -> {
+			//setMaxWidth(DictationController.getPp().prefWidth(0)-100);
+			setText(setToNormInt(getText().replaceAll("\\D", "")));
+			value = Integer.parseInt(getText());
+			setPrefWidth(getText().length() * getFont().getSize() * 0.7 + 30);
+			positionCaret(getText().length());
+			prevText = getText();
+			((DictationController.ProgressPanel) getParent().getParent().getParent().getParent()).chooseThis(value);
 		});
 	}
 

@@ -1,19 +1,19 @@
 package сontrollers;
 
 import helpers.functions.FileHelper;
+import helpers.functions.Helper;
 import helpers.nodes.MyContextMenu;
 import helpers.nodes.MyStage;
 import helpers.nodes.MyTitledPane;
 import helpers.nodes.WindowControllPanel;
-import helpers.functions.Helper;
 import helpers.structures.WList;
-import helpers.structures.Word;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Accordion;
+import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TitledPane;
 import javafx.scene.effect.BlurType;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.GaussianBlur;
@@ -127,7 +127,7 @@ public class MyListsController{
 		WList wlist = ListController.listStage(ListController.NEW, null);
 		AppData.getLists().add(wlist);
 		add(wlist);
-		FileHelper.rewrite();
+		FileHelper.storeData();
 	}
 
 	public void change(WList wList) {                                                                                    //перегруженная функция (см. ниже)

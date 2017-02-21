@@ -2,57 +2,63 @@ package helpers.structures;
 
 import library.AppData;
 
-/**
- * Created by Святослав on 08.10.2016.
- */
+import java.util.Properties;
+
 public class Settings {
 
-	public static final String ENGLISH = "en";
-	public static final String RUSSIAN = "ru";
-	public static final String UKRAINIAN = "ukr";
+	static final String ENGLISH = "en";
+	static final String RUSSIAN = "ru";
+	static final String UKRAINIAN = "ukr";
 
-	private String leng;
-	private String tran;
+    private Properties properties = new Properties();
 
-	public Settings(String leng, String tran) {
-		this.leng = leng;
-		this.tran = tran;
-	}
+	public Settings(String lang, String tran) {
+        properties.setProperty("interfaceLanguage", lang);
+        properties.setProperty("translateLanguage", tran);
+    }
 
 	public Settings(String type) {
 		if (type.equals("custom")) {
-			this.leng = AppData.getSettings().getLeng();
-			this.tran = AppData.getSettings().getTran();
-		} else if(type.equals("default")){
-			this.leng = "ru";
-			this.tran = "ru";
-		}
-	}
+            //properties = AppData.getSettings().getProperties();
+            properties.setProperty("interfaceLanguage", AppData.getSettings().getLang());
+            properties.setProperty("translateLanguage", AppData.getSettings().getTran());
+        } else if (type.equals("default")) {
+            properties.setProperty("interfaceLanguage", "ru");
+            properties.setProperty("translateLanguage", "ru");
+        }
+    }
 
-	public void setLeng(String leng) {
-		this.leng = leng;
-	}
+	public void setLang(String lang) {
+        properties.setProperty("interfaceLanguage", lang);
+    }
 
-	public String getLeng() {
-		return leng;
-	}
+	public String getLang() {
+        return properties.getProperty("interfaceLanguage");
+    }
 
-	public String getTran() {
-		return tran;
-	}
+    public void setTran(String tran) {
+        properties.setProperty("translateLanguage", tran);
+    }
 
-	public void setTran(String tran) {
-		this.tran = tran;
-	}
+    public String getTran() {
+        return properties.getProperty("translateLanguage");
+    }
 
-	public void set(Settings settings) {
-		this.leng = settings.getLeng();
-		this.tran = settings.getTran();
-	}
+    public Properties getProperties() {
+        return properties;
+    }
+
+    public void setProperties(Properties properties) {
+        this.properties = properties;
+    }
+
+    public void set(Settings settings) {
+        setProperties(settings.getProperties());
+    }
 
 	public boolean compare(Settings another) {
-		if (!another.getLeng().equals(this.getLeng())) return false;
-		if (!another.getTran().equals(this.getTran())) return false;
-		return true;
-	}
+        //if (!another.getLang().equals(getLang())) return false;
+        //if (!another.getTran().equals(getTran())) return false;
+        return properties.equals(another.properties);
+    }
 }

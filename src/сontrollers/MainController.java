@@ -3,8 +3,6 @@ package сontrollers;
 import helpers.functions.Helper;
 import helpers.nodes.*;
 import helpers.structures.Word;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -13,7 +11,6 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
 import library.AppData;
@@ -64,9 +61,13 @@ public class MainController {
 	private AnchorPane rootAnchor;
 
 	private static String curSearch = "";
-	private static Table table = new Table(AppData.getLists().get(0).getWords(), new MyContextMenu(MyContextMenu.CHANGE, MyContextMenu.DELETE));
-	private static TableColumn eng = new TableColumn(), tran = new TableColumn();
-	private static TextFieldWithButton textField = new TextFieldWithButton(50, TextFieldWithButton.DEFAULT_ADD, "Search", TextFieldWithButton.TOOLTIP_ADD_WORD);
+    private static Table table = new Table(
+            AppData.getLists().get(0).getWords(),
+            new MyContextMenu(MyContextMenu.CHANGE, MyContextMenu.DELETE));
+    private static TableColumn eng = new TableColumn();
+    private static TableColumn tran = new TableColumn();
+    private static TextFieldWithButton textField = new TextFieldWithButton(
+            50, TextFieldWithButton.DEFAULT_ADD, "Search", TextFieldWithButton.TOOLTIP_ADD_WORD);
 
 	public static Table getTable() {
 		return table;
@@ -84,53 +85,39 @@ public class MainController {
 		initTable();
 		rootAnchor.getChildren().addAll(table, textField);
 		initTextField();
-		btnAdd.setOnAction(action -> {
-			WordController.wordStage(WordController.ADD_WORD, null);
-		});
-		btnChange.setOnAction(action -> {
-			WordController.wordStage(WordController.CHANGE_WORD, curWord);
-		});
-	}
+        btnAdd.setOnAction(action -> WordController.wordStage(WordController.ADD_WORD, null));
+        btnChange.setOnAction(action -> WordController.wordStage(WordController.CHANGE_WORD, curWord));
+    }
 
-	public void initTable() {
-		table.getPopupMenu().getItem(MyContextMenu.CHANGE).setOnAction(action -> {
-			btnChange.fire();
-		});
-		table.getPopupMenu().getItem(MyContextMenu.DELETE).setOnAction(action -> {
-			btnDelete.fire();
-		});
-		table.setOnKeyReleased(new EventHandler<KeyEvent>() {
-			@Override
-			public void handle(KeyEvent event) {
-				if (event.isControlDown()) {
-					if (event.getCode() == KeyCode.ENTER && !WordController.getJustSaved()) {
-						btnAdd.fire();
-					}
-					if (event.getCode() == KeyCode.C) {
-						btnChange.fire();
-					}
-					if (event.getCode() == KeyCode.D) {
-						btnDelete.fire();
-					}
-					WordController.setJustSaved(false);
-				}
-			}
-		});
-		table.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
-			@Override
-			public void changed(ObservableValue observable, Object oldValue, Object newValue) {
-				//System.out.println(((Word)table.getSelectionModel().getSelectedItem()).print());
-				curWord = (Word) newValue;
-				if (curWord == null) {
-					btnChange.setDisable(true);
-					btnDelete.setDisable(true);
-				} else {
-					btnChange.setDisable(false);
-					btnDelete.setDisable(false);
-				}
-			}
-		});
-		AnchorPane.setLeftAnchor(table, 20.0);
+    private void initTable() {
+        table.getPopupMenu().getItem(MyContextMenu.CHANGE).setOnAction(action -> btnChange.fire());
+        table.getPopupMenu().getItem(MyContextMenu.DELETE).setOnAction(action -> btnDelete.fire());
+        table.setOnKeyReleased(event -> {
+            if (event.isControlDown()) {
+                if (event.getCode() == KeyCode.ENTER && !WordController.getJustSaved()) {
+                    btnAdd.fire();
+                }
+                if (event.getCode() == KeyCode.C) {
+                    btnChange.fire();
+                }
+                if (event.getCode() == KeyCode.D) {
+                    btnDelete.fire();
+                }
+                WordController.setJustSaved(false);
+            }
+        });
+        table.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            //System.out.println(((Word)table.getSelectionModel().getSelectedItem()).print());
+            curWord = (Word) newValue;
+            if (curWord == null) {
+                btnChange.setDisable(true);
+                btnDelete.setDisable(true);
+            } else {
+                btnChange.setDisable(false);
+                btnDelete.setDisable(false);
+            }
+        });
+        AnchorPane.setLeftAnchor(table, 20.0);
 		AnchorPane.setTopAnchor(table, 120.0);
 		AnchorPane.setBottomAnchor(table, 20.0);
 		AnchorPane.setRightAnchor(table, 190.0);
@@ -176,18 +163,15 @@ public class MainController {
 			return;
 		}
 		settings = new MyStage("/fxmls/settings.fxml", null, null, new WindowResizer(500, 500), new WindowControllPanel(30, 10.0, 10.0, true, true, false, "/resources/images/icons/used/settings-2.png", "%settings"));
-		settings.getWCP().getCloseButton().setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent event) {
-				if (!SettingsController.getSettings().compare(AppData.getSettings())) {
-					if (Helper.showConfirm(Helper.getI18nString("exitConfirmation"))) settings.close();
-					else return;
-				} else
-					Helper.showInfo(Helper.getI18nString("saveSettings"));
-				settings.close();
-			}
-		});
-		settings.getScene().getStylesheets().add("/styles/templateStyles/choiceBoxStyle.css");
+        settings.getWCP().getCloseButton().setOnAction(event -> {
+            if (!SettingsController.getSettings().compare(AppData.getSettings())) {
+                if (Helper.showConfirm(Helper.getI18nString("exitConfirmation"))) settings.close();
+                else return;
+            } else
+                Helper.showInfo(Helper.getI18nString("saveSettings"));
+            settings.close();
+        });
+        settings.getScene().getStylesheets().add("/styles/templateStyles/choiceBoxStyle.css");
 		settings.show();
 	}
 
