@@ -10,6 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import library.AppData;
+import resources.fonts.MyFonts;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -20,10 +21,10 @@ public class Main extends Application implements Initializable {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		//MyFonts.loadFonts();
+        MyFonts.loadFonts();
         FileHelper.loadConfig();
         MyLog.log("Launched");
-        FileHelper.readData();
+        FileHelper.loadData();
         primaryStage = new MyStage(
                 "/fxmls/main.fxml",
                 null,

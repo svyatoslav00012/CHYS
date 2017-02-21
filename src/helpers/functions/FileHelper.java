@@ -12,7 +12,7 @@ public class FileHelper {
 
     private static final File data = new File("data.txt");
 
-    public static void readData() {
+    public static void loadData() {
         AppData.getLists().add(new WList(0, Helper.getI18nString("allWords")));
 
         try (BufferedReader reader = new BufferedReader(new FileReader(data))) {
@@ -21,8 +21,9 @@ public class FileHelper {
             while (true) {
                 string = reader.readLine();
                 if (string.equals("__________")) break;
+                if (string.isEmpty()) continue;
                 if (!string.contains("/")) {
-                    Helper.showError("Read Error\n'/' is in -1 position in list reading\nreadData() was stoped");
+                    Helper.showError("Read Error\n'/' is in -1 position in list reading\nloadData() was stoped");
                     return;
                 }
                 int id = Integer.parseInt(string.substring(0, string.indexOf("/")));
@@ -34,6 +35,7 @@ public class FileHelper {
             while (true) {
                 string = reader.readLine();
                 if (string.equals("__________")) break;
+                if (string.isEmpty()) continue;
                 Word w = new Word(string);
                 if (AppData.getWordKeys()[w.getKey()])
                     Helper.showError("WordKey " + w.getKey() + "was already used!");
@@ -44,26 +46,7 @@ public class FileHelper {
             reader.close();
         } catch (IOException e) {
             e.printStackTrace();
-            Helper.showException("IOException in FileHelper.readData()", e);
-        }
-    }
-
-    public static void loadConfig() {
-        Properties prop = new Properties();
-        try (FileReader reader = new FileReader("config.properties")) {
-            prop.load(reader);
-        } catch (IOException ignored) {
-            System.out.println("Couldn't load config.properties");
-            prop.setProperty("interfaceLanguage", "ru");
-            prop.setProperty("translateLanguage", "ru");
-        }
-        AppData.getSettings().setProperties(prop);
-    }
-
-    public static void storeConfig() {
-        try (FileWriter writer = new FileWriter("config.properties")) {
-            AppData.getSettings().getProperties().store(writer, "");
-        } catch (IOException ignored) {
+            Helper.showException("IOException in FileHelper.loadData()", e);
         }
     }
 
@@ -89,6 +72,25 @@ public class FileHelper {
         } catch (IOException e) {
             e.printStackTrace();
             Helper.showException("IOException in FileHelper.storeData()", e);
+        }
+    }
+
+    public static void loadConfig() {
+        Properties prop = new Properties();
+        try (FileReader reader = new FileReader("config.properties")) {
+            prop.load(reader);
+        } catch (IOException ignored) {
+            System.out.println("Couldn't load config.properties");
+            prop.setProperty("interfaceLanguage", "ru");
+            prop.setProperty("translateLanguage", "ru");
+        }
+        AppData.getSettings().setProperties(prop);
+    }
+
+    public static void storeConfig() {
+        try (FileWriter writer = new FileWriter("config.properties")) {
+            AppData.getSettings().getProperties().store(writer, "");
+        } catch (IOException ignored) {
         }
     }
 
