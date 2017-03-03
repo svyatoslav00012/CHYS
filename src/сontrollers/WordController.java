@@ -4,7 +4,7 @@ import helpers.functions.FileHelper;
 import helpers.functions.Helper;
 import helpers.nodes.MyNotification;
 import helpers.nodes.MyStage;
-import helpers.nodes.WindowControllPanel;
+import helpers.nodes.WindowControlPanel;
 import helpers.structures.Word;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -53,7 +53,7 @@ public class WordController {
 		String tit = "%addWord";
 		if (type == CHANGE_WORD)
 			tit = Helper.getI18nString("change", Helper.LOCAL) + " " + Helper.getI18nString("word", Helper.LOCAL);
-		new MyStage("/fxmls/word.fxml", Modality.APPLICATION_MODAL, null, null, new WindowControllPanel(30, 15, 0, false, false, false, "/resources/images/icons/used/checkmark-1.png", tit)).showAndWait();
+		new MyStage("/fxmls/word.fxml", Modality.APPLICATION_MODAL, null, null, new WindowControlPanel(30, 15, 0, false, false, false, "/resources/images/icons/used/checkmark-1.png", tit)).showAndWait();
 		int c = -1;
 		if (curWord != null) c = curWord.getKey();
 		destruct();

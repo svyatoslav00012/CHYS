@@ -4,7 +4,6 @@ import helpers.functions.Helper;
 import javafx.animation.*;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.beans.value.WritableValue;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -24,7 +23,7 @@ import java.util.*;
 /**
  * Created by Svyatoslav on 11.02.2017.
  */
-public class MyNotification extends Stage {
+public class MyNotification extends WritableStage {
 	public static final int COMPLETE = 0;
 	public static final int INFO = 1;
 	public static final int WARNING = 2;
@@ -55,52 +54,21 @@ public class MyNotification extends Stage {
 	public static final String LIST_EDITED = Helper.getI18nString("listSuccEdited", Helper.NOTIFICATIONS);
 	public static final String LIST_DUPLICATED = Helper.getI18nString("listSuccDuplicated", Helper.NOTIFICATIONS);
 	public static final String LIST_DELETED = Helper.getI18nString("listSuccDeleted", Helper.NOTIFICATIONS);
+	public static final String CHANGES_APPLIED = Helper.getI18nString("changesApplied", Helper.NOTIFICATIONS);
 	Thread notifThread = new Thread();
-	private WritableValue<Double> writableX = new WritableValue<Double>() {
-		@Override
-		public Double getValue() {
-			return getX();
-		}
 
-		@Override
-		public void setValue(Double value) {
-			setX(value);
-		}
-	};
-	private WritableValue<Double> writableY = new WritableValue<Double>() {
-		@Override
-		public Double getValue() {
-			return getY();
-		}
-
-		@Override
-		public void setValue(Double value) {
-			setY(value);
-		}
-	};
-	private WritableValue<Double> writableOpacity = new WritableValue<Double>() {
-		@Override
-		public Double getValue() {
-			return getOpacity();
-		}
-
-		@Override
-		public void setValue(Double value) {
-			setOpacity(value);
-		}
-	};
 	//nodes
 	private Label title = new Label(), message = new Label();
 	private Region icon = new Region();
 	private AnchorPane root = new AnchorPane();
 	private int type;
 	//animations
-	private KeyValue moving = new KeyValue(writableX, MyStage.SCREEN_WIDTH - 450);
-	private KeyValue makeVisible = new KeyValue(writableOpacity, 1.0);
-	private KeyValue makeUnvisible = new KeyValue(writableOpacity, 0.0);
+	private KeyValue moving = new KeyValue(getWritableX(), MyStage.SCREEN_WIDTH - 450);
+	private KeyValue makeVisible = new KeyValue(getWritableOpacity(), 1.0);
+	private KeyValue makeInvisible = new KeyValue(getWritableOpacity(), 0.0);
 	private Timeline emission = new Timeline(new KeyFrame(Duration.millis(500), moving, makeVisible));
 	private PauseTransition minimum, visiblePeriod;
-	private Timeline hiding = new Timeline(new KeyFrame(Duration.millis(500), action -> close(), makeUnvisible));
+	private Timeline hiding = new Timeline(new KeyFrame(Duration.millis(500), action -> close(), makeInvisible));
 	private SequentialTransition existence;
 	public MyNotification(int type, String message, double y) {
 		this.type = type;
@@ -118,6 +86,7 @@ public class MyNotification extends Stage {
 	}
 
 	public static void showMessage(int type, String message) {
+		if (type == ERROR) Helper.log(message);
 		next.add(new MyNotification(type, message, 0));
 		//if (windows.size() > 0 && windows.size() >= LIMIT_SIZE && !windows.get(0).isMinimunRunning()) windows.get(0).hideNotif();
 		addFromQueue();
@@ -126,7 +95,7 @@ public class MyNotification extends Stage {
 	public static void push(int index) {
 		moveDown = new Timeline();
 		for (int i = index; i < windows.size(); ++i) {
-			KeyValue moving = new KeyValue(windows.get(i).getYProperty(), MyStage.SCREEN_HEIGHT - (220 + i * 210));
+			KeyValue moving = new KeyValue(windows.get(i).getWritableY(), MyStage.SCREEN_HEIGHT - (220 + i * 210));
 			moveDown.getKeyFrames().add(new KeyFrame(Duration.millis(500), moving));
 		}
 		moveDown.setOnFinished(action -> globalMoving--);
@@ -173,18 +142,6 @@ public class MyNotification extends Stage {
 		Stage test = new Stage();
 		test.setScene(new Scene(buttons, 200, 200));
 		test.show();
-	}
-
-	public WritableValue<Double> getXProperty() {
-		return writableX;
-	}
-
-	private WritableValue<Double> getYProperty() {
-		return writableY;
-	}
-
-	public WritableValue<Double> getOpacityProperty() {
-		return writableOpacity;
 	}
 
 	public boolean isMinimunRunning() {

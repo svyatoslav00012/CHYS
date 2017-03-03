@@ -4,7 +4,7 @@ import helpers.functions.FileHelper;
 import helpers.functions.Helper;
 import helpers.nodes.MyNotification;
 import helpers.nodes.MyStage;
-import helpers.nodes.WindowControllPanel;
+import helpers.nodes.WindowControlPanel;
 import helpers.structures.Properties;
 import helpers.structures.Settings;
 import javafx.beans.value.ObservableValue;
@@ -63,13 +63,13 @@ public class SettingsController {
 		btnErr.setTooltip(new Tooltip(Helper.getI18nString("settings.btnErr", Helper.LOCAL)));
 		btnSave.setDisable(true);
 		lengSelect.setItems(FXCollections.observableArrayList(Properties.getLengNames(0)));
-		lengSelect.getSelectionModel().select(Properties.getID(AppData.getSettings().getLeng()));
-		lengSelect.setTooltip(new Tooltip(Helper.getI18nString("settings.leng.tooltip", Helper.LOCAL)));
+		lengSelect.getSelectionModel().select(Properties.getID(AppData.getSettings().getLang()));
+		lengSelect.setTooltip(new Tooltip(Helper.getI18nString("settings.lang.tooltip", Helper.LOCAL)));
 		lengSelect.getSelectionModel().selectedIndexProperty().addListener(new javafx.beans.value.ChangeListener<Number>() {
 			@Override
 			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-				settings.setLeng(Properties.get(newValue.intValue()).getKey());
-				if (settings.getLeng().equals(AppData.getSettings().getLeng())) {
+				settings.setLang(Properties.get(newValue.intValue()).getKey());
+				if (settings.getLang().equals(AppData.getSettings().getLang())) {
 					btnSave.setDisable(true);
 					lengSelect.getParent().getStyleClass().remove("changed");
 					btnLenToDef.setVisible(false);
@@ -115,7 +115,7 @@ public class SettingsController {
 
 	public void showErrorLog(ActionEvent actionEvent) {
 		if (errLog != null) errLog.close();
-		errLog = new MyStage("/fxmls/errorLog.fxml", null, null, null, new WindowControllPanel(30, 10, 0, true, false, false, "/resources/images/icons/used/log.png", "Log"));
+		errLog = new MyStage("/fxmls/errorLog.fxml", null, null, null, new WindowControlPanel(30, 10, 0, true, false, false, "/resources/images/icons/used/log.png", "Log"));
 		errLog.show();
 	}
 
@@ -125,13 +125,13 @@ public class SettingsController {
 	}
 
 	public void refreshScreen(Parent p) {
-		lengSelect.getSelectionModel().select(Properties.getID(AppData.getSettings().getLeng()));
+		lengSelect.getSelectionModel().select(Properties.getID(AppData.getSettings().getLang()));
 		tranSelect.getSelectionModel().select(Properties.getID(AppData.getSettings().getTran()) - 1);
 		btnSave.setDisable(true);
 	}
 
 	public void lenToDef(ActionEvent actionEvent) {
-		lengSelect.getSelectionModel().select(Properties.getID(AppData.getSettings().getLeng()));
+		lengSelect.getSelectionModel().select(Properties.getID(AppData.getSettings().getLang()));
 		if (settings.compare(AppData.getSettings())) btnSave.setDisable(true);
 	}
 

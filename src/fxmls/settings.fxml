@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import java.lang.*?>
-<?import javafx.scene.shape.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.Rectangle?>
-
-<AnchorPane fx:id="root" prefHeight="500.0" prefWidth="500.0" stylesheets="/styles/stageStyles/settingsStyle.css" VBox.vgrow="ALWAYS" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="сontrollers.SettingsController">
+<?import java.lang.String?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="root" prefHeight="500.0" prefWidth="500.0"
+            stylesheets="/styles/stageStyles/settingsStyle.css" VBox.vgrow="ALWAYS" xmlns="http://javafx.com/javafx/8"
+            fx:controller="сontrollers.SettingsController">
     <children>
         <ScrollPane fx:id="scroll" fitToHeight="true" fitToWidth="true" layoutX="20.0" layoutY="50.0" prefHeight="305.0" prefViewportHeight="66.0" prefViewportWidth="280.0" prefWidth="480.0" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="45.0">
             <content>
@@ -23,7 +22,8 @@
                                     <String fx:value="button-icon" />
                                  </styleClass></Button>
                                         <ChoiceBox fx:id="lengSelect" layoutX="160.0" prefWidth="140.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="170.0" AnchorPane.topAnchor="10.0" />
-                                        <Label layoutY="5.0" styleClass="lab" text="%settings.leng" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="20.0" />
+                                        <Label layoutY="5.0" styleClass="lab" text="%settings.lang"
+                                               AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="20.0"/>
                                     </children>
                                 </AnchorPane>
                                 <AnchorPane layoutX="20.0" layoutY="90.0" prefHeight="50.0" styleClass="module" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="90.0">

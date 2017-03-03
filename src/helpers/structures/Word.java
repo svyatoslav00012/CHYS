@@ -28,14 +28,12 @@ public class Word {
 		//registerClass(((FXMLLoader)MainController.getListsStage().getScene().getUserData()).getController());
 	}
 
-	public Word(StringBuffer sb){
-		setKey(Integer.parseInt(sb.substring(0, sb.indexOf("/"))));
-		sb.delete(0, sb.indexOf("/") + 1);
-		eng = new SimpleStringProperty(sb.substring(0, sb.indexOf("/")));
-		sb.delete(0, sb.indexOf("/") + 1);
-		rus = new SimpleStringProperty(sb.substring(0, sb.indexOf("/")));
-		sb.delete(0, sb.indexOf("/") + 1);
-		ukr = new SimpleStringProperty(sb.substring(0, sb.indexOf("/")));
+	public Word(String s) {
+		String[] sb = s.split("/");
+		setKey(Integer.parseInt(sb[0]));
+		eng = new SimpleStringProperty(sb[1]);
+		rus = new SimpleStringProperty(sb[2]);
+		ukr = new SimpleStringProperty(sb[3]);
 		//registerClass(((FXMLLoader)MainController.getListsStage().getScene().getUserData()).getController());
 	}
 
@@ -92,7 +90,7 @@ public class Word {
 	}
 
 	public String getTask() {
-		if (DictationOptionsController.getTyp() == 0) return get(DictationOptionsController.getTranLeng());
+		if (DictationOptionsController.getTyp() == 0) return get(DictationOptionsController.getTranLang());
 		else return getEng();
 	}
 
@@ -120,7 +118,7 @@ public class Word {
 					AppData.getLists().get(i).remove(getKey());
 				}
 			AppData.getLists().get(0).remove(this);
-			AppData.getWordkeys()[key] = false;
+			AppData.getWordKeys()[key] = false;
 			FileHelper.rewrite();
 			MyNotification.showMessage(MyNotification.COMPLETE, MyNotification.WORD_DELETED);
 		}

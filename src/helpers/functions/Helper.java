@@ -111,7 +111,8 @@ public class Helper {
 	}
 
 	public static String getI18nString(String key, String bundle) {
-		return getI18nString(key, bundle, AppData.getSettings().getLeng());
+		System.out.println("getting 18n string ...");
+		return getI18nString(key, bundle, AppData.getSettings().getLang());
 	}
 
 	public static String getI18nString(String key, String bundle, String locale) {

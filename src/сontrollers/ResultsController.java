@@ -26,13 +26,13 @@ public class ResultsController {
 		lblAns.setText(Helper.getI18nString("results", Helper.LOCAL) + ":");
 		for (int i = 0; i < DictationController.getCurList().getWords().size(); i++) {
             if (DictationOptionsController.getTyp() == 0) {
-                word = DictationController.getCurList().get(i).get(DictationOptionsController.getTranLeng());
-                correct = DictationController.getCurList().get(i).getEng();
-            } else {
+				word = DictationController.getCurList().get(i).get(DictationOptionsController.getTranLang());
+				correct = DictationController.getCurList().get(i).getEng();
+			} else {
                 word = DictationController.getCurList().get(i).getEng();
-                correct = DictationController.getCurList().get(i).get(DictationOptionsController.getTranLeng());
-            }
-            if (DictationController.getAnswers()[i].toLowerCase().equals(Helper.getCleanString(correct.toLowerCase())))
+				correct = DictationController.getCurList().get(i).get(DictationOptionsController.getTranLang());
+			}
+			if (DictationController.getAnswers()[i].toLowerCase().equals(Helper.getCleanString(correct.toLowerCase())))
                 ++r;
             vbox.getChildren().add(new Result(word, DictationController.getAnswers()[i], correct));
         }

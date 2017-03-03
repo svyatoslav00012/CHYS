@@ -13,13 +13,15 @@ public class LList {
 	private ObservableList<WList> lists = FXCollections.observableArrayList();
 
 	public boolean add(WList l) {
+		System.out.println("adding..." + l.print());
 		for (int i = 0; i < lists.size(); i++)
 			if (lists.get(i).getName().equals(l.getName())) {
-				Helper.showError("Error in LList.add(WList l)\r\nWList whith name" + l.getName() + " was already added");
+				Helper.showError("Error in LList.add(WList l)\r\nWList with name " + l.getName() + " was already added");
 				return false;
 			}
 		lists.add(l);
-		return FileHelper.rewrite();
+		if (FileHelper.isReading()) return true;
+		else return FileHelper.rewrite();
 	}
 
 	public void insert(int index, WList list) {
@@ -78,6 +80,6 @@ public class LList {
 			lists.set(i, wList);
 			return;
 		}
-		Helper.showError("Error in LList.set(Wlist wList)\nWList with key + "+wList.getKey()+" doesn't exist");
+		Helper.showError("Error in LList.set(WList wList)\nWList with key + " + wList.getKey() + " doesn't exist");
 	}
 }

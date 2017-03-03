@@ -91,13 +91,13 @@ public class DictationController {
 		MainController.setGausian(true);
 		MyListsController.setGausian(true);
 		if (DictationOptionsController.getTyp() == 0) {
-			lenFrom.setText(Helper.getI18nString(DictationOptionsController.getTranLeng(), Helper.LOCAL));
-			lblWord.setText(curList.get(curIndex).get(DictationOptionsController.getTranLeng()));
+			lenFrom.setText(Helper.getI18nString(DictationOptionsController.getTranLang(), Helper.LOCAL));
+			lblWord.setText(curList.get(curIndex).get(DictationOptionsController.getTranLang()));
 			lenTo.setText(Helper.getI18nString("en", Helper.LOCAL));
 		} else {
 			lenFrom.setText(Helper.getI18nString("en", Helper.LOCAL));
 			lblWord.setText(curList.get(curIndex).getEng());
-			lenTo.setText(Helper.getI18nString(DictationOptionsController.getTranLeng(), Helper.LOCAL));
+			lenTo.setText(Helper.getI18nString(DictationOptionsController.getTranLang(), Helper.LOCAL));
 		}
 		btnPrev.setVisible(false);
 		btnPrev.setTooltip(new Tooltip(Helper.getI18nString("prevWord", Helper.LOCAL)));
@@ -139,7 +139,7 @@ public class DictationController {
 
 	public void setLblWord() {
 		if (DictationOptionsController.getTyp() == 0)
-			lblWord.setText(curList.get(curIndex).get(DictationOptionsController.getTranLeng()));
+			lblWord.setText(curList.get(curIndex).get(DictationOptionsController.getTranLang()));
 		else lblWord.setText(curList.get(curIndex).getEng());
 	}
 

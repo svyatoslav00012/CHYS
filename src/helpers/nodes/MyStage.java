@@ -1,14 +1,11 @@
 package helpers.nodes;
 
 import helpers.functions.Helper;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
-import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.Window;
 import library.AppData;
@@ -23,21 +20,24 @@ import java.util.ResourceBundle;
 /**
  * Created by Svyatoslav on 26.10.2016.
  */
-public class MyStage extends Stage {
+public class MyStage extends FadingStage {
 
 	public static final double SCREEN_WIDTH = Toolkit.getDefaultToolkit().getScreenSize().getWidth();
 	public static final double SCREEN_HEIGHT = Toolkit.getDefaultToolkit().getScreenSize().getHeight();
 	private static double prevX = 0, prevY = 0;
-	private double startX = -1, startY = -1;
-	WindowControllPanel wcp;
+	WindowControlPanel wcp;
 	WindowResizer wr;
+	private double startX = -1, startY = -1;
 
-	public MyStage(String fxml, Modality modality, Window owner, WindowResizer wr, WindowControllPanel wcp) {
+	public MyStage(String fxml, Modality modality, Window owner, WindowResizer wr, WindowControlPanel wcp) {
+		super(StageStyle.TRANSPARENT);
 		try {
 			this.wcp = wcp;
 			this.wr = wr;
 			if (getClass().getResource(fxml) != null)
-				setScene(new Scene(new FXMLLoader(getClass().getResource(fxml), ResourceBundle.getBundle("resources.bundles.Locale", new Locale(AppData.getSettings().getLeng()))).load()));
+				setScene(new Scene(new FXMLLoader(getClass().getResource(fxml),
+						ResourceBundle.getBundle("resources.bundles.Locale",
+								new Locale(AppData.getSettings().getLang()))).load()));
 			else {
 				Helper.showError("Invalid scene for '" + wcp.getTitle() + "'\n" + fxml + " does not available!");
 				return;
@@ -56,39 +56,29 @@ public class MyStage extends Stage {
 			}
 			getScene().getStylesheets().add("/styles/templateStyles/windowStyle.css");
 			if (wcp.getLogo() != null) getIcons().add(wcp.getLogo());
-			else if (Main.getLogo() != null) getIcons().add(Main.getLogo());
-			initStyle(StageStyle.TRANSPARENT);
+			else getIcons().add(Main.getLogo());
 			initModality(modality);
 			initOwner(owner);
 			getScene().setFill(Color.TRANSPARENT);
 			((AnchorPane) getScene().getRoot()).getChildren().add(wcp);
 			if (wr != null) ((AnchorPane) getScene().getRoot()).getChildren().add(wr);
 			else setResizable(false);
-			getScene().setOnMousePressed(new EventHandler<MouseEvent>() {
-				@Override
-				public void handle(MouseEvent event) {
+			getScene().setOnMousePressed(pressed -> {
 					if (isMaximized() || (wr != null && wr.isPressed())) return;
-					startX = event.getScreenX();
-					startY = event.getScreenY();
-				}
+				startX = pressed.getScreenX();
+				startY = pressed.getScreenY();
 			});
-			getScene().setOnMouseReleased(new EventHandler<MouseEvent>() {
-				@Override
-				public void handle(MouseEvent event) {
+			getScene().setOnMouseReleased(released -> {
 					startX = -1;
 					startY = -1;
-				}
 			});
-			getScene().setOnMouseDragged(new EventHandler<MouseEvent>() {
-				@Override
-				public void handle(MouseEvent event) {
+			getScene().setOnMouseDragged(dragged -> {
 					if (startX > -1 && startY > -1) {
-						setX(getX() + event.getScreenX() - startX);
-						setY(getY() + event.getScreenY() - startY);
-						startX = event.getScreenX();
-						startY = event.getScreenY();
+						setX(getX() + dragged.getScreenX() - startX);
+						setY(getY() + dragged.getScreenY() - startY);
+						startX = dragged.getScreenX();
+						startY = dragged.getScreenY();
 					}
-				}
 			});
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -96,7 +86,7 @@ public class MyStage extends Stage {
 		}
 	}
 
-	public WindowControllPanel getWCP() {
+	public WindowControlPanel getWCP() {
 		return wcp;
 	}
 

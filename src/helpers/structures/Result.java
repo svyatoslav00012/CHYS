@@ -1,9 +1,9 @@
 package helpers.structures;
 
-import helpers.nodes.MyStage;
-import helpers.nodes.WindowControllPanel;
-import helpers.nodes.WindowResizer;
 import helpers.functions.Helper;
+import helpers.nodes.MyStage;
+import helpers.nodes.WindowControlPanel;
+import helpers.nodes.WindowResizer;
 import javafx.geometry.Orientation;
 import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
@@ -38,6 +38,6 @@ public class Result extends HBox {
 	}
 
 	public void showResults() {
-		new MyStage("/fxmls/results.fxml", null, null, new WindowResizer(400, 600), new WindowControllPanel(40, 10, 10, true, true, false, "/resources/images/icons/used/star-1.png", "%results")).show();
+		new MyStage("/fxmls/results.fxml", null, null, new WindowResizer(400, 600), new WindowControlPanel(40, 10, 10, true, true, false, "/resources/images/icons/used/star-1.png", "%results")).show();
 	}
 }

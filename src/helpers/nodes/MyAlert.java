@@ -1,7 +1,6 @@
 package helpers.nodes;
 
 import helpers.functions.Helper;
-import javafx.beans.value.WritableValue;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -27,35 +26,24 @@ import java.io.StringWriter;
 /**
  * Created by Svyatoslav on 14.01.2017.
  */
-public class MyAlert extends Stage {
+public class MyAlert extends FadingStage {
 
 	double startX = -1, startY = -1;
 	private boolean confirm = false;
 	private AnchorPane root = new AnchorPane();
 	private Region icon = new Region();
-	private WindowControllPanel wp = new WindowControllPanel(30, 10, 0, false, false, false, null, null);
+	private WindowControlPanel wp = new WindowControlPanel(30, 10, 0, false, false, false, null, null);
 	private Label type = new Label();
 	private TextArea messageField = new TextArea(), stackTraceField = new TextArea();
 	private Button btnShowHide = new Button(), btnYes = new Button("OK"), btnNo = new Button("NO"), btnCopyToCB = new Button();
 	private HBox yesNo = new HBox(btnYes, btnNo);
-	private WritableValue<Double> writableHeight = new WritableValue<Double>() {
-		@Override
-		public Double getValue() {
-			return getHeight();
-		}
-
-		@Override
-		public void setValue(Double value) {
-			setHeight(value);
-		}
-	};
 
 	public MyAlert() {
+		super(StageStyle.TRANSPARENT);
 		setScene(new Scene(root));
 		getScene().setFill(Color.TRANSPARENT);
 		initAnchors();
 		initRoot();
-		initStyle(StageStyle.TRANSPARENT);
 		initModality(Modality.APPLICATION_MODAL);
 		setResizable(false);
 	}

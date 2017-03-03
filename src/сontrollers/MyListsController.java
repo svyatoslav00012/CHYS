@@ -130,6 +130,7 @@ public class MyListsController{
 
 	public void newList() {                                                                                                //создаёт выборку и добавляет в конец
 		WList wlist = ListController.listStage(ListController.NEW, null);
+		if (wlist == null) return;
 		if (AppData.getLists().add(wlist) && add(wlist))
 			MyNotification.showMessage(MyNotification.COMPLETE, MyNotification.LIST_CREATED);
 	}
@@ -142,7 +143,7 @@ public class MyListsController{
 	public void changeList() {                                                                                            //редактирует выборку
 		WList wlist = ListController.listStage(ListController.CHANGE, cur);
 		AppData.getLists().set(wlist);
-		MyNotification.showMessage(MyNotification.COMPLETE, MyNotification.LIST_EDITED);
+		MyNotification.showMessage(MyNotification.COMPLETE, MyNotification.CHANGES_APPLIED);
 	}
 
 	public void duplicate() {
@@ -195,7 +196,7 @@ public class MyListsController{
 			Helper.showInfo("List \""+cur.getName()+"\"is empty!");
 			return;
 		}
-		Stage start = new MyStage("/fxmls/dictationOptions.fxml", Modality.WINDOW_MODAL, accordion.getScene().getWindow(), null, new WindowControllPanel(30, 15, 0, false, false, false, "/resources/images/icons/used/options.png", "%options"));
+		Stage start = new MyStage("/fxmls/dictationOptions.fxml", Modality.WINDOW_MODAL, accordion.getScene().getWindow(), null, new WindowControlPanel(30, 15, 0, false, false, false, "/resources/images/icons/used/options.png", "%options"));
 		start.getScene().getStylesheets().add("/styles/templateStyles/choiceBoxStyle.css");
 		start.show();
 	}

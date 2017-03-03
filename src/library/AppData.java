@@ -12,12 +12,14 @@ public class AppData {
 	private static File log;
 	private static Settings settings = new Settings("default");
 	private static LList lists = new LList();
-	private static boolean[] wordkeys = new boolean[1000000];
-	private static boolean[] listkeys = new boolean[100000];
+	private static boolean[] wordKeys = new boolean[1000000];
+	private static boolean[] listKeys = new boolean[100000];
 
 	public static void initFiles(String data, String log) {
 		AppData.data = new File(data);
 		AppData.log = new File(log);
+		System.out.println("data exists? : " + AppData.data.exists());
+		System.out.println("log exists? : " + AppData.log.exists());
 	}
 
 	public static File getData() {
@@ -28,12 +30,12 @@ public class AppData {
 		return log;
 	}
 
-	public static boolean[] getWordkeys() {
-		return wordkeys;
+	public static boolean[] getWordKeys() {
+		return wordKeys;
 	}
 
-	public static boolean[] getListkeys() {
-		return listkeys;
+	public static boolean[] getListKeys() {
+		return listKeys;
 	}
 
 	public static Settings getSettings() {
@@ -41,13 +43,14 @@ public class AppData {
 	}
 
 	public static LList getLists() {
+		System.out.println("getList");
 		return lists;
 	}
 
 	public static int getFreeWordKey() {
-		for (int i = 0; i < wordkeys.length; i++)
-			if (!wordkeys[i]) {
-				wordkeys[i] = true;
+		for (int i = 0; i < wordKeys.length; i++)
+			if (!wordKeys[i]) {
+				wordKeys[i] = true;
 				return i;
 			}
 		Helper.showError("Error in AppData.getFreeWordKey()\r\nCan't find free key!");
@@ -55,13 +58,17 @@ public class AppData {
 	}
 
 	public static int getFreeListKey() {
-		for (int i = 1; i < listkeys.length; i++)
-			if (!listkeys[i]) {
-				listkeys[i] = true;
+		for (int i = 1; i < listKeys.length; i++)
+			if (!listKeys[i]) {
+				listKeys[i] = true;
 				return i;
 			}
 		Helper.showError("Error in AppData.getFreeWordKey()\r\nCan't find free key!");
 		return -1;
+	}
+
+	public static void addToLists(String s, int key) {
+		addToLists(new StringBuffer(s), key);
 	}
 
 	public static void addToLists(StringBuffer s, int key) {

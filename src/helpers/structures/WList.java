@@ -8,11 +8,15 @@ import library.AppData;
 import java.util.Random;
 
 public class WList {
+
+	//public static final String ALL_WORDS = Helper.getI18nString("allWords", Helper.LOCAL);
+
 	private int key;
 	private String name;
 	private ObservableList<Word> words = FXCollections.observableArrayList();
 
 	public WList(int key, String name) {
+		System.out.println("new Wlist");
 		this.key = key;
 		this.name = name;
 	}
@@ -102,7 +106,7 @@ public class WList {
 	public void remove(Word w) {
 		for (int i = 0; i < words.size(); i++)
 			if (words.get(i).equals(w)) {
-				AppData.getWordkeys()[w.getKey()] = false;
+				AppData.getWordKeys()[w.getKey()] = false;
 				words.remove(i);
 				return;
 			}

@@ -22,7 +22,7 @@ import resources.fonts.MyFonts;
 public class MainController {
 
 	private static boolean add = false;
-	private static MyStage myLists = new MyStage("/fxmls/myLists.fxml", null, null, new WindowResizer(600, 600), new WindowControllPanel(30, 20, 10, true, true, false, "/resources/images/icons/used/list-1.png", "%myLists"));
+	private static MyStage myLists = new MyStage("/fxmls/myLists.fxml", null, null, new WindowResizer(600, 600), new WindowControlPanel(30, 20, 10, true, true, false, "/resources/images/icons/used/list-1.png", "%myLists"));
 	private static MyStage settings, help;
 	private static GaussianBlur blur = new GaussianBlur(10.0);
 	private static Word curWord;
@@ -206,7 +206,7 @@ public class MainController {
 			else settings.show();
 			return;
 		}
-		settings = new MyStage("/fxmls/settings.fxml", null, null, new WindowResizer(500, 500), new WindowControllPanel(30, 10.0, 10.0, true, true, false, "/resources/images/icons/used/settings-2.png", "%settings"));
+		settings = new MyStage("/fxmls/settings.fxml", null, null, new WindowResizer(500, 500), new WindowControlPanel(30, 10.0, 10.0, true, true, false, "/resources/images/icons/used/settings-2.png", "%settings"));
 		settings.getWCP().getCloseButton().setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
@@ -235,7 +235,7 @@ public class MainController {
 			else help.show();
 			return;
 		}
-		help = new MyStage("/fxmls/help.fxml", null, null, null, new WindowControllPanel(30, 10.0, 10.0, true, false, false, "resources/images/icons/used/help-1.png", "%help"));
+		help = new MyStage("/fxmls/help.fxml", null, null, null, new WindowControlPanel(30, 10.0, 10.0, true, false, false, "resources/images/icons/used/help-1.png", "%help"));
 		help.show();
 	}
 

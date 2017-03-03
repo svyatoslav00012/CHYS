@@ -16,7 +16,7 @@ import javafx.stage.Stage;
 /**
  * Created by Svyatoslav on 01.12.2016.
  */
-public class WindowControllPanel extends AnchorPane {
+public class WindowControlPanel extends AnchorPane {
 	private Button btnClose = new Button();
 	private Button btnIconif = new Button();
 	private Button btnMxmize = new Button();
@@ -25,7 +25,8 @@ public class WindowControllPanel extends AnchorPane {
 	private Image logoImage;
 	private Label title = new Label();
 
-	public WindowControllPanel(int height, double rlAnchor, double spacing, boolean iconif, boolean mxmize, boolean closeAll, String logo, String title) {
+	public WindowControlPanel(int height, double rlAnchor, double spacing, boolean iconif,
+							  boolean mxmize, boolean closeAll, String logo, String title) {
 		btnClose.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {

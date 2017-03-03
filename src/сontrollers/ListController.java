@@ -90,14 +90,24 @@ public class ListController {
 			sample = wlist;
 		} else list = new WList();
 		System.out.println("changing...");
-		MyStage newList = new MyStage("/fxmls/list.fxml", Modality.APPLICATION_MODAL, null, null, new WindowControllPanel(30, 10, 10, false, false, false, "/resources/images/icons/used/list-2.png", "%myLists.newList"));
+		MyStage newList = new MyStage("/fxmls/list.fxml", Modality.APPLICATION_MODAL, null, null, new WindowControlPanel(30, 10, 10, false, false, false, "/resources/images/icons/used/list-2.png", "%myLists.newList"));
 		newList.getWCP().getCloseButton().setOnAction(action -> {
+			System.out.println("close");
 			if (curType == CHANGE && !list.isEqual(sample) && !Helper.showConfirm(Helper.getI18nString("exitConfirmation", Helper.LOCAL)))
 				action.consume();
+			if (curType == NEW) list = null;
+			newList.close();
+		});
+		newList.setOnCloseRequest(action -> {
+			System.out.println("closeR");
+			if (curType == CHANGE && !list.isEqual(sample) && !Helper.showConfirm(Helper.getI18nString("exitConfirmation", Helper.LOCAL)))
+				action.consume();
+			if (curType == NEW) list = null;
 			newList.close();
 		});
 		newList.showAndWait();
-		wlist = list;
+		wlist = sample;
+		System.out.println(wlist);
 		destruct();
 		return wlist;
 	}
@@ -233,11 +243,15 @@ public class ListController {
 			fieldName.getStyleClass().add("incorrectField");
 			lablNotFill.setText(Helper.getI18nString("list.alreadyAdded", Helper.LOCAL));
 			return;
-		} else if(curType == CHANGE)sample.setName(fieldName.getText());
+		}
 		if (curType == NEW) {
 			list.setKey(AppData.getFreeListKey());
+			sample = list;
 			((Stage) fieldName.getScene().getWindow()).close();
-		} else sample = list;
+		} else {
+			sample = list;
+			MyNotification.showMessage(MyNotification.COMPLETE, MyNotification.LIST_EDITED);
+		}
 		btnSave.setDisable(true);
 	}
 

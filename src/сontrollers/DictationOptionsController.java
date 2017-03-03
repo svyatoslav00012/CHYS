@@ -2,7 +2,7 @@ package сontrollers;
 
 import helpers.functions.Helper;
 import helpers.nodes.MyStage;
-import helpers.nodes.WindowControllPanel;
+import helpers.nodes.WindowControlPanel;
 import helpers.nodes.WindowResizer;
 import helpers.structures.Properties;
 import helpers.structures.Result;
@@ -24,7 +24,7 @@ import javafx.stage.Stage;
 public class DictationOptionsController {
 
 	private static int typ = 1;
-	private static String tranLeng = "ru";
+	private static String tranLang = "ru";
 	private static boolean random = false;
 	String[] types = {Helper.getI18nString("dictation.type1", Helper.LOCAL), Helper.getI18nString("dictation.type2", Helper.LOCAL)};
 	ObservableList<String> typs = FXCollections.observableArrayList(types);
@@ -41,14 +41,14 @@ public class DictationOptionsController {
 		return typ;
 	}
 
-	public static String getTranLeng() {
-		return tranLeng;
+	public static String getTranLang() {
+		return tranLang;
 	}
 
 	@FXML
 	public void initialize() {
 		typ = 0;
-		tranLeng = "ru";
+		tranLang = "ru";
 		random = false;
 		tran.setItems(FXCollections.observableArrayList(Properties.getLengNames(1)));
 		tran.getSelectionModel().select(0);
@@ -56,7 +56,7 @@ public class DictationOptionsController {
 		tran.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
 			@Override
 			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-				tranLeng = Properties.get(newValue.intValue() + 1).getKey();
+				tranLang = Properties.get(newValue.intValue() + 1).getKey();
 			}
 		});
 		type.setItems(FXCollections.observableArrayList(typs));
@@ -70,16 +70,12 @@ public class DictationOptionsController {
 	}
 
 	public void start(ActionEvent actionEvent) {
-		MyStage dictation = new MyStage("/fxmls/dictat.fxml", null, null, new WindowResizer(700, 700), new WindowControllPanel(40, 20, 10, true, true, false, "/resources/images/icons/used/write.png", Helper.getI18nString("dictation", Helper.LOCAL) + " : " + MyListsController.getCur().getName()));
+		MyStage dictation = new MyStage("/fxmls/dictat.fxml", null, null, new WindowResizer(700, 700), new WindowControlPanel(40, 20, 10, true, true, false, "/resources/images/icons/used/write.png", Helper.getI18nString("dictation", Helper.LOCAL) + " : " + MyListsController.getCur().getName()));
 		//dictation.setAlwaysOnTop(true);
 		AnchorPane.setRightAnchor(dictation.getWR(), 15.0);
 		AnchorPane.setBottomAnchor(dictation.getWR(), 15.0);
-		dictation.getWCP().getCloseButton().setOnAction(action -> {
-			DictationController.finish();
-		});
-		dictation.setOnCloseRequest(action-> {
-			DictationController.finish();
-		});
+		dictation.getWCP().getCloseButton().setOnAction(action -> DictationController.finish());
+		dictation.setOnCloseRequest(action -> DictationController.finish());
 		((Stage) type.getScene().getWindow()).close();
 		dictation.showAndWait();
 	}
